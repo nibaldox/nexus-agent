@@ -57,9 +57,10 @@ librarian = Agent(
     search_knowledge=True,
     description="Your goal is to answer questions based on the local knowledge base (documents).",
     instructions=[
-        "Use the `search_knowledge` tool to find information in the provided PDFs.",
-        "Always cite the document name if possible.",
-        "If the information is not in the documents, state it clearly."
+        "Prioriza la búsqueda en la base de conocimientos local antes de buscar en la web.",
+        "Para cada hallazgo, incluye: 1) nombre del documento, 2) página o ubicación aproximada, 3) frase de evidencia (1–2 frases).",
+        "Si no encuentras la información, indica claramente que no está en los documentos y propone 1–2 pasos siguientes (buscar en web / solicitar aclaración / pedir otro documento).",
+        "Mantén la respuesta concisa y cita fuentes locales exactamente.",
     ],
     markdown=True,
 )
