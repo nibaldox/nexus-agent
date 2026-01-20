@@ -40,53 +40,108 @@ cd nexus-agent
 # Crear y activar entorno virtual
 python -m venv .venv
 # Windows
-.venv\Scripts\activate
-# Linux/Mac
-source .venv/bin/activate
+# ⚡ Nexus Agent (Fusión de IA Avanzada)
 
-# Instalar dependencias
+![Interfaz Nexus](frontend/screen.png)
+
+`Nexus Agent` es un framework multi-agente para orquestar especialistas (Researcher, Analyst, Librarian, Visualizer) con una interfaz web ligera, RAG local y herramientas de búsqueda.
+
+## Novedades (Resumen rápido)
+
+- Agregado `SerperTools` (Serper.dev) y ampliadas las capacidades de búsqueda: DuckDuckGo, WebSearch, Website tools, HackerNews, Exa, Arxiv, Newspaper.
+- Nuevo agente `Visualizer` + `ChartTools` con gráficos modernos (line, bar, pie, scatter, area, histogram, box plot).
+- Interfaz responsive y barra lateral colapsable (toggle persistente en `localStorage`).
+- Mejor experiencia: auto-scroll inteligente, salida de búsquedas formateada y subida de PDFs para ingestión RAG.
+
+## Características principales
+
+- Orquestación Multi-Agente usando `agno`.
+- RAG local con `LanceDB` para vectores y búsqueda en documentos.
+- Búsqueda web multi-backend y extracción de noticias.
+- Visualizaciones generadas por `ChartTools` (guardadas en `frontend/assets/charts`).
+- UI: FastAPI backend + Vanilla JS + Tailwind, SSE para streaming.
+
+## Requisitos
+
+- Python 3.10+ (se recomienda 3.11+)
+- Entorno virtual (`venv`)
+- `requirements.txt` contiene dependencias principales
+
+## Instalación y ejecución
+
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/nibaldox/nexus-agent.git
+cd nexus-agent
+```
+
+2. Crea y activa un entorno virtual:
+
+Windows:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+Linux / macOS:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+3. Instala dependencias:
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Configuración
-Crea un archivo `.env` en el directorio raíz:
+4. Crea `.env` con claves necesarias (opcional según tu configuración):
+
 ```ini
-OPENAI_API_KEY=sk-tu-clave... (Requerido para Embeddings)
-OPENROUTER_API_KEY=sk-tu-clave... (Requerido para Modelos LLM)
+OPENAI_API_KEY=sk-...
+SERPER_API_KEY=sk-...   # para SerperTools
+EXA_API_KEY=...         # si usas Exa
 ```
 
-### 3. Ejecución Rápida (Windows) 🚀
-¡Haz doble clic en el archivo `run.bat`!
+5. Ejecuta el servidor:
 
-Este script automatizado:
-1.  Activará el entorno virtual.
-2.  Iniciará el servidor backend.
-3.  Abrirá tu navegador automáticamente en la interfaz.
-
-### Ejecución Manual
-Si prefieres hacerlo paso a paso:
 ```bash
+.
+# Windows (incluido run.bat):
+# run.bat  (doble clic o ejecutar en PowerShell)
+
+# Ejecución manual:
 uvicorn api:app --host 127.0.0.1 --port 8000 --reload
 ```
-Abre tu navegador en **http://127.0.0.1:8000**
 
-## 📂 Estructura del Proyecto
+Abre http://127.0.0.1:8000 en tu navegador.
 
-*   `agents/`: Definiciones para Manager y Sub-agentes.
-*   `api.py`: Endpoints de FastAPI (`/chat`, `/upload`).
-*   `frontend/`: Archivos HTML/CSS/JS.
-    *   `js/main.js`: Lógica central para SSE y manejo de eventos.
-    *   `js/ui.js`: Manipulación del DOM y renderizado de componentes.
-*   `workspace/knowledge`: Arrastra tus PDFs aquí para ingestión.
+## Uso y notas rápidas
 
-## 📸 Capturas de Pantalla
+- Sidebar colapsable: haz clic en el botón superior izquierdo (el estado se guarda en `localStorage`).
+- Subida de PDFs: usa el botón de adjuntar para agregar documentos al índice RAG.
+- Visualizaciones: el agente `Visualizer` puede crear gráficos y los resultados se almacenan en `frontend/assets/charts/`.
+- Búsquedas: el `Researcher` tiene varias herramientas; si usas Serper asegúrate de añadir `SERPER_API_KEY`.
 
-### Delegación Multi-Agente
-*Nexus Manager delegando una tarea de análisis de acciones al Analista.*
-*(Ver `docs/walkthrough.md` para más visuales)*
+## Estructura destacada
 
-## 🤝 Contribuciones
-¡Las contribuciones son bienvenidas! Por favor abre un issue o envía un pull request.
+- `agents/` — definiciones de agentes (Researcher, Analyst, Librarian, Visualizer, etc.)
+- `frontend/` — UI estática, JS y CSS; `responsive.css` contiene las reglas responsive y de toggle
+- `api.py` — FastAPI app y endpoints (chat, upload)
+- `workspace/knowledge` — arrastra PDFs aquí para ingestión local
 
-## 📜 Licencia
+## Contribuir
+
+- Abrir issues para bugs o features.
+- Crear branches temáticos y enviar pull requests.
+
+## Licencia
+
 MIT
+
+---
+
+_Última actualización: 2026-01-20_
