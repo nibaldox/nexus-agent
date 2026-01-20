@@ -54,7 +54,10 @@ def load_knowledge():
     else:
         print("ℹ️ No PDF documents found in workspace/knowledge")
 
-load_knowledge()
+AUTO_INGEST_ON_START = False
+
+if AUTO_INGEST_ON_START:
+    load_knowledge()
 
 agent = Agent(
     model=OpenRouter(id="minimax/minimax-m2.1"),

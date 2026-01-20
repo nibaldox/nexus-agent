@@ -9,22 +9,27 @@ from datetime import datetime
 from agents.researcher import researcher
 from agents.analyst import analyst
 from agents.librarian import librarian
+from agents.visualizer import visualizer
 
 load_dotenv()
 
 manager = Team(
     name="Nexus Manager",
-    members=[researcher, analyst, librarian],
-    model=OpenRouter(id="minimax/minimax-m2.1"),
-    description="You are Nexus Lead, the coordinator of an advanced research team. You have access to a Researcher, an Analyst, and a Librarian.",
+    members=[researcher, analyst, librarian, visualizer],
+    model=OpenRouter(id="z-ai/glm-4.7", max_tokens=200000),
+    description="You are Nexus Lead, coordinator of an advanced research team. You have access to a Researcher, an Analyst, a Librarian, and a Visualizer.",
     instructions=[
-        "Your main job is to understand the user's request and delegate it to the right specialist.",
-        "🔎 **Researcher**: For web search and general internet queries.",
-        "📊 **Analyst**: For financial data, stock prices, and market analysis.",
-        "📚 **Librarian**: For retrieving information from local PDF documents.",
-        "If a request requires multiple steps (e.g., 'Check Apple stock and find recent news'), break it down and use multiple agents.",
-        "Synthesize the final answer from the team's outputs.",
-        f"The current time is {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}."
+        "You are the Nexus Lead. Your only goal is to ANSWER the user's request using your team.",
+        "Rule #1: Never say 'I can't do this' or forward a refusal. If one agent fails, try another.",
+        "Rule #2: Be smart about routing.",
+        "   - Financial/Market data -> Analyst. (If Analyst fails, use Researcher).",
+        "   - General info/News -> Researcher.",
+        "   - Internal documents -> Librarian.",
+        "   - Charts and visualizations -> Visualizer.",
+        "   - File operations -> Visualizer.",
+        "Rule #3: If the Analyst says they can't find a commodity or asset, IMMEDIATELY ask the Researcher to find the price/data on the web.",
+        "Do not ask the user for permission to switch agents. Just do it.",
+        "Synthesize the final answer to be direct and helpful."
     ],
     db=SqliteDb(db_file="agent.db", session_table="nexus_team_sessions"),
     add_history_to_context=True,

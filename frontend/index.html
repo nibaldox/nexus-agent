@@ -11,12 +11,15 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%2300E0FF%22/></svg>">
 
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="responsive.css" />
     <style type="text/tailwindcss">
         :root {
             --bg: #000000;
@@ -122,10 +125,17 @@
         </div>
         <nav class="flex-grow overflow-y-auto hide-scrollbar">
             <div class="space-y-4 px-8">
-                <a class="sidebar-item flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-[var(--accent-cyan)] glow-cyan"
-                    href="#">
-                    <span class="opacity-50">[1]</span> Active_Missions
-                </a>
+                <div>
+                    <a class="sidebar-item flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-[var(--accent-cyan)] glow-cyan mb-3"
+                        href="#">
+                        <span class="opacity-50">[1]</span> Active_Missions
+                    </a>
+                    <!-- Session List -->
+                    <ul id="session-list"
+                        class="space-y-2 pl-6 border-l border-[var(--border)] ml-2 transition-all duration-300">
+                        <!-- Sessions will be injected here via JS -->
+                    </ul>
+                </div>
                 <a class="sidebar-item flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]"
                     href="#">
                     <span class="opacity-30">[2]</span> Task_Protocols
@@ -156,6 +166,10 @@
         </div>
     </aside>
     <div class="flex-grow flex flex-col h-full relative">
+        <!-- Sidebar Toggle Button -->
+        <button id="sidebar-toggle" class="absolute top-4 left-4 z-40 bg-[#111111] border border-[var(--border)] rounded-lg p-2 hover:border-[var(--accent-cyan)] transition-colors group">
+            <span class="material-symbols-outlined text-[20px] text-[var(--text-muted)] group-hover:text-[var(--accent-cyan)] transition-colors" id="toggle-icon">menu_open</span>
+        </button>
         <main class="flex-grow flex flex-col max-w-[1000px] mx-auto w-full pt-12 pb-4 relative px-8 overflow-hidden">
             <div class="flex-grow overflow-y-auto hide-scrollbar space-y-10 px-4 min-h-0">
                 <div class="text-[12px] text-[var(--text-muted)] mono leading-relaxed opacity-60">
@@ -170,6 +184,7 @@
                 <div
                     class="relative bg-[#0F0F0F] rounded-xl border border-[var(--border)] p-4 focus-within:border-[var(--accent-cyan)] transition-all duration-300">
                     <textarea
+                        id="message-input"
                         class="w-full bg-transparent border-none focus:ring-0 text-[15px] font-normal text-[var(--text-main)] placeholder:text-[var(--text-muted)] opacity-60 focus:opacity-100 p-0 mono resize-none h-12"
                         placeholder="Entra un commando o instruccion..."></textarea>
                     <div class="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
@@ -182,6 +197,7 @@
                                 class="material-symbols-outlined text-[18px] text-[var(--text-muted)] cursor-pointer hover:text-[var(--accent-cyan)]">mic</span>
                         </div>
                         <button
+                            id="send-btn"
                             class="bg-[#1A1A1A] hover:bg-[#222222] text-[10px] font-bold text-[var(--text-main)] px-4 py-1.5 rounded uppercase tracking-widest flex items-center gap-2 border border-white/5 transition-colors">
                             Exec <span class="material-symbols-outlined text-[14px]">send</span>
                         </button>

@@ -96,3 +96,17 @@
 2.  **Documentación**:
     -   Actualizar README y Walkthrough con instrucciones simples.
     -   Traducir documentación a Español.
+
+## Etapa 12: Generación de Gráficos 📊
+**Objetivo:** Permitir al Analista visualizar datos mediante gráficos.
+1.  **Backend (Tooling)**:
+    -   Crear clase `ChartTools` con `matplotlib`.
+    -   Método `create_chart(type, data, labels, title)`:
+        -   Genera gráfico PNG.
+        -   Guarda en `frontend/assets/charts/`.
+        -   Devuelve ruta markdown relativa `/assets/charts/filename.png`.
+2.  **Agente (Analyst)**:
+    -   Añadir `ChartTools` a la lista de herramientas.
+    -   Instruir al agente para usar gráficos cuando sea relevante.
+3.  **Frontend (UI)**:
+    -   Asegurar que `marked.js` renderice imágenes (lo hace por defecto).
