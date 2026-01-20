@@ -1,4 +1,3 @@
-
 # Tareas para Agente General con Agno
 
 ## Fase 1: Fundamentos [COMPLETADA]
@@ -33,3 +32,8 @@
     - [x] Identificar eventos de comunicación entre agentes (`TeamRunEvent`).
     - [x] Actualizar `api.py` para enviar metadata del agente (nombre/rol).
     - [x] Actualizar Frontend para mostrar "Tarjetas de Agente" (similar a Tools).
+
+- [x] **Etapa 11: Despliegue & Scripts** 🚀
+    - [x] Crear `run_nexus.py` para levantar Backend + Frontend + Navegador.
+    - [x] Crear `run.bat` para ejecución rápida en Windows.
+    - [x] Subir proyecto a GitHub con documentación completa.
