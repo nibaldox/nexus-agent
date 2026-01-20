@@ -1,58 +1,58 @@
 
-# 🚀 Nexus AI Walkthrough
+# 🚀 Recorrido de Nexus AI
 
-## 🌟 Overview
-This project transforms a simple Agent script into a **full-fledged interactive AI Assistant ("Nexus")**.
-Key features include a **Web UI**, **Multi-Agent Orchestration**, **Local RAG (Knowledge Base)**, and **Rich Tool Cards**.
+## 🌟 Visión General
+Este proyecto transforma un script de Agente simple en un **Asistente de IA interactivo completo ("Nexus")**.
+Las características clave incluyen una **Interfaz Web**, **Orquestación Multi-Agente**, **RAG Local (Base de Conocimiento)**, y **Tarjetas de Herramientas Ricas**.
 
-## ✨ Features Implemented
+## ✨ Características Implementadas
 
-### 1. **Interactive Web UI**
-- **Tech Stack**: FastAPI (Backend) + Vanilla JS/HTML/CSS (Frontend).
-- **Features**: 
-  - Streaming responses (SSE).
-  - Rich Markdown rendering (Tables, Code blocks).
-  - **Tool Cards**: Expandable cards showing tool inputs/outputs (e.g., Search Results).
-  - **Agent Identity**: "Nexus Interface" branding with Cyberpunk aesthetics.
+### 1. **Interfaz Web Interactiva**
+- **Stack Tecnológico**: FastAPI (Backend) + Vanilla JS/HTML/CSS (Frontend).
+- **Características**: 
+  - Respuestas en streaming (SSE).
+  - Renderizado rico de Markdown (Tablas, Bloques de código).
+  - **Tarjetas de Herramientas**: Tarjetas expandibles que muestran entradas/salidas de herramientas (ej. Resultados de Búsqueda).
+  - **Identidad del Agente**: Branding "Nexus Interface" con estética Cyberpunk.
 
-### 2. **Multi-Agent Architecture** 🤖 [NEW]
-- **Structure**: A "Manager" agent orchestrates a team of specialists.
-- **Agents**:
-  - **Manager (Nexus Lead)**: Interfaces with the user and delegates tasks.
-  - **Researcher**: Uses DuckDuckGo for web searches.
-  - **Analyst**: Uses YFinance for stock data.
-  - **Librarian**: Manages the local PDF knowledge base (RAG).
-- **Visual Delegation**:
-  - Distinct purple bubbles for sub-agent responses (e.g., "ANALYST" speaking to Manager).
-  - Clear separation of tools and conversation flow.
+### 2. **Arquitectura Multi-Agente** 🤖 [NUEVO]
+- **Estructura**: Un agente "Manager" orquesta un equipo de especialistas.
+- **Agentes**:
+  - **Manager (Nexus Lead)**: Interactúa con el usuario y delega tareas.
+  - **Researcher**: Usa DuckDuckGo para búsquedas web.
+  - **Analyst**: Usa YFinance para datos bursátiles.
+  - **Librarian**: Gestiona la base de conocimiento local de PDFs (RAG).
+- **Delegación Visual**:
+  - Burbujas moradas distintivas para respuestas de sub-agentes (ej. "ANALYST" hablando con el Manager).
+  - Separación clara de herramientas y flujo de conversación.
 
-### 3. **Local RAG (Knowledge Base)** 🧠
-- **Tech**: `LanceDb` (Vector Store) + `OpenAIEmbeddings`.
-- **Functionality**:
-  - **Ingestion**: Drop PDF files into `workspace/knowledge` (or use UI Upload).
-  - **Retrieval**: Agent intelligently searches documents to answer queries.
-  - **File Upload**: UI supports direct PDF upload to the knowledge base.
+### 3. **RAG Local (Base de Conocimiento)** 🧠
+- **Tecnología**: `LanceDb` (Almacén Vectorial) + `OpenAIEmbeddings`.
+- **Funcionalidad**:
+  - **Ingestión**: Arrastra archivos PDF a `workspace/knowledge` (o usa la subida en UI).
+  - **Recuperación**: El agente busca inteligentemente en documentos para responder consultas.
+  - **Subida de Archivos**: La UI soporta subida directa de PDFs a la base de conocimiento.
 
-### 4. **Smart Autoscroll**
-- **UX Improvement**: Chat only autoscrolls if the user is already at the bottom. Allows reading history during generation.
+### 4. **Autoscroll Inteligente**
+- **Mejora de UX**: El chat solo hace autoscroll si el usuario ya está al final. Permite leer el historial durante la generación.
 
-## 📸 Verification
+## 📸 Verificación
 
-### Sub-Agent Visualization (Delegation)
-![Sub-Agent Bubble](images/sub_agent_purple_bubble_1768871494645.png)
-*Nexus Manager delegating to Analyst. Note the distinct "ANALYST" bubble showing internal team communication.*
+### Visualización de Sub-Agentes (Delegación)
+![Burbuja de Sub-Agente](images/sub_agent_purple_bubble_1768871494645.png)
+*Nexus Manager delegando al Analista. Nota la burbuja distintiva "ANALYST" mostrando la comunicación interna del equipo.*
 
-### Multi-Agent Interaction
-![Multi-Agent Verification](images/nexus_multiagent_verification_1768867360885.png)
-*Nexus Manager delegating to Librarian to find PDF documents.*
+### Interacción Multi-Agente
+![Verificación Multi-Agente](images/nexus_multiagent_verification_1768867360885.png)
+*Nexus Manager delegando al Bibliotecario (Librarian) para encontrar documentos PDF.*
 
-### Chat Restoration (Team Event Fix)
-![Chat Restored](images/chat_restored_1768869707318.png)
-*Verifying successful communication and delegation after fixing the Team Event stream issue.*
+### Restauración del Chat (Corrección de Eventos Team)
+![Chat Restaurado](images/chat_restored_1768869707318.png)
+*Verificando comunicación y delegación exitosa tras arreglar el problema de streaming de Eventos de Team.*
 
-### Rich Search Cards
-![Search Cards](../frontend/assets/search_card_demo.png) *(Placeholder if present in repo)*
+### Tarjetas de Búsqueda Ricas
+![Tarjetas de Búsqueda](../frontend/assets/search_card_demo.png) *(Placeholder si está presente)*
 
-## 🛠️ Next Steps
-- [ ] **Voice Interaction**: Add TTS/STT capabilities.
-- [ ] **Memory Persistence**: Ensure session history persists across reloads (partially implemented via SqliteDb).
+## 🛠️ Próximos Pasos
+- [ ] **Interacción por Voz**: Añadir capacidades TTS/STT.
+- [ ] **Persistencia de Memoria**: Asegurar que el historial de sesión persista entre recargas (parcialmente implementado vía SqliteDb).

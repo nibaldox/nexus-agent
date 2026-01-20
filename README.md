@@ -1,85 +1,85 @@
 
-# ⚡ Nexus Agent (Advance AI Fusion)
+# ⚡ Nexus Agent (Fusión de IA Avanzada)
 
-![Nexus Interface](frontend/screen.png)
+![Interfaz Nexus](frontend/screen.png)
 
-**Nexus Agent** is an advanced, multi-agent AI framework with a sleek Cyberpunk web interface. It goes beyond simple chatbots by orchestrating a team of specialized agents, managing local memory (RAG), and providing rich, interactive visualizations.
+**Nexus Agent** es un framework avanzado de IA multi-agente con una elegante interfaz web estilo Cyberpunk. Va más allá de los chatbots simples al orquestar un equipo de agentes especializados, gestionar memoria local (RAG) y proporcionar visualizaciones ricas e interactivas.
 
-## 🚀 Key Features
+## 🚀 Características Clave
 
-### 🤖 Multi-Agent Orchestration
-Nexus utilizes a **Manager-Specialist** architecture powered by `agno`:
-*   **👔 Nexus Manager**: The team lead. Orchestrates tasks, understands user intent, and delegates work to specialists.
-*   **🕵️ Researcher**: Specializes in real-time web search (DuckDuckGo).
-*   **📊 Analyst**: Specializes in financial data and market analysis (YFinance).
-*   **📚 Librarian**: Manages local knowledge. Ingests and retrieves information from PDF documents (RAG).
+### 🤖 Orquestación Multi-Agente
+Nexus utiliza una arquitectura **Gerente-Especialista** impulsada por `agno`:
+*   **👔 Nexus Manager**: El líder del equipo. Orquesta tareas, entiende la intención del usuario y delega el trabajo a los especialistas.
+*   **🕵️ Researcher**: Especialista en búsqueda web en tiempo real (DuckDuckGo).
+*   **📊 Analyst**: Especialista en datos financieros y análisis de mercado (YFinance).
+*   **📚 Librarian**: Gestiona el conocimiento local. Ingiere y recupera información de documentos PDF (RAG).
 
-### 🧠 Local RAG (Retrieval-Augmented Generation)
-*   **Vector Database**: Uses `LanceDB` for high-performance local vector storage.
-*   **Knowledge Base**: Simply drop PDFs into `workspace/knowledge` or upload them via the UI. Nexus will index and cite them in answers.
+### 🧠 RAG Local (Generación Aumentada por Recuperación)
+*   **Base de Datos Vectorial**: Usa `LanceDB` para almacenamiento vectorial local de alto rendimiento.
+*   **Base de Conocimiento**: Simplemente arrastra PDFs a `workspace/knowledge` o súbelos vía UI. Nexus los indexará y citará en sus respuestas.
 
-### 💻 Interactive Cyberpunk UI
-*   **Tech Stack**: FastAPI (Backend) + Vanilla JS/Tailwind (Frontend).
-*   **Streaming**: Real-time Server-Sent Events (SSE) for fluid responses.
-*   **Tool Cards**: Interactive, collapsible cards showing the *thought process* and *tool outputs* (e.g., search results, code execution) separate from the chat.
-*   **Agent Visualization**: Distinct visual cues (Purple Bubbles) when a sub-agent speaks to the Manager.
+### 💻 UI Cyberpunk Interactiva
+*   **Stack Tecnológico**: FastAPI (Backend) + Vanilla JS/Tailwind (Frontend).
+*   **Streaming**: Server-Sent Events (SSE) en tiempo real para respuestas fluidas.
+*   **Tarjetas de Herramientas**: Tarjetas interactivas y colapsables que muestran el *proceso de pensamiento* y *salidas de herramientas* (ej. resultados de búsqueda, ejecución de código) separados del chat.
+*   **Visualización de Agentes**: Señales visuales distintivas (Burbujas Moradas) cuando un sub-agente habla con el Manager.
 
-## 🛠️ Installation & Setup
+## 🛠️ Instalación y Configuración
 
-### Prerequisites
+### Requisitos Previos
 *   Python 3.10+
-*   Node.js (optional, for frontend dev, but vanilla JS works out of the box)
-*   Standard Python toolchain (pip, venv)
+*   Node.js (opcional, para desarrollo frontend, pero vanilla JS funciona directo)
+*   Herramientas estándar de Python (pip, venv)
 
-### 1. Backend Setup
+### 1. Configuración del Backend
 ```bash
-# Clone the repository
+# Clonar el repositorio
 git clone https://github.com/nibaldox/nexus-agent.git
 cd nexus-agent
 
-# Create and activate virtual environment
+# Crear y activar entorno virtual
 python -m venv .venv
 # Windows
 .venv\Scripts\activate
 # Linux/Mac
 source .venv/bin/activate
 
-# Install dependencies
+# Instalar dependencias
 pip install -r requirements.txt
 ```
 
-### 2. Configuration
-Create a `.env` file in the root directory:
+### 2. Configuración
+Crea un archivo `.env` en el directorio raíz:
 ```ini
-OPENAI_API_KEY=sk-your-key... (Required for Embeddings)
-OPENROUTER_API_KEY=sk-your-key... (Required for LLM Models)
+OPENAI_API_KEY=sk-tu-clave... (Requerido para Embeddings)
+OPENROUTER_API_KEY=sk-tu-clave... (Requerido para Modelos LLM)
 ```
 
-### 3. Running the System
-Start the FastAPI server (serves both API and Static Frontend):
+### 3. Ejecutar el Sistema
+Inicia el servidor FastAPI (sirve tanto API como Frontend Estático):
 ```bash
 uvicorn api:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-Open your browser at **http://127.0.0.1:8000**
+Abre tu navegador en **http://127.0.0.1:8000**
 
-## 📂 Project Structure
+## 📂 Estructura del Proyecto
 
-*   `agents/`: Definitions for Manager and Sub-agents.
-*   `api.py`: FastAPI endpoints (`/chat`, `/upload`).
-*   `frontend/`: HTML/CSS/JS files.
-    *   `js/main.js`: Core logic for SSE and Event handling.
-    *   `js/ui.js`: DOM manipulation and component rendering.
-*   `workspace/knowledge`: Drop your PDFs here for ingestion.
+*   `agents/`: Definiciones para Manager y Sub-agentes.
+*   `api.py`: Endpoints de FastAPI (`/chat`, `/upload`).
+*   `frontend/`: Archivos HTML/CSS/JS.
+    *   `js/main.js`: Lógica central para SSE y manejo de eventos.
+    *   `js/ui.js`: Manipulación del DOM y renderizado de componentes.
+*   `workspace/knowledge`: Arrastra tus PDFs aquí para ingestión.
 
-## 📸 Screenshots
+## 📸 Capturas de Pantalla
 
-### Multi-Agent Delegation
-*Nexus Manager delegating a stock analysis task to the Analyst.*
-*(See `walkthrough.md` for more visuals)*
+### Delegación Multi-Agente
+*Nexus Manager delegando una tarea de análisis de acciones al Analista.*
+*(Ver `docs/walkthrough.md` para más visuales)*
 
-## 🤝 Contributing
-Contributions are welcome! Please open an issue or submit a pull request.
+## 🤝 Contribuciones
+¡Las contribuciones son bienvenidas! Por favor abre un issue o envía un pull request.
 
-## 📜 License
+## 📜 Licencia
 MIT
