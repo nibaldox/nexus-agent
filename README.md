@@ -55,12 +55,19 @@ OPENAI_API_KEY=sk-tu-clave... (Requerido para Embeddings)
 OPENROUTER_API_KEY=sk-tu-clave... (Requerido para Modelos LLM)
 ```
 
-### 3. Ejecutar el Sistema
-Inicia el servidor FastAPI (sirve tanto API como Frontend Estático):
+### 3. Ejecución Rápida (Windows) 🚀
+¡Haz doble clic en el archivo `run.bat`!
+
+Este script automatizado:
+1.  Activará el entorno virtual.
+2.  Iniciará el servidor backend.
+3.  Abrirá tu navegador automáticamente en la interfaz.
+
+### Ejecución Manual
+Si prefieres hacerlo paso a paso:
 ```bash
 uvicorn api:app --host 127.0.0.1 --port 8000 --reload
 ```
-
 Abre tu navegador en **http://127.0.0.1:8000**
 
 ## 📂 Estructura del Proyecto

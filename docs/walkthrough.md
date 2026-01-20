@@ -36,6 +36,12 @@ Las características clave incluyen una **Interfaz Web**, **Orquestación Multi-
 ### 4. **Autoscroll Inteligente**
 - **Mejora de UX**: El chat solo hace autoscroll si el usuario ya está al final. Permite leer el historial durante la generación.
 
+## 🚀 Despliegue Simplificado [NUEVO]
+
+Hemos añadido dos scripts para facilitar la ejecución del proyecto:
+- **`run.bat`**: Script de Windows "todo en uno". Activa el entorno virtual, inicia el backend y abre el navegador automáticamente.
+- **`run_nexus.py`**: Orquestador en Python que gestiona el servidor Uvicorn y la apertura del navegador.
+
 ## 📸 Verificación
 
 ### Visualización de Sub-Agentes (Delegación)

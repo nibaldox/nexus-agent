@@ -86,5 +86,13 @@
 2.  **Agente Principal (`agent.py`)**:
     -   Reconfigurar para usar el modo `Team` o `Agent(team=[...])` de Agno.
     -   Instrucciones para delegar explícitamente.
-3.  **UI Updates**:
     -   Reflejar qué agente está actuando (si es posible vía eventos de `stream`).
+
+## Etapa 11: Despliegue & Scripts 🚀
+**Objetivo:** Facilitar la ejecución del proyecto para cualquier usuario.
+1.  **Scripts de Automatización**:
+    -   `run_nexus.py`: Script de Python que levanta backend, espera y abre el navegador.
+    -   `run.bat`: Launcher para Windows que maneja el entorno virtual.
+2.  **Documentación**:
+    -   Actualizar README y Walkthrough con instrucciones simples.
+    -   Traducir documentación a Español.
