@@ -16,7 +16,7 @@ load_dotenv()
 researcher = Agent(
     name="Researcher",
     role="Web Research Specialist",
-    model=OpenRouter(id="minimax/minimax-m2.1", max_tokens=8192),
+    model=OpenRouter(id="nvidia/nemotron-3-nano-30b-a3b:free", max_tokens=8192),
     tools=[
         DuckDuckGoTools(),
         WebSearchTools(backend="auto"),  # Auto-selects best available backend (Google, Bing, Brave, etc.)

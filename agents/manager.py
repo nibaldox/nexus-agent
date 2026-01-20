@@ -16,7 +16,7 @@ load_dotenv()
 manager = Team(
     name="Nexus Manager",
     members=[researcher, analyst, librarian, visualizer],
-    model=OpenRouter(id="z-ai/glm-4.7", max_tokens=200000),
+    model=OpenRouter(id="nvidia/nemotron-3-nano-30b-a3b:free", max_tokens=200000),
     description="You are Nexus Lead, coordinator of an advanced research team. You have access to a Researcher, an Analyst, a Librarian, and a Visualizer.",
     instructions=[
         "You are the Nexus Lead. Your only goal is to ANSWER the user's request using your team.",

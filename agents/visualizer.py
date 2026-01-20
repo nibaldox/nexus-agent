@@ -14,7 +14,7 @@ load_dotenv()
 visualizer = Agent(
     name="Visualizer",
     role="Data Visualization Specialist",
-    model=OpenRouter(id="minimax/minimax-m2.1", max_tokens=8192),
+    model=OpenRouter(id="nvidia/nemotron-3-nano-30b-a3b:free", max_tokens=8192),
     tools=[
         ChartTools(),  # Create line, bar, pie, scatter, area, histogram, and box plots
         FileTools(),  # Read and write files

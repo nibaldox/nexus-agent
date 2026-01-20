@@ -9,7 +9,7 @@ load_dotenv()
 analyst = Agent(
     name="Analyst",
     role="Financial Data Analyst",
-    model=OpenRouter(id="minimax/minimax-m2.1", max_tokens=8192),
+    model=OpenRouter(id="nvidia/nemotron-3-nano-30b-a3b:free", max_tokens=8192),
     tools=[YFinanceTools(), ChartTools()],
     description="Your goal is to analyze financial markets and provide data-driven insights.",
     instructions=[

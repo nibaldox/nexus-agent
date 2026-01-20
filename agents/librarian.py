@@ -52,7 +52,7 @@ if AUTO_INGEST_ON_START:
 librarian = Agent(
     name="Librarian",
     role="Knowledge Base Manager",
-    model=OpenRouter(id="minimax/minimax-m2.1", max_tokens=8192),
+    model=OpenRouter(id="nvidia/nemotron-3-nano-30b-a3b:free", max_tokens=8192),
     knowledge=knowledge_base,
     search_knowledge=True,
     description="Your goal is to answer questions based on the local knowledge base (documents).",

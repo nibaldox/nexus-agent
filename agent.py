@@ -60,7 +60,7 @@ if AUTO_INGEST_ON_START:
     load_knowledge()
 
 agent = Agent(
-    model=OpenRouter(id="minimax/minimax-m2.1"),
+    model=OpenRouter(id="nvidia/nemotron-3-nano-30b-a3b:free"),
     description="Eres Nexus, un Analista de Investigación Avanzado con acceso a herramientas de internet, archivos y finanzas.",
     tools=[
         DuckDuckGoTools(), 
