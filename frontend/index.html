@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Advanced Agent Fusion Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js for code syntax highlighting -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style type="text/tailwindcss">
+        :root {
+            --bg: #000000;
+            --surface: #0A0A0A;
+            --sidebar-bg: #111111;
+            --accent-cyan: #00E0FF;
+            --accent-orange: #FF8A00;
+            --accent-purple: #D946EF;
+            --text-main: #F0F0F0;
+            --text-muted: #888888;
+            --border: #222222;
+            --card-border: #1A1A1A;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'IBM Plex Mono', monospace;
+            overflow: hidden;
+        }
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .sidebar-item {
+            transition: all 0.2s ease;
+        }
+        .sidebar-item:hover {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 224, 255, 0.4);
+        }
+        .glow-cyan {
+            text-shadow: 0 0 8px rgba(0, 224, 255, 0.6);
+        }
+        .execution-card {
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.02);
+            transition: border-color 0.3s ease;
+        }
+        .execution-card:hover {
+            border-color: #333333;
+        }
+        .operator-bubble {
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .blinking-cursor {
+            width: 8px;
+            height: 1.2em;
+            background-color: var(--accent-cyan);
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+        }
+        /* Table Styling */
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            font-size: 0.9em;
+        }
+        .prose thead {
+            border-bottom: 1px solid var(--card-border);
+        }
+        .prose th {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            text-align: left;
+            padding: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.8em;
+        }
+        .prose td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+        }
+        .prose tr:last-child td {
+            border-bottom: none;
+        }
+        .prose tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+    </style>
+</head>
+
+<body class="flex h-screen antialiased">
+    <aside class="w-[20%] h-full bg-[var(--sidebar-bg)] border-r border-[var(--border)] flex flex-col z-30">
+        <div class="p-8 pb-4">
+            <h2 class="text-[10px] uppercase tracking-[0.3em] text-[var(--text-muted)] font-bold mb-10">System_Modules
+            </h2>
+        </div>
+        <nav class="flex-grow overflow-y-auto hide-scrollbar">
+            <div class="space-y-4 px-8">
+                <a class="sidebar-item flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-[var(--accent-cyan)] glow-cyan"
+                    href="#">
+                    <span class="opacity-50">[1]</span> Active_Missions
+                </a>
+                <a class="sidebar-item flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]"
+                    href="#">
+                    <span class="opacity-30">[2]</span> Task_Protocols
+                </a>
+                <a class="sidebar-item flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]"
+                    href="#">
+                    <span class="opacity-30">[3]</span> System_Tools
+                </a>
+                <a class="sidebar-item flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]"
+                    href="#">
+                    <span class="opacity-30">[4]</span> Core_Settings
+                </a>
+            </div>
+        </nav>
+        <div class="p-8 space-y-6">
+            <div
+                class="border border-dashed border-[var(--border)] p-4 rounded-md cursor-pointer group hover:border-[var(--accent-cyan)] transition-colors">
+                <div class="flex items-center justify-center gap-3">
+                    <span
+                        class="material-symbols-outlined text-sm text-[var(--text-muted)] group-hover:text-[var(--accent-cyan)]">add</span>
+                    <span
+                        class="text-[10px] uppercase tracking-[0.2em] font-bold text-[var(--text-muted)] group-hover:text-[var(--text-main)]">Ini_Session</span>
+                </div>
+            </div>
+            <div class="text-[10px] text-center text-[var(--text-muted)] opacity-50 uppercase tracking-widest">
+                Build v2.0.4 // Stable
+            </div>
+        </div>
+    </aside>
+    <div class="flex-grow flex flex-col h-full relative">
+        <main class="flex-grow flex flex-col max-w-[1000px] mx-auto w-full pt-12 pb-4 relative px-8 overflow-hidden">
+            <div class="flex-grow overflow-y-auto hide-scrollbar space-y-10 px-4 min-h-0">
+                <div class="text-[12px] text-[var(--text-muted)] mono leading-relaxed opacity-60">
+                    Agent Zero v2.0 Online. Systems Nominal.<br />
+                    Waiting for operator input...
+                </div>
+
+                <!-- Chat Area -->
+
+            </div>
+            <div class="mt-8 px-4 mb-6 shrink-0">
+                <div
+                    class="relative bg-[#0F0F0F] rounded-xl border border-[var(--border)] p-4 focus-within:border-[var(--accent-cyan)] transition-all duration-300">
+                    <textarea
+                        class="w-full bg-transparent border-none focus:ring-0 text-[15px] font-normal text-[var(--text-main)] placeholder:text-[var(--text-muted)] opacity-60 focus:opacity-100 p-0 mono resize-none h-12"
+                        placeholder="Entra un commando o instruccion..."></textarea>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
+                        <div class="flex gap-4">
+                            <input type="file" id="file-input" class="hidden" accept=".pdf" />
+                            <span id="upload-btn"
+                                class="material-symbols-outlined text-[18px] text-[var(--text-muted)] cursor-pointer hover:text-[var(--accent-cyan)] transition-colors"
+                                title="Upload PDF to Knowledge Base">attach_file</span>
+                            <span
+                                class="material-symbols-outlined text-[18px] text-[var(--text-muted)] cursor-pointer hover:text-[var(--accent-cyan)]">mic</span>
+                        </div>
+                        <button
+                            class="bg-[#1A1A1A] hover:bg-[#222222] text-[10px] font-bold text-[var(--text-main)] px-4 py-1.5 rounded uppercase tracking-widest flex items-center gap-2 border border-white/5 transition-colors">
+                            Exec <span class="material-symbols-outlined text-[14px]">send</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-2 text-center">
+                    <span class="text-[9px] uppercase tracking-[0.4em] text-[var(--text-muted)] opacity-40">Agent Zero
+                        // Nexus Interface</span>
+                </div>
+            </div>
+        </main>
+        <footer
+            class="h-10 border-t border-[var(--border)] bg-[#050505] flex items-center justify-between px-8 w-full shrink-0">
+            <div class="flex items-center gap-10">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="text-[9px] mono text-[var(--text-muted)] tracking-[0.2em] uppercase font-bold">Engine</span>
+                    <span
+                        class="text-[9px] mono text-[var(--text-main)] tracking-[0.2em] uppercase">Nexus-Alpha-X</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span
+                        class="text-[9px] mono text-[var(--text-muted)] tracking-[0.2em] uppercase font-bold">Latency</span>
+                    <span class="text-[9px] mono text-[var(--accent-cyan)] tracking-[0.2em] uppercase">08ms</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span
+                        class="text-[9px] mono text-[var(--text-muted)] tracking-[0.2em] uppercase font-bold">Build</span>
+                    <span class="text-[9px] mono text-[var(--text-main)] tracking-[0.2em] uppercase">v2.0.4
+                        stable</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-[9px] mono text-[var(--text-muted)] tracking-[0.2em] uppercase font-bold">System
+                    Online</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-[var(--accent-cyan)] shadow-[0_0_8px_var(--accent-cyan)]"></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- External Libs -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Modular JS Entry Point -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
