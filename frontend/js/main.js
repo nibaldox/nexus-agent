@@ -268,50 +268,168 @@ function handleEvent(event, group) {
             }
         }
 
-        const { html, id } = UI.createExecutionCard('terminal', 'Exec_Code', toolName, 'Running', 'var(--accent-orange)');
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
-        const card = tempDiv.firstElementChild;
-        card.dataset.toolId = id;
+        // Get or create the Tools container for this agent group
+        let toolsContainer = group.querySelector('.tools-container-active');
 
-        // Inject arguments into details
-        if (toolArgs) {
-            const details = card.querySelector('.card-details');
-            if (details) {
-                details.innerHTML = `<div class="mb-2"><span class="text-[var(--accent-cyan)] font-bold">Arguments:</span><pre class="whitespace-pre-wrap mt-1 opacity-80">${toolArgs}</pre></div>`;
+        if (!toolsContainer) {
+            // Create parent Tools container
+            const { html: containerHtml, id: containerId } = UI.createExecutionCard(
+                'build',
+                'Tools_Execution',
+                'agent_tools',
+                'Active',
+                'var(--accent-orange)'
+            );
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = containerHtml;
+            toolsContainer = tempDiv.firstElementChild;
+            toolsContainer.classList.add('tools-container-active');
+
+            // Find or create the details section to hold individual tools
+            let containerDetails = toolsContainer.querySelector('.card-details');
+            if (containerDetails) {
+                containerDetails.classList.remove('hidden'); // Keep it open
+                containerDetails.innerHTML = '<div class="space-y-2 tools-list"></div>';
             }
+
+            group.appendChild(toolsContainer);
         }
 
-        group.appendChild(card);
+        // Create individual tool card (smaller, as a sub-item)
+        const toolCard = document.createElement('div');
+        toolCard.className = 'tool-item border-l-2 border-l-[var(--accent-orange)] pl-3 py-2 bg-[rgba(255,255,255,0.01)] rounded';
+        toolCard.dataset.toolName = toolName;
+
+        toolCard.innerHTML = `
+            <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[14px] text-[var(--accent-orange)]">terminal</span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--text-main)]">${toolName}</span>
+                </div>
+                <span class="tool-status text-[9px] font-bold text-[var(--accent-orange)] tracking-widest uppercase">Running</span>
+            </div>
+            <div class="tool-content text-[11px] text-[var(--text-muted)] mono">
+                ${toolArgs ? `<details class="mt-1"><summary class="cursor-pointer text-[var(--accent-cyan)] text-[10px]">Arguments</summary><pre class="whitespace-pre-wrap mt-1 opacity-80 text-[10px]">${toolArgs}</pre></details>` : ''}
+            </div>
+        `;
+
+        // Append to tools list inside container
+        const toolsList = toolsContainer.querySelector('.tools-list');
+        if (toolsList) {
+            toolsList.appendChild(toolCard);
+        }
     }
 
     if (eventType === "ToolCallCompleted" || eventType === "tool_call_completed") {
-        // Find the LAST card that is still running, implicitly assuming standard order. 
-        const cards = group.querySelectorAll('.execution-card');
-        for (let i = cards.length - 1; i >= 0; i--) {
-            const statusSpan = cards[i].querySelector('.status-text');
+        // Find the tools container
+        const toolsContainer = group.querySelector('.tools-container-active');
+        if (!toolsContainer) return;
+
+        // Find the LAST tool that is still running
+        const toolItems = toolsContainer.querySelectorAll('.tool-item');
+        for (let i = toolItems.length - 1; i >= 0; i--) {
+            const statusSpan = toolItems[i].querySelector('.tool-status');
             if (statusSpan && statusSpan.textContent === 'Running') {
-                statusSpan.textContent = 'Success';
+                statusSpan.textContent = 'Done';
                 statusSpan.style.color = 'var(--accent-cyan)';
-                const icon = cards[i].querySelector('.material-symbols-outlined');
+
+                // Update icon color
+                const icon = toolItems[i].querySelector('.material-symbols-outlined');
                 if (icon) icon.style.color = 'var(--accent-cyan)';
 
-                // Update parent wrapper border hover effect if needed, but mainly update content
-                const cardWrapper = cards[i].parentElement; // .group
-                if (cardWrapper) {
-                    const details = cardWrapper.querySelector('.card-details');
-                    // Check multiple locations for output
-                    const outputContent = event.tool_output || (event.tool && event.tool.tool_output) || (event.tool && event.tool.result);
+                // Add output if available
+                const outputContent = event.tool_output || (event.tool && event.tool.tool_output) || (event.tool && event.tool.result);
 
-                    if (details && outputContent) {
+                if (outputContent) {
+                    const toolContent = toolItems[i].querySelector('.tool-content');
+                    if (toolContent) {
                         const formattedOutput = UI.formatToolOutput(outputContent);
-                        details.innerHTML += `<div class="mt-2 border-t border-[var(--border)] pt-2"><span class="text-[var(--accent-cyan)] font-bold">Output:</span>${formattedOutput}</div>`;
+                        toolContent.innerHTML += `<details class="mt-2"><summary class="cursor-pointer text-[var(--accent-cyan)] text-[10px]">Output</summary><div class="mt-1 text-[10px]">${formattedOutput}</div></details>`;
                     }
                 }
-                cards[i].classList.remove('border-l-[var(--accent-orange)]');
+
                 break;
             }
         }
+    }
+
+    // WORKFLOW EVENTS: Planning, Review
+    if (eventType === "PlanningStarted") {
+        const planningCard = UI.createExecutionCard(
+            'task',
+            'Mission_Planning',
+            'Analyzing request',
+            'Active',
+            'var(--accent-cyan)'
+        );
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = planningCard.html;
+        group.appendChild(tempDiv.firstElementChild);
+    }
+
+    if (eventType === "PlanCreated") {
+        const planPath = event.plan_path || "unknown";
+        const planCard = UI.createExecutionCard(
+            'insert_drive_file',
+            'Plan_Created',
+            event.content || 'Mission plan generated',
+            'Success',
+            'var(--accent-cyan)'
+        );
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = planCard.html;
+        const cardEl = tempDiv.firstElementChild;
+
+        // Add link to view plan (future enhancement)
+        const details = cardEl.querySelector('.card-details');
+        if (details) {
+            details.innerHTML = `<div class="mt-2 text-[10px]">📄 ${planPath}</div>`;
+            group.appendChild(cardEl);
+
+            // Initialize Progress Tracker
+            if (window.ProgressTracker) {
+                const taskMatch = event.content.match(/(\d+) tareas/);
+                const taskCount = taskMatch ? parseInt(taskMatch[1]) : 3;
+                const missionTitle = event.content || "Executing complex mission";
+
+                ProgressTracker.create(taskCount, missionTitle);
+                ProgressTracker.addTask('task-research', 'Web Research & Data Gathering', 'Researcher');
+                ProgressTracker.addTask('task-analysis', 'Analysis & Processing', 'Analyst');
+                if (taskCount >= 3) {
+                    ProgressTracker.addTask('task-visualization', 'Chart Generation', 'Visualizer');
+                }
+            }
+        }
+    }
+
+    if (eventType === "ReviewStarted") {
+        const reviewCard = UI.createExecutionCard(
+            'fact_check',
+            'Quality_Review',
+            'Reviewer validating results',
+            'Active',
+            'var(--accent-purple)'
+        );
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = reviewCard.html;
+        group.appendChild(tempDiv.firstElementChild);
+    }
+
+    if (eventType === "ReviewCompleted") {
+        const status = event.status || "UNKNOWN";
+        const statusIcon = status === "APPROVED" ? 'check_circle' : 'warning';
+        const statusColor = status === "APPROVED" ? 'var(--accent-cyan)' : 'var(--accent-orange)';
+
+        const reviewCard = UI.createExecutionCard(
+            statusIcon,
+            'Review_Result',
+            event.content || 'Review completed',
+            status,
+            statusColor
+        );
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = reviewCard.html;
+        group.appendChild(tempDiv.firstElementChild);
     }
 
     // 3. MAIN CONTENT
@@ -320,6 +438,25 @@ function handleEvent(event, group) {
 
         // Detect Specialist Agent
         const agentName = event.agent_name || (event.model_provider_data && event.model_provider_data.agent_name);
+
+        // Update Progress Tracker based on agent activation
+        if (window.ProgressTracker && window.ProgressTracker.currentProgress) {
+            if (agentName === "Researcher") {
+                ProgressTracker.updateTaskStatus('task-research', 'in-progress');
+            } else if (agentName === "Analyst") {
+                // Researcher is done, Analyst is starting
+                ProgressTracker.updateTaskStatus('task-research', 'completed');
+                ProgressTracker.updateTaskStatus('task-analysis', 'in-progress');
+            } else if (agentName === "Visualizer") {
+                // Analyst is done, Visualizer is starting
+                ProgressTracker.updateTaskStatus('task-analysis', 'completed');
+                ProgressTracker.updateTaskStatus('task-visualization', 'in-progress');
+            } else if (agentName === "Reviewer") {
+                // All main tasks done, reviewing
+                ProgressTracker.updateTaskStatus('task-visualization', 'completed');
+            }
+        }
+
         // "Nexus Manager" is the main agent, so we treat it as default. Others are sub-agents.
         if (agentName && agentName !== "Nexus Manager") {
             bubble = UI.createSubAgentBubble(group, agentName);
@@ -356,7 +493,7 @@ function handleEvent(event, group) {
         const messageContainer = document.querySelector('.flex-grow.overflow-y-auto');
         if (messageContainer) {
             const currentMessageCount = messageContainer.querySelectorAll('.message-bubble').length;
-            
+
             // Check if new messages were added
             const hasNewMessages = currentMessageCount > lastMessageCount;
             lastMessageCount = currentMessageCount;
@@ -365,7 +502,7 @@ function handleEvent(event, group) {
             // 1. User manually scrolled up (userScrolled is false)
             // 2. New messages were added AND user is near bottom
             const isNearBottom = messageContainer.scrollHeight - messageContainer.scrollTop - messageContainer.clientHeight < 250;
-            
+
             if (!userScrolled && isNearBottom && hasNewMessages) {
                 messageContainer.scrollTop = messageContainer.scrollHeight;
             }
@@ -380,6 +517,7 @@ function handleEvent(event, group) {
             userScrolled = !isNearBottom;
         });
     }
+}
 
 // --- Bindings ---
 function bindEvents() {
@@ -534,7 +672,6 @@ async function uploadFile(file) {
         }
 
         chatContainer.scrollTop = chatContainer.scrollHeight;
-
     } catch (error) {
         console.error('Upload error:', error);
         document.getElementById(uploadId).remove();

@@ -1,8 +1,10 @@
 export function parseMarkdown(text) {
     if (!text) return '';
+    console.log('Parsing markdown:', text.substring(0, 100) + '...');
     // Use marked.js if available, otherwise fallback or raw
     if (typeof marked !== 'undefined') {
         const htmlContent = marked.parse(text);
+        console.log('Parsed HTML:', htmlContent.substring(0, 200) + '...');
         // Wrap in typography container
         // Note: Highlight.js needs to run AFTER insertion, so we might need a separate init or specific structure.
         // For simple bubble injection, we wrap it here.
@@ -73,6 +75,7 @@ export function createSubAgentBubble(group, agentName) {
         if (agentName.includes('Researcher')) icon = 'travel_explore';
         if (agentName.includes('Analyst')) icon = 'query_stats';
         if (agentName.includes('Librarian')) icon = 'library_books';
+        if (agentName.includes('Visualizer')) icon = 'insert_chart';
 
         bubbleWrapper.innerHTML = `
             <div class="execution-card rounded-lg px-4 py-2 border-l-2 border-l-[var(--accent-purple)] bg-[rgba(255,255,255,0.02)] flex items-center justify-between cursor-pointer toggle-header transition-colors hover:bg-[rgba(255,255,255,0.05)]">
@@ -101,7 +104,7 @@ export function createSubAgentBubble(group, agentName) {
     }
 
     return bubbleWrapper.querySelector('.content-area');
-} 
+}
 
 export function formatToolOutput(output) {
     // Friendly handling for empty output or empty result sets

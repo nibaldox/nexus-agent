@@ -1,7 +1,17 @@
+import sys
+import os
+# Force using virtual environment packages
+venv_path = os.path.join(os.path.dirname(__file__), '.venv', 'Lib', 'site-packages')
+if venv_path not in sys.path:
+    sys.path.insert(0, venv_path)
+
 from fastapi import FastAPI, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+import json
+import sqlite3
+from typing import Optional, List, Dict, Any
 # Import Multi-Agent Team
 from agents.manager import manager
 from agents.librarian import librarian
@@ -17,11 +27,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-
-import sqlite3
-from typing import Optional, List, Dict, Any
 
 class ChatRequest(BaseModel):
     message: str
@@ -109,6 +114,61 @@ def get_sessions():
         # If table doesn't exist yet, return empty
         return []
 
+# --- Helper Functions ---
+import re
+
+def extract_from_run_string(s: str, max_items: int = 10) -> list:
+    """Extract messages/content from an opaque run string using regex.
+    
+    This is a fallback parser for when JSON deserialization fails.
+    It attempts to extract content from various fields in the run data.
+    
+    Args:
+        s: String representation of run data
+        max_items: Maximum number of items to extract
+        
+    Returns:
+        List of message dictionaries with 'role' and 'content' keys
+    """
+    items = []
+    
+    # Try to find a messages array and extract "content" values
+    m_arr = re.search(r'"messages"\s*:\s*\[(.*?)\]\s*(?:,|})', s, re.S)
+    if m_arr:
+        block = m_arr.group(1)
+        for m in re.finditer(r'"content"\s*:\s*"((?:\\.|[^"\\])*)"', block, re.S):
+            txt = m.group(1)
+            # unescape basic JSON escapes
+            try:
+                txt = json.loads('"' + txt + '"')
+            except Exception:
+                pass
+            items.append({'role': 'assistant', 'content': txt})
+            if len(items) >= max_items:
+                return items
+
+    # Try to find input_content
+    m_inp = re.search(r'"input_content"\s*:\s*"((?:\\.|[^"\\])*)"', s, re.S)
+    if m_inp:
+        txt = m_inp.group(1)
+        try:
+            txt = json.loads('"' + txt + '"')
+        except Exception:
+            pass
+        items.append({'role': 'user', 'content': txt})
+
+    # Try to find standalone content
+    m_cont = re.search(r'"content"\s*:\s*"((?:\\.|[^"\\])*)"', s, re.S)
+    if m_cont:
+        txt = m_cont.group(1)
+        try:
+            txt = json.loads('"' + txt + '"')
+        except Exception:
+            pass
+        items.append({'role': 'assistant', 'content': txt})
+
+    return items
+
 @app.get("/sessions/{session_id}")
 def get_session_history(session_id: str, limit: int = 200):
     """Return reconstructed session messages.
@@ -183,47 +243,6 @@ def get_session_history(session_id: str, limit: int = 200):
                 if runs and isinstance(runs, list) and len(runs) > 0 and isinstance(runs[0], dict):
                     collected = []
                     # ... extraction logic continues below
-
-                import re
-                # Helper to extract messages/content from an opaque run string using regex
-                def extract_from_run_string(s, max_items=10):
-                    items = []
-                    # Try to find a messages array and extract "content" values
-                    m_arr = re.search(r'"messages"\s*:\s*\[(.*?)\]\s*(?:,|})', s, re.S)
-                    if m_arr:
-                        block = m_arr.group(1)
-                        for m in re.finditer(r'"content"\s*:\s*"((?:\\.|[^"\\])*)"', block, re.S):
-                            txt = m.group(1)
-                            # unescape basic JSON escapes
-                            try:
-                                txt = json.loads('"' + txt + '"')
-                            except Exception:
-                                pass
-                            items.append({'role': 'assistant', 'content': txt})
-                            if len(items) >= max_items:
-                                return items
-
-                    # Try to find input_content
-                    m_inp = re.search(r'"input_content"\s*:\s*"((?:\\.|[^"\\])*)"', s, re.S)
-                    if m_inp:
-                        txt = m_inp.group(1)
-                        try:
-                            txt = json.loads('"' + txt + '"')
-                        except Exception:
-                            pass
-                        items.append({'role': 'user', 'content': txt})
-
-                    # Try to find standalone content
-                    m_cont = re.search(r'"content"\s*:\s*"((?:\\.|[^"\\])*)"', s, re.S)
-                    if m_cont:
-                        txt = m_cont.group(1)
-                        try:
-                            txt = json.loads('"' + txt + '"')
-                        except Exception:
-                            pass
-                        items.append({'role': 'assistant', 'content': txt})
-
-                    return items
 
                 # Process runs from newest to oldest so we can stop early
                 for raw_run in reversed(runs):
@@ -334,42 +353,6 @@ def compact_session(session_id: str, req: CompactRequest = None):
         runs = json.loads(row['runs'])
         collected = []
 
-        import re
-        def extract_from_run_string(s, max_items=20):
-            items = []
-            # Try to find a messages array
-            m_arr = re.search(r'"messages"\s*:\s*\[(.*?)\]\s*(?:,|})', s, re.S)
-            if m_arr:
-                block = m_arr.group(1)
-                for m in re.finditer(r'"content"\s*:\s*"((?:\\.|[^"\\])*)"', block, re.S):
-                    txt = m.group(1)
-                    try:
-                        txt = json.loads('"' + txt + '"')
-                    except Exception:
-                        pass
-                    items.append({'role': 'assistant', 'content': txt})
-                    if len(items) >= max_items:
-                        return items
-            # Try input_content
-            m_inp = re.search(r'"input_content"\s*:\s*"((?:\\.|[^"\\])*)"', s, re.S)
-            if m_inp:
-                txt = m_inp.group(1)
-                try:
-                    txt = json.loads('"' + txt + '"')
-                except Exception:
-                    pass
-                items.append({'role': 'user', 'content': txt})
-            # Try standalone content
-            m_cont = re.search(r'"content"\s*:\s*"((?:\\.|[^"\\])*)"', s, re.S)
-            if m_cont:
-                txt = m_cont.group(1)
-                try:
-                    txt = json.loads('"' + txt + '"')
-                except Exception:
-                    pass
-                items.append({'role': 'assistant', 'content': txt})
-            return items
-
         # Process runs from newest to oldest
         for raw_run in reversed(runs):
             if len(collected) >= limit:
@@ -448,10 +431,43 @@ import asyncio
 
 @app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
+    from nexus_workflow import NexusWorkflow
+    workflow = NexusWorkflow()
+    
     async def event_generator():
+        plan_path = None
         try:
+            # Check if we should create a mission plan for complex requests
+            should_plan = workflow.should_create_plan(request.message)
+            
+            if should_plan:
+                # Send planning event to frontend
+                planning_event = {
+                    "event": "PlanningStarted",
+                    "content": "📋 Analizando solicitud y creando plan de misión..."
+                }
+                yield f"data: {json.dumps(planning_event)}\\n\\n"
+                await asyncio.sleep(0)
+                
+                # Create basic plan (Manager will execute tasks)
+                session_id = request.session_id or "default"
+                tasks = workflow.extract_tasks_from_manager_response(request.message)
+                plan_path = workflow.create_mission_plan(
+                    user_request=request.message,
+                    session_id=session_id,
+                    tasks=tasks
+                )
+                
+                # Notify frontend
+                plan_created_event = {
+                    "event": "PlanCreated",
+                    "content": f"✅ Plan de misión creado: {len(tasks)} tareas identificadas",
+                    "plan_path": plan_path
+                }
+                yield f"data: {json.dumps(plan_created_event)}\\n\\n"
+                await asyncio.sleep(0)
+            
             # Run Manager Agent with Session ID
-            # If session_id is provided, Agno will load/save to that session
             stream = manager.run(
                 request.message, 
                 session_id=request.session_id, 
@@ -491,6 +507,33 @@ async def chat_endpoint(request: ChatRequest):
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
 
+@app.get("/mission_plan/{session_id}")
+def get_mission_plan(session_id: str):
+    """Retrieve the mission plan file for a session"""
+    import glob
+    from nexus_workflow import NexusWorkflow
+    
+    try:
+        workflow = NexusWorkflow()
+        plan_path = workflow.get_plan_path_for_session(session_id)
+        
+        if plan_path and os.path.exists(plan_path):
+            with open(plan_path, 'r', encoding='utf-8') as f:
+                plan_content = f.read()
+            return {
+                "plan": plan_content, 
+                "file": plan_path,
+                "exists": True
+            }
+        else:
+            return {
+                "plan": None, 
+                "message": "No plan found for this session",
+                "exists": False
+            }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/upload")
 def upload_file(file: UploadFile = File(...)):
     import shutil
@@ -509,8 +552,10 @@ def upload_file(file: UploadFile = File(...)):
             shutil.copyfileobj(file.file, buffer)
         
         # Trigger ingestion via Librarian
-        if librarian.knowledge:
-            librarian.knowledge.insert(path=file_path, reader=PDFReader(chunk=True))
+        from agents.librarian import get_knowledge_base
+        kb = get_knowledge_base()
+        if kb:
+            kb.insert(path=file_path, reader=PDFReader(chunk=True))
             return {"status": "success", "filename": file.filename, "message": "File uploaded and indexed by Librarian."}
         else:
              return {"status": "warning", "filename": file.filename, "message": "File saved but Librarian Knowledge Base not active."}
@@ -518,8 +563,39 @@ def upload_file(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Montar archivos estáticos AL FINAL para que no intercepten las rutas de la API
-app.mount("/", StaticFiles(directory="frontend", html=True), name="static")
+# Montar archivos estáticos ANTES del endpoint catch-all
+app.mount("/static", StaticFiles(directory="frontend", html=True), name="static")
+
+# Servir archivos desde la raíz usando un manejador personalizado que prioriza la API
+from fastapi.responses import FileResponse
+import os
+
+@app.get("/{path:path}")
+async def serve_frontend(path: str):
+    """Serve frontend files, but let API routes take priority"""
+    # Check if it's an API route first (this shouldn't happen due to route ordering)
+    if path.startswith(("chat", "upload", "sessions")):
+        return {"error": "API route should be handled by specific endpoints"}
+
+    # For static files, let the mounted StaticFiles handle it
+    if path.startswith("static/"):
+        # This should be handled by the mounted StaticFiles, but if not, serve manually
+        static_path = path[7:]  # Remove 'static/' prefix
+        file_path = os.path.join("frontend", static_path)
+        if os.path.exists(file_path) and os.path.isfile(file_path):
+            return FileResponse(file_path)
+
+    # Serve index.html for root path
+    if path == "" or path == "/":
+        return FileResponse("frontend/index.html", media_type="text/html")
+
+    # Serve other frontend files
+    file_path = os.path.join("frontend", path)
+    if os.path.exists(file_path) and os.path.isfile(file_path):
+        return FileResponse(file_path)
+
+    # Fallback to index.html for SPA routing
+    return FileResponse("frontend/index.html", media_type="text/html")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

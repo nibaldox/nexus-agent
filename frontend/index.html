@@ -114,6 +114,18 @@
         .prose tr:hover td {
             background-color: rgba(255, 255, 255, 0.02);
         }
+        /* Image styling for charts */
+        .prose img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: block;
+            margin: 1em auto;
+        }
+        .prose p img {
+            margin: 1em 0;
+        }
     </style>
 </head>
 
@@ -167,8 +179,11 @@
     </aside>
     <div class="flex-grow flex flex-col h-full relative">
         <!-- Sidebar Toggle Button -->
-        <button id="sidebar-toggle" class="absolute top-4 left-4 z-40 bg-[#111111] border border-[var(--border)] rounded-lg p-2 hover:border-[var(--accent-cyan)] transition-colors group">
-            <span class="material-symbols-outlined text-[20px] text-[var(--text-muted)] group-hover:text-[var(--accent-cyan)] transition-colors" id="toggle-icon">menu_open</span>
+        <button id="sidebar-toggle"
+            class="absolute top-4 left-4 z-40 bg-[#111111] border border-[var(--border)] rounded-lg p-2 hover:border-[var(--accent-cyan)] transition-colors group">
+            <span
+                class="material-symbols-outlined text-[20px] text-[var(--text-muted)] group-hover:text-[var(--accent-cyan)] transition-colors"
+                id="toggle-icon">menu_open</span>
         </button>
         <main class="flex-grow flex flex-col max-w-[1000px] mx-auto w-full pt-12 pb-4 relative px-8 overflow-hidden">
             <div class="flex-grow overflow-y-auto hide-scrollbar space-y-10 px-4 min-h-0">
@@ -183,8 +198,7 @@
             <div class="mt-8 px-4 mb-6 shrink-0">
                 <div
                     class="relative bg-[#0F0F0F] rounded-xl border border-[var(--border)] p-4 focus-within:border-[var(--accent-cyan)] transition-all duration-300">
-                    <textarea
-                        id="message-input"
+                    <textarea id="message-input"
                         class="w-full bg-transparent border-none focus:ring-0 text-[15px] font-normal text-[var(--text-main)] placeholder:text-[var(--text-muted)] opacity-60 focus:opacity-100 p-0 mono resize-none h-12"
                         placeholder="Entra un commando o instruccion..."></textarea>
                     <div class="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
@@ -196,8 +210,7 @@
                             <span
                                 class="material-symbols-outlined text-[18px] text-[var(--text-muted)] cursor-pointer hover:text-[var(--accent-cyan)]">mic</span>
                         </div>
-                        <button
-                            id="send-btn"
+                        <button id="send-btn"
                             class="bg-[#1A1A1A] hover:bg-[#222222] text-[10px] font-bold text-[var(--text-main)] px-4 py-1.5 rounded uppercase tracking-widest flex items-center gap-2 border border-white/5 transition-colors">
                             Exec <span class="material-symbols-outlined text-[14px]">send</span>
                         </button>
@@ -241,7 +254,9 @@
     <!-- External Libs -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- Modular JS Entry Point -->
-    <script type="module" src="js/main.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
