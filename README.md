@@ -34,6 +34,13 @@ All agents now have comprehensive 100-250+ line prompts defining:
 - **Tool Usage Guidelines**: Best practices for each tool
 - **Error Handling**: Fallback strategies and recovery procedures
 
+### 🎭 **Dynamic Agent Creation** ⭐ **NEW**
+Nexus can now create specialized agents on-demand:
+- **Automatic Evaluation**: Analyzes task requirements and identifies missing specializations
+- **Dynamic Instantiation**: Creates agents with custom roles, instructions, and tools
+- **Session-Based**: New agents exist for the current session and task
+- **LLM-Powered**: Uses AI to determine optimal agent configurations
+
 ---
 
 ## 🚀 Core Features
@@ -316,14 +323,23 @@ Tools_Execution [Researcher]
   └─ extract_content → Done (0.5s)
 ```
 
-### 3. Quality Review Criteria
+### 4. Dynamic Agent Creation
 
-The Reviewer evaluates:
-- ✅ **Completeness**: All requested tasks addressed
-- ✅ **Accuracy**: Data is correct and sourced
-- ✅ **Coherence**: Response is well-structured
-- ✅ **Evidence**: Claims are backed by artifacts
-- ✅ **Clarity**: Output is understandable
+The Nexus Manager can evaluate task complexity and create specialized agents automatically:
+
+**Example**: For "Analyze cryptocurrency market trends and create investment recommendations"
+
+**What happens**:
+1. 🎯 **Evaluation**: Manager analyzes task requirements
+2. 🧠 **AI Assessment**: Determines if specialized crypto knowledge is needed  
+3. ⚙️ **Dynamic Creation**: Creates "CryptoAnalyst" agent with relevant tools
+4. 🤝 **Integration**: Adds new agent to the team for this session
+5. 📊 **Execution**: Delegates crypto-specific tasks to the new agent
+
+**Benefits**:
+- Adapts to any domain without manual agent creation
+- Maintains specialization for complex tasks
+- Reduces need for predefined agent libraries
 
 ### 4. Session Persistence
 

@@ -11,6 +11,7 @@ markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "security: security-related tests",
     "integration: integration tests requiring external services",
+    "dynamic_agents: tests for dynamic agent creation functionality",
 ]
 
 # Timeout settings
