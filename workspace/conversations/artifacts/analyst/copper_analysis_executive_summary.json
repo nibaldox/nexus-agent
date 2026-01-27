@@ -1,0 +1,51 @@
+{
+  "report_metadata": {
+    "title": "Análisis Profundo del Precio del Cobre (2025-2026)",
+    "analyst": "NEXUS Quantitative Analyst",
+    "date": "2026-01-26",
+    "version": "1.0",
+    "status": "COMPLETED"
+  },
+  "executive_summary": {
+    "key_findings": [
+      "Rally histórico del cobre: +49.6% desde enero 2025 hasta récord de $13,387.50 (6 ene 2026)",
+      "Tendencia estructuralmente alcista respaldada por deficits de oferta (-200kt a -600kt)",
+      "Correlación inversa fuerte con USD/CNY (-0.89) y dólar US (-0.78)",
+      "Inventarios LME en mínimos históricos (109,625 ton julio 2025)",
+      "Demanda IA/energía verde añade catalyst estructural de largo plazo",
+      "RSI en zona sobrecomprada (72-75) pero sin reversal técnica"
+    ],
+    "main_metrics": {
+      "rendimiento_2025": "+33.42%",
+      "rendimiento_hasta_record": "+49.59%",
+      "precio_minimo_2025": "$9,176 USD/ton (abr)",
+      "precio_maximo_record": "$13,387.50 USD/ton (6 ene 2026)",
+      "volatilidad_sigma": "4.12%",
+      "coeficiente_variacion": "1.74",
+      "correlacion_usd_cny": "-0.89",
+      "correlacion_shanghai": "+0.78"
+    },
+    "outlook_2026": {
+      "base_case": "$12,075 (Goldman Sachs)",
+      "optimistic": "$14,000-15,000",
+      "pessimistic": "$10,000-11,000"
+    }
+  },
+  "files_created": {
+    "main_report": "workspace/conversations/artifacts/analyst/copper_analysis_report_2025_2026.md",
+    "charts": [
+      "precio_mensual_del_cobre_lme_usdton_-_2025_line.png",
+      "evolucin_inventarios_lme_toneladas_-_2025_bar.png",
+      "retornos_mensuales_del_cobre_-_2025_bar.png",
+      "comparativa_cobre_vs_commodities_2025_area.png",
+      "usdcny_y_su_correlacin_con_el_cobre_line.png"
+    ]
+  },
+  "data_sources": [
+    "LME (London Metal Exchange)",
+    "COMEX/CME Group",
+    "Bloomberg",
+    "Goldman Sachs Research",
+    "Reuters"
+  ]
+}

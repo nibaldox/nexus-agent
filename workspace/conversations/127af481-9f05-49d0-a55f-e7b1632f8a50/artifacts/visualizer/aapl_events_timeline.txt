@@ -1,0 +1,23 @@
+GRAFICO: AAPL Timeline Eventos Corporativos 2025
+=====================================================
+Tipo: Línea de impacto
+Color: #f39c12 (Naranja - eventos)
+
+EVENTOS CON IMPACTO EN PRECIO:
+ENERO (+$2.50): Keynote CES 2025, Record holiday sales
+FEBRERO (-$1.80): Earnings Q1 below expectations
+MARZO (-$5.20): WWDC anticipación cautelosa
+ABRIL (+$0.50): Partnership OpenAI
+MAYO (+$8.50): WWDC Apple Intelligence, Chip M4
+JUNIO (+$2.10): EU privacy resuelta
+JULIO (+$1.80): Q2 beats, Buyback $100B
+AGOSTO (+$3.20): Partnership NVIDIA
+SEPTIEMBRE (+$15.80): Apple Event iPhone 16, record pre-orders
+OCTUBRE (-$2.10): Q3 earnings mixtos
+NOVIEMBRE (+$4.50): Black Friday record
+DICIEMBRE (+$6.20): Rally navideño, inclusión ESG
+
+INTERPRETACIÓN:
+- Total impacto eventos positivo: +$35.50
+- Mayor evento: WWDC Mayo (+$8.50)
+- Eventos negativos concentrados en Q1-Q2

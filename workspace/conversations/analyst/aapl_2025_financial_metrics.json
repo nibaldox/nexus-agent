@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "ticker": "AAPL",
+    "period": "2025",
+    "calculation_date": "2025-01-16",
+    "data_sources": [
+      {
+        "metric": "precio_apertura",
+        "value": 222.77,
+        "date": "2025-01-02",
+        "source": "Yahoo Finance, Apple IR"
+      },
+      {
+        "metric": "precio_cierre",
+        "value": 271.86,
+        "date": "2025-12-31",
+        "source": "Apple Investor Relations"
+      },
+      {
+        "metric": "ath_intradiario",
+        "value": 288.62,
+        "date": "2025-12-03",
+        "source": "CNBC"
+      },
+      {
+        "metric": "minimo",
+        "value": 169.21,
+        "date": "2025-04-08",
+        "source": "CNBC, Macrotrends"
+      },
+      {
+        "metric": "volatilidad_120d",
+        "value": 0.2069,
+        "date": "2025-12-30",
+        "source": "AlphaQuery"
+      },
+      {
+        "metric": "t_bill_proxy",
+        "value": 0.045,
+        "period": "2025",
+        "source": "Treasury.gov proxy"
+      }
+    ]
+  },
+  "metrics": {
+    "sharpe_ratio": {
+      "formula": "(Rendimiento Anual - Tasa Libre Riesgo) / Volatilidad Anual",
+      "formula_math": "\\frac{R_p - R_f}{\\sigma_p}",
+      "inputs": {
+        "precio_apertura": 222.77,
+        "precio_cierre": 271.86,
+        "tasa_libre_riesgo": 0.045,
+        "volatilidad_anual": 0.2069,
+        "trading_days": 252
+      },
+      "calculation_steps": [
+        "1. Calcular rendimiento anual: (271.86 - 222.77) / 222.77 = 0.2204 (22.04%)",
+        "2. Calcular exceso de rendimiento: 0.2204 - 0.045 = 0.1754 (17.54%)",
+        "3. Dividir por volatilidad: 0.1754 / 0.2069 = 0.848",
+        "4. Redondear a 2 decimales: 0.85"
+      ],
+      "result": 0.85,
+      "interpretation": "Sharpe Ratio de 0.85 indica retorno ajustado por riesgo MODERADO. Por cada unidad de volatilidad asumen ~0.85 unidades de exceso de retorno. Valores entre 0.5-1.0 se consideran aceptables. El rendimiento ajustado supera el riesgo-free rate en un 85% de la volatilidad.",
+      "risk_level": "MODERADO"
+    },
+    "max_drawdown": {
+      "formula": "(ATH - Mínimo) / ATH × 100",
+      "formula_math": "\\frac{ATH - Trough}{ATH} \\times 100",
+      "inputs": {
+        "ath_value": 288.62,
+        "ath_date": "2025-12-03",
+        "trough_value": 169.21,
+        "trough_date": "2025-04-08"
+      },
+      "calculation_steps": [
+        "1. Identificar ATH intradiario: $288.62 (03-dic-2025)",
+        "2. Identificar mínimo: $169.21 (08-abr-2025)",
+        "3. Calcular diferencia: 288.62 - 169.21 = 119.41",
+        "4. Dividir por ATH: 119.41 / 288.62 = 0.4137",
+        "5. Convertir a porcentaje: -41.37%"
+      ],
+      "result": -41.37,
+      "interpretation": "Max Drawdown de -41.37% indica que AAPL experimentó una caída máxima del 41.37% desde su pico más alto. Este drawdown ocurrió entre el ATH del 3-dic-2025 y el mínimo del 8-abr-2025. Para contexto, drawdowns >20% se consideran significativos, >40% severos.",
+      "severity": "SEVERO"
+    },
+    "annual_volatility": {
+      "formula": "Desviación Estándar Retornos Diarios × √252",
+      "formula_math": "\\sigma_{anual} = \\sigma_{diario} \\times \\sqrt{252}",
+      "inputs": {
+        "volatilidad_120d_reportada": 0.2069,
+        "dias_Trading_anual": 252,
+        "metodologia": "AlphaQuery utiliza √252 para anualizar"
+      },
+      "calculation_steps": [
+        "1. AlphaQuery reporta volatilidad 120d como: 20.69%",
+        "2. Esta métrica YA está anualizada usando √252",
+        "3. Verificación: si volatilidad diaria ≈ 1.30%, entonces 1.30% × √252 ≈ 20.69%",
+        "4. Resultado: 20.69% es la volatilidad anualizada correcta"
+      ],
+      "result": 0.2069,
+      "interpretation": "Volatilidad anual del 20.69% indica riesgo MODERADO-ALTO. AAPL es ~2x más volátil que el S&P 500 (~15%). La volatilidad es consistente con acciones tecnológicas de gran capitalización.",
+      "context": {
+        "sp500_volatility": "~15%",
+        "nasdaq_100_volatility": "~22-25%",
+        "aapl_vs_benchmark": "2x S&P 500"
+      }
+    },
+    "annual_return": {
+      "formula": "(Precio Cierre - Precio Apertura) / Precio Apertura × 100",
+      "formula_math": "\\frac{P_{cierre} - P_{apertura}}{P_{apertura}} \\times 100",
+      "inputs": {
+        "precio_apertura": 222.77,
+        "precio_cierre": 271.86,
+        "fecha_apertura": "2025-01-02",
+        "fecha_cierre": "2025-12-31"
+      },
+      "calculation_steps": [
+        "1. Precio apertura 2025: $222.77 (02-ene-2025)",
+        "2. Precio cierre 2025: $271.86 (31-dic-2025)",
+        "3. Diferencia: 271.86 - 222.77 = $49.09",
+        "4. Dividir por precio apertura: 49.09 / 222.77 = 0.2204",
+        "5. Convertir a porcentaje: +22.04%"
+      ],
+      "result": 22.04,
+      "interpretation": "Retorno anual de +22.04% supera significativamente al S&P 500 (~10-12% esperado). AAPL generó alpha positivo de ~10% sobre el mercado. Buen rendimiento absoluto considerando la volatilidad asumida.",
+      "benchmark_comparison": {
+        "sp500_estimated_return": "~10-12%",
+        "aapl_alpha": "~10-12%",
+        "outperformance": "APROBADO"
+      }
+    }
+  },
+  "correction_report": {
+    "original_metrics": {
+      "sharpe_original": 0.10,
+      "max_drawdown_original": -41.4
+    },
+    "corrected_metrics": {
+      "sharpe_corrected": 0.85,
+      "max_drawdown_corrected": -41.37
+    },
+    "corrections": {
+      "sharpe": {
+        "error": "Error en cálculo original: no se restó la tasa libre de riesgo correctamente",
+        "fix": "Sharpe correcto = (22.04% - 4.50%) / 20.69% = 0.85",
+        "difference": "Error de ~850% en el ratio original"
+      },
+      "max_drawdown": {
+        "status": "CORRECTO",
+        "note": "El drawdown de -41.4% fue calculado correctamente"
+      }
+    }
+  },
+  "summary": {
+    "risk_adjusted_return": "ACEPTABLE (Sharpe 0.85)",
+    "max_risk_exposure": "SEVERO (-41.37%)",
+    "absolute_performance": "EXCELENTE (+22.04%)",
+    "volatility_profile": "MODERADO-ALTO (20.69%)",
+    "overall_assessment": "AAPL 2025 generó retornos sólidos (+22%) con volatilidad controlada. El Sharpe Ratio de 0.85 indica compensación adecuada por riesgo asumido. El drawdown severo (-41%) representa el principal riesgo para inversores con baja tolerancia."
+  }
+}

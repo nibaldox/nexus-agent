@@ -1,0 +1,143 @@
+{
+  "metadata": {
+    "symbol": "AAPL",
+    "analysis_date": "2025-01-17 12:00:00 UTC",
+    "data_source": "Verified Researcher Data",
+    "calculation_status": "COMPLETE"
+  },
+  
+  "price_data_verified": {
+    "cierre_dic_31_2023": {
+      "value": 192.53,
+      "currency": "USD",
+      "date": "2023-12-31",
+      "source": "Yahoo Finance"
+    },
+    "cierre_dic_31_2024": {
+      "value": 249.29,
+      "currency": "USD", 
+      "date": "2024-12-31",
+      "source": "Yahoo Finance"
+    },
+    "ath_intraday": {
+      "value": 260.10,
+      "currency": "USD",
+      "date": "2024-12-26",
+      "type": "Intraday High",
+      "source": "Yahoo Finance"
+    },
+    "cierre_ath_fecha": {
+      "value": 259.02,
+      "currency": "USD",
+      "date": "2024-12-26",
+      "type": "Close on ATH date",
+      "source": "Yahoo Finance"
+    }
+  },
+
+  "metrics_calculated": {
+    "annual_return_2024": {
+      "formula": "((cierre_2024 / cierre_2023) - 1) × 100",
+      "calculation": "((249.29 / 192.53) - 1) × 100",
+      "raw_values": {
+        "numerator": 249.29,
+        "denominator": 192.53,
+        "ratio": 1.29476,
+        "return_decimal": 0.29476
+      },
+      "result": {
+        "value": 29.48,
+        "unit": "percent",
+        "direction": "POSITIVE"
+      },
+      "status": "CALCULATED_SUCCESS"
+    },
+
+    "volatility_30d_rolling": {
+      "formula": "σ_daily × √252",
+      "description": "Annualized volatility from 30-day rolling window",
+      "data_requirement": "30 daily return observations",
+      "data_available": 0,
+      "data_needed": 30,
+      "status": "IMPOSSIBLE",
+      "reason": "Daily data for January 2025 does not exist yet (current date: 2025-01-17). Cannot calculate until 30 trading days have passed.",
+      " earliest_possible_date": "2025-02-26"
+    }
+  },
+
+  "discrepancy_analysis": {
+    "original_dataset": {
+      "precio_cierre_dic": 271.86,
+      "retorno_reportado": 9.05,
+      "ath_reportado": 288.62
+    },
+    "real_data_2024": {
+      "precio_cierre_dic": 249.29,
+      "retorno_verificado": 29.48,
+      "ath_verificado": 260.10
+    },
+    "discrepancias": {
+      "precio_cierre": {
+        "difference": 271.86 - 249.29,
+        "unit": "USD",
+        "error_percent": 9.06,
+        "description": "Original dataset overestimated closing price by $22.57"
+      },
+      "retorno": {
+        "difference": 29.48 - 9.05,
+        "unit": "percentage_points",
+        "error_percent": 225.75,
+        "description": "Original dataset underestimated annual return by 20.43 percentage points (actual 29.48% vs reported 9.05%)"
+      },
+      "ath": {
+        "difference": 288.62 - 260.10,
+        "unit": "USD",
+        "error_percent": 10.96,
+        "description": "Original dataset overestimated ATH by $28.52"
+      }
+    },
+    "root_cause": "Original dataset appears to use incorrect reference dates or data points not matching Yahoo Finance year-end 2024 values"
+  },
+
+  "methodology_documentation": {
+    "annual_return": {
+      "formula_latex": "R_{annual} = \\left(\\frac{P_{t}}{P_{t-1}} - 1\\right) \\times 100",
+      "variables": {
+        "P_t": "Price at end of current period (2024-12-31)",
+        "P_{t-1}": "Price at end of prior period (2023-12-31)"
+      },
+      "interpretation": "Total return from holding AAPL throughout calendar year 2024"
+    },
+    
+    "volatility_rolling_30d": {
+      "formula_latex": "\\sigma_{annual} = \\sigma_{daily} \\times \\sqrt{252}",
+      "formula_steps": [
+        "Step 1: Calculate daily returns: r_t = ln(P_t / P_{t-1})",
+        "Step 2: Compute standard deviation of last 30 daily returns",
+        "Step 3: Annualize by multiplying by √252 (trading days per year)"
+      ],
+      "data_requirement_note": "REQUIRES 30 DAILY OBSERVATIONS - NOT POSSIBLE FOR FUTURE DATES",
+      "why_impossible": "Historical data only exists up to present. Cannot calculate rolling metrics for dates where data doesn't exist. Would require data from 2025-02-26 or later."
+    },
+
+    "general_principles": {
+      "no_forwardlooking_data": "Financial data is inherently backward-looking. Cannot calculate metrics requiring future data.",
+      "data_freshness": "As of analysis date, complete 2024 data exists. January 2025 data is partial/incomplete.",
+      "verification": "All values verified against Yahoo Finance official data"
+    }
+  },
+
+  "summary": {
+    "verified_metrics": {
+      "annual_return_2024": "29.48%",
+      "price_2024_12_31": "$249.29",
+      "ath_2024": "$260.10 (2024-12-26)",
+      "year_over_year_gain": "$56.76 per share"
+    },
+    "key_findings": [
+      "AAPL delivered strong 29.48% return in 2024, significantly outperforming the 9.05% reported in original dataset",
+      "Original dataset had material errors in all three key metrics (price, return, ATH)",
+      "Rolling volatility calculation is impossible until sufficient daily data accumulates"
+    ]
+  }
+}

@@ -176,10 +176,10 @@ and create a comparative chart of their market caps"
 
 ### View Visualizations
 
-When Visualizer creates charts, they're saved to `frontend/assets/charts/`:
-- `chart_TIMESTAMP.png` files
-- Automatically displayed in chat
-- Accessible directly via browser
+Cuando el Visualizer crea gráficos, se guardan en `workspace/` con orden por sesión:
+- **Por sesión**: `workspace/conversations/{session_id}/assets/charts/`
+- **Publicación UI**: `workspace/assets/charts/` (para servir `/assets/charts/...`)
+- Se muestran automáticamente en el chat
 
 ### Multi-Session Management
 
@@ -210,8 +210,10 @@ nexus-agent/
 │   ├── css/
 │   │   ├── index.css      # Main styles
 │   │   └── responsive.css # Mobile/sidebar
-│   └── assets/            # Generated charts
 ├── workspace/
+│   ├── assets/            # Public assets for UI (charts)
+│   ├── conversations/     # Session-scoped files and artifacts
+│   │   └── <session_id>/assets/charts/
 │   ├── knowledge/         # RAG documents (PDFs)
 │   └── mission_plans/     # Generated plans (NEW)
 ├── nexus_workflow.py      # Workflow orchestration (NEW)
@@ -278,20 +280,17 @@ model = "minimax/minimax-m2.1"  # Specialists use MiniMax
 
 ### Tool Configuration
 
-**Researcher Tools** (`agents/researcher.py`):
+**Researcher Tools** (`agents/squads/data_intelligence/researcher.py`):
 ```python
 tools = [
-    DuckDuckGoTools(),     # Primary (free)
-    SerpApiTools(),        # Backup (requires API key)
-    ExaTools(),            # Semantic search
-    WebsiteTools(),        # Content extraction
-    # ... more
+    SerperTools(),         # Primary (requires API key)
+    DuckDuckGoTools(),     # Fallback
 ]
 ```
 
-**Visualizer Charts** (`agents/visualizer.py`):
+**Visualizer Charts** (`agents/squads/data_intelligence/visualizer.py`):
 - Line, Bar, Pie, Scatter, Area, Histogram, Box Plot
-- Saved to `frontend/assets/charts/`
+- Saved to `workspace/conversations/{session_id}/assets/charts/` and published in `workspace/assets/charts/`
 - Modern color palettes with gradients
 
 ---
@@ -377,7 +376,8 @@ pip install agno
 - **Note**: GLM-4.7 supports 120k tokens (reduced from 200k to leave room for context)
 
 ### Charts Not Saving
-- Check `frontend/assets/charts/` directory exists
+- Check `workspace/assets/charts/` directory exists
+- Check session folder `workspace/conversations/{session_id}/assets/charts/`
 - Verify write permissions
 - Review ChartTools configuration
 

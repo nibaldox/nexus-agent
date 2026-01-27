@@ -1,0 +1,178 @@
+{
+  "review_metadata": {
+    "report_title": "Informe de Investigación Apple (AAPL) 2025",
+    "review_date": "2025-01-26",
+    "reviewed_by": "Knowledge Lead - Conocimiento Squad",
+    "nexus_session_id": "127af481-9f05-49d0-a55f-e7b1632f8a50",
+    "artifacts_reviewed": {
+      "dataset": "aapl_2025_complete_dataset.json",
+      "executive_report": "aapl_2025_ejecutive_report.md",
+      "visualizations": [
+        "aapl_price_volume.txt",
+        "aapl_returns_heatmap.txt",
+        "aapl_volatility.txt",
+        "aapl_events_timeline.txt",
+        "aapl_comparison.txt"
+      ]
+    }
+  },
+  "quality_scores": {
+    "completeness": 84.2,
+    "consistency": 55.0,
+    "methodology": 60.0,
+    "overall": 66.4
+  },
+  "status": "requires_changes",
+  "issues": [
+    {
+      "id": "CRIT-001",
+      "severity": "CRITICAL",
+      "category": "data_consistency",
+      "title": "Inconsistencia de precio de cierre 2025",
+      "description": "Dataset reporta precio de cierre $271.86 pero visualizaciones muestran $243.18 para diciembre 2025",
+      "affected_artefacts": ["Dataset JSON (closing_price_end_2025)", "Visualización precio/volumen", "Reporte ejecutivo"],
+      "impact": "Afecta credibilidad de todo el análisis de retornos",
+      "suggested_fix": "Unificar el precio de cierre a $271.86 (consistente con dataset y fuentes oficiales)"
+    },
+    {
+      "id": "CRIT-002",
+      "severity": "CRITICAL",
+      "category": "data_consistency",
+      "title": "Discrepancia de retorno anual 2025",
+      "description": "Dataset reporta +9.05% pero visualización de heatmap calcula +28.1% acumulado ((243.18 - 189.84) / 189.84)",
+      "affected_artefacts": ["Dataset JSON (year_change_pct)", "Visualización heatmap returns"],
+      "impact": "Conclusión principal del reporte incorrecta",
+      "suggested_fix": "Verificar cálculo: Si el retorno real es 28.1%, actualizar dataset. Si es 9.05%, revisar datos de visualización"
+    },
+    {
+      "id": "HIGH-003",
+      "severity": "HIGH",
+      "category": "data_consistency",
+      "title": "Inconsistencia en volatilidad anual",
+      "description": "Reporte ejecutivo reporta volatilidad de 46.0% con rango $119.41, pero visualización muestra promedio de 21.4%",
+      "affected_artefacts": ["Reporte ejecutivo", "Visualización volatilidad"],
+      "impact": "Métrica de riesgo fundamental incorrecta",
+      "suggested_fix": "Aclarar si 46% es volatilidad máxima vs promedio de 21.4% en visualización"
+    },
+    {
+      "id": "HIGH-004",
+      "severity": "HIGH",
+      "category": "methodology",
+      "title": "Métricas de riesgo sin metodología documentada",
+      "description": "Ratio Sharpe (0.10) y Max Drawdown (-41.4%) reportados sin fuente ni metodología de cálculo",
+      "affected_artefacts": ["Reporte ejecutivo (sección Métricas de Riesgo)"],
+      "impact": "No verificables ni reproducibles",
+      "suggested_fix": "Documentar fórmula: Sharpe = (Return - RiskFree) / Volatility. Show data source for drawdown calculation"
+    },
+    {
+      "id": "MED-005",
+      "severity": "MEDIUM",
+      "category": "data_quality",
+      "title": "Datos de volumen diario faltantes",
+      "description": "Los 4 campos volume_daily_avg están marcados como 'N/A' sin justificación",
+      "affected_artefacts": ["Dataset JSON (quarterly_price_data)"],
+      "impact": "Análisis de volumen incompleto",
+      "suggested_fix": "Consultar Yahoo Finance para obtener datos históricos o documentar como 'no disponible' con razón"
+    },
+    {
+      "id": "MED-006",
+      "severity": "MEDIUM",
+      "category": "sources",
+      "title": "Inconsistencias en listado de fuentes",
+      "description": "Investing.com en metadata pero sin URL. MarketChameleon, Apple Newsroom, FinanceCharts tienen URL pero no están en metadata",
+      "affected_artefacts": ["Dataset JSON (metadata.sources y sources section)"],
+      "impact": "Traza de auditoría incompleta",
+      "suggested_fix": "Unificar fuentes: agregar URLs faltantes y mover fuentes secundarias a metadata"
+    },
+    {
+      "id": "LOW-007",
+      "severity": "LOW",
+      "category": "completeness",
+      "title": "ATH visualización no coincide con dataset",
+      "description": "Dataset reporta ATH $288.62 el 2 de diciembre pero visualización muestra precio máximo $243.18",
+      "affected_artefacts": ["Dataset JSON (all_time_high)", "Visualización precio/volumen"],
+      "impact": "Menor - dato de máximo histórico inconsistente",
+      "suggested_fix": "Verificar si visualización usa precio de cierre vs intradiario"
+    },
+    {
+      "id": "LOW-008",
+      "severity": "LOW",
+      "category": "data_quality",
+      "title": "Valores aproximados en contexto macro",
+      "description": "CPI ~2.8%, tarifa arancel ~27%, tarifa inicial ~2.5% sin fuente precisa",
+      "affected_artefacts": ["Dataset JSON (macroeconomic_context)"],
+      "impact": "Menor - reduce precisión del análisis",
+      "suggested_fix": "Reemplazar valores aproximados (~) con datos exactos y fechas de referencia"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Corregir discrepancia crítica de precio de cierre",
+      "description": "Unificar precio de cierre 2025 a $271.86 verificando contra Yahoo Finance y Apple Investor Relations",
+      "estimated_effort": "1-2 horas"
+    },
+    {
+      "priority": 2,
+      "action": "Reconciliar cálculo de retorno anual",
+      "description": "Verificar si retorno real es 9.05% (dataset) o 28.1% (visualización) y corregir inconsistencia",
+      "estimated_effort": "2-3 horas"
+    },
+    {
+      "priority": 3,
+      "action": "Documentar metodología de métricas de riesgo",
+      "description": "Agregar sección de metodología con fórmulas y fuentes para Sharpe ratio y Max Drawdown",
+      "estimated_effort": "1 hora"
+    },
+    {
+      "priority": 4,
+      "action": "Obtener datos de volumen o documentar ausencia",
+      "description": "Consultar Yahoo Finance para volumen diario o incluir nota explicativa de por qué no está disponible",
+      "estimated_effort": "2-4 horas"
+    },
+    {
+      "priority": 5,
+      "action": "Unificar sistema de fuentes",
+      "description": "Reconciliar lista de fuentes entre metadata y sección sources, agregar URLs faltantes",
+      "estimated_effort": "30 minutos"
+    },
+    {
+      "priority": 6,
+      "action": "Aclarar métrica de volatilidad",
+      "description": "Explicar diferencia entre volatilidad máxima (46%) y promedio (21.4%) con contexto",
+      "estimated_effort": "30 minutos"
+    },
+    {
+      "priority": 7,
+      "action": "Precisar valores macroeconómicos",
+      "description": "Reemplazar valores aproximados (~) con datos exactos y fechas de referencia",
+      "estimated_effort": "1 hora"
+    }
+  ],
+  "summary": "El informe AAPL 2025 presenta 2 errores CRÍTICOS de consistencia de datos que impiden su aprobación: (1) precio de cierre diverge entre dataset ($271.86) y visualizaciones ($243.18), y (2) retorno anual reportado como +9.05% pero calculado como +28.1% desde precio inicial $189.84. Adicionalmente, métricas de riesgo clave (Sharpe, Drawdown) carecen de metodología documentada. Aunque la estructura del reporte es profesional y el contexto macroeconómico está bien respaldado, las inconsistencias numéricas fundamentales requieren corrección antes de publicación.",
+  "checklist": {
+    "artefactos_presentes": {
+      "dataset_json": true,
+      "visualizacion_precio_volumen": true,
+      "visualizacion_heatmap": true,
+      "visualizacion_volatilidad": true,
+      "visualizacion_timeline": true,
+      "visualizacion_comparacion_yoy": true,
+      "analisis_cuantitativo": true,
+      "contexto_macroeconomico": true,
+      "fuentes_consultadas": true
+    },
+    "verificaciones_realizadas": [
+      "Verificación de completitud de estructura JSON",
+      "Validación de coherencia cronológica de fechas",
+      "Comparación de métricas entre dataset y visualizaciones",
+      "Revisión de consistencia de fuentes",
+      "Evaluación de respaldo de conclusiones"
+    ]
+  },
+  "next_steps": [
+    "Corregir errores CRÍTICOS de consistencia de datos (CRIT-001, CRIT-002)",
+    "Re-enviar informe para segunda revisión de QA",
+    "Una vez aprobado, publicar en canal de reportes"
+  ]
+}

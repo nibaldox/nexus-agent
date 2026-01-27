@@ -5,6 +5,7 @@ venv_path = os.path.join(os.path.dirname(__file__), '.venv', 'Lib', 'site-packag
 if venv_path not in sys.path:
     sys.path.insert(0, venv_path)
 
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -13,97 +14,120 @@ import json
 import sqlite3
 from typing import Optional, List, Dict, Any
 # Import Multi-Agent Team
-from agents.manager import manager
-from agents.librarian import librarian
+from agents.squads.knowledge.librarian import librarian
+from tools.squad_tools import start_task
 import uvicorn
+import time
+from config import settings
+import logging
 
-app = FastAPI(title="Nexus API")
+# Configure Logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+logger = logging.getLogger("NexusAPI")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    exec_manager.start_cleanup()
+    yield
+    # Shutdown
+    exec_manager.stop_cleanup()
+
+app = FastAPI(title="Nexus API", lifespan=lifespan)
 
 # Configurar CORS
+cors_origins = settings.cors_origins
+allow_credentials = settings.cors_allow_credentials
+if allow_credentials and "*" in cors_origins:
+    # Browsers reject credentials with wildcard origins
+    allow_credentials = False
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=cors_origins,
+    allow_credentials=allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Servir archivos estáticos (gráficos, assets, etc.)
+app.mount("/assets", StaticFiles(directory=str(settings.workspace_dir / "assets")), name="assets")
+# Servir el workspace completo para permitir la descarga de artefactos
+app.mount("/workspace", StaticFiles(directory=str(settings.workspace_dir)), name="workspace")
+
 
 class ChatRequest(BaseModel):
     message: str
     session_id: Optional[str] = None
 
-@app.get("/")
+@app.get("/api/health")
 def health_check():
     return {"status": "Nexus Online (Multi-Agent)", "version": "3.0.0"}
 
 # --- Session Management Endpoints ---
 def get_db_connection():
-    conn = sqlite3.connect('agent.db')
+    conn = sqlite3.connect(settings.agent_db_path, timeout=max(1, settings.sqlite_busy_timeout_ms / 1000))
     conn.row_factory = sqlite3.Row
+    try:
+        conn.execute(f"PRAGMA journal_mode={settings.sqlite_journal_mode}")
+        conn.execute(f"PRAGMA busy_timeout={settings.sqlite_busy_timeout_ms}")
+        conn.execute("PRAGMA synchronous=NORMAL")
+    except Exception:
+        pass
     return conn
 
 @app.get("/sessions")
 def get_sessions():
     try:
         conn = get_db_connection()
-        # Fetch basic columns first to avoid selecting non-existent columns
+        # Fetch minimal info first
         sessions = conn.execute("SELECT session_id, created_at, updated_at FROM nexus_team_sessions ORDER BY updated_at DESC").fetchall()
-
-        # Inspect available columns once
-        cols = [r[1] for r in conn.execute("PRAGMA table_info('nexus_team_sessions')").fetchall()]
+        
+        # Get available columns for title extraction
+        cursor = conn.execute("SELECT * FROM nexus_team_sessions LIMIT 1")
+        cols = [description[0] for description in cursor.description]
 
         result = []
         for s in sessions:
             title = "New Mission"
+            session_id = s['session_id']
+            
+            # Efficient title extraction
             try:
-                # Try memory if present
+                # 1. Try memory
                 if 'memory' in cols:
-                    r2 = conn.execute("SELECT memory FROM nexus_team_sessions WHERE session_id = ?", (s['session_id'],)).fetchone()
-                    if r2 and r2['memory']:
-                        memory_json = json.loads(r2['memory'])
-                        messages = memory_json.get('messages', [])
-                        for msg in messages:
+                    row = conn.execute("SELECT memory FROM nexus_team_sessions WHERE session_id = ?", (session_id,)).fetchone()
+                    if row and row['memory']:
+                        data = json.loads(row['memory'])
+                        for msg in data.get('messages', []):
                             if msg.get('role') == 'user':
                                 title = (msg.get('content') or '')[:50] + "..."
                                 break
-                # Try runs if present
-                elif 'runs' in cols:
-                    r2 = conn.execute("SELECT runs FROM nexus_team_sessions WHERE session_id = ?", (s['session_id'],)).fetchone()
-                    if r2 and r2['runs']:
-                        runs = json.loads(r2['runs'])
-                        found = False
-                        for run in runs:
-                            for msg in run.get('messages', []) or []:
-                                if msg.get('role') == 'user':
-                                    title = (msg.get('content') or '')[:50] + "..."
-                                    found = True
+                
+                # 2. Try runs (if title still default)
+                if title == "New Mission" and 'runs' in cols:
+                    row = conn.execute("SELECT runs FROM nexus_team_sessions WHERE session_id = ?", (session_id,)).fetchone()
+                    if row and row['runs']:
+                        runs = json.loads(row['runs'])
+                        if isinstance(runs, list) and runs:
+                            # Check first run (which is usually the start)
+                            first_run = runs[-1] if len(runs) > 0 else {}
+                            # Or iterate to find user input
+                            for run in runs:
+                                inp = run.get('input', {})
+                                content = str(inp.get('input_content') if isinstance(inp, dict) else inp)
+                                if content:
+                                    title = content[:50] + "..."
                                     break
-                            if found:
-                                break
-                            inp = run.get('input', {})
-                            if isinstance(inp, dict):
-                                input_content = inp.get('input_content') or inp.get('content')
-                                if input_content:
-                                    title = str(input_content)[:50] + "..."
-                                    break
-                # Try session_data as last resort
-                elif 'session_data' in cols:
-                    r2 = conn.execute("SELECT session_data FROM nexus_team_sessions WHERE session_id = ?", (s['session_id'],)).fetchone()
-                    if r2 and r2['session_data']:
-                        try:
-                            sd = json.loads(r2['session_data'])
-                            msgs = sd.get('messages', [])
-                            for m in msgs:
-                                if m.get('role') == 'user':
-                                    title = (m.get('content') or '')[:50] + "..."
-                                    break
-                        except Exception:
-                            pass
-            except Exception:
-                pass
+            except Exception as e:
+                logger.warning(f"Error extracting title for session {session_id}: {e}")
 
             result.append({
-                "session_id": s['session_id'],
+                "session_id": session_id,
                 "created_at": s['created_at'],
                 "updated_at": s['updated_at'],
                 "title": title
@@ -111,8 +135,19 @@ def get_sessions():
         conn.close()
         return result
     except Exception as e:
-        # If table doesn't exist yet, return empty
+        logger.error(f"Error fetching sessions: {e}", exc_info=True)
         return []
+
+@app.get("/api/squads/status")
+def get_squads_status():
+    status_file = str(settings.workspace_dir / "squad_status.json")
+    if not os.path.exists(status_file):
+        return {"squads": {}, "variables": {}}
+    try:
+        with open(status_file, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        return {"error": str(e), "squads": {}}
 
 # --- Helper Functions ---
 import re
@@ -169,158 +204,129 @@ def extract_from_run_string(s: str, max_items: int = 10) -> list:
 
     return items
 
+def _parse_messages_from_runs(runs_data: Any, limit: int) -> List[Dict[str, Any]]:
+    """Helper to extract messages from 'runs' column."""
+    if not runs_data:
+        return []
+
+    collected = []
+    try:
+        if isinstance(runs_data, str):
+            # Known issue correction: parsing corrupted strings or single chars
+            if len(runs_data) > 0 and runs_data[0] == '[' and runs_data[1] != '{' and len(runs_data) < 5:
+                 return []
+            runs = json.loads(runs_data)
+        else:
+            runs = runs_data
+
+        if not isinstance(runs, list):
+            return []
+
+        # Iterate newest to oldest
+        for run in reversed(runs):
+            if len(collected) >= limit:
+                break
+            
+            if isinstance(run, str):
+                try:
+                    run = json.loads(run)
+                except:
+                    # Fallback regex extraction
+                    # Assuming extract_from_run_string is in the same file or globally accessible
+                    items = extract_from_run_string(run, max_items=5)
+                    collected.extend(reversed(items)) # We want newest first in collected (to be reversed later)
+                    continue
+            
+            if not isinstance(run, dict):
+                continue
+                
+            # 1. Structured messages
+            if run.get('messages'):
+                msgs = run['messages']
+                for m in reversed(msgs):
+                    if len(collected) >= limit: break
+                    collected.append({
+                        'role': m.get('role', 'assistant'),
+                        'content': m.get('content', ''),
+                        'tool_calls': m.get('tool_calls'),
+                        'tool_call_id': m.get('tool_call_id'),
+                        'name': m.get('name'),
+                        'agent_name': m.get('agent_name')
+                    })
+            
+            # 2. Input/Content
+            else:
+                inp = run.get('input')
+                out = run.get('content') or run.get('response')
+                
+                # We collect newest first. Output follows input, so Output is newer.
+                
+                # Output first (Newer)
+                if out:
+                    collected.append({
+                        'role': 'assistant', 
+                        'content': out,
+                        'tool_calls': run.get('tool_calls'),
+                        'agent_name': run.get('agent_name')
+                    })
+                
+                # Input second (Older)
+                if inp:
+                    txt = inp.get('input_content') if isinstance(inp, dict) else str(inp)
+                    if txt:
+                        collected.append({'role': 'user', 'content': txt})
+
+    except Exception as e:
+        logger.warning(f"Error parsing runs: {e}")
+        
+    return collected
+
 @app.get("/sessions/{session_id}")
 def get_session_history(session_id: str, limit: int = 200):
-    """Return reconstructed session messages.
-
-    Tries several storage formats and reconstructs a chronological list of messages,
-    parsing `runs` if present and iterating from newest to oldest to gather the
-    most recent `limit` messages in an efficient way.
-    """
     try:
-        # Cap limit to avoid huge responses
         limit = max(1, min(limit, 1000))
-
         conn = get_db_connection()
-        cols = [r[1] for r in conn.execute("PRAGMA table_info('nexus_team_sessions')").fetchall()]
         row = conn.execute("SELECT * FROM nexus_team_sessions WHERE session_id = ?", (session_id,)).fetchone()
+        
+        if not row:
+            conn.close()
+            return {"messages": []}
+            
+        # Get column names
+        cols = row.keys()
         conn.close()
 
-        if not row:
-            return {"messages": []}
+        messages = []
 
-        # 0) Compact view (fastest - O(1))
-        if 'compact_messages' in cols and row.get('compact_messages'):
+        # Strategy 1: Compact Messages (Preferred)
+        if 'compact_messages' in cols and row['compact_messages']:
             try:
-                compact = json.loads(row['compact_messages'])
-                # Apply limit to compact view
-                return {"messages": compact[-limit:]}
-            except Exception:
-                pass
+                messages = json.loads(row['compact_messages'])
+                return {"messages": messages[-limit:]}
+            except Exception as e:
+                logger.warning(f"Failed to load compact_messages for {session_id}: {e}")
 
-        # 1) Old schema: memory
-        if 'memory' in cols and row['memory']:
+        # Strategy 2: Runs (Rich history)
+        if not messages and 'runs' in cols:
+            messages = _parse_messages_from_runs(row['runs'], limit)
+            # Messages are collected newest-first, so reverse to get chronological order
+            if messages:
+                return {"messages": list(reversed(messages))[-limit:]} # Apply limit after reversing
+
+        # Strategy 3: Memory (Legacy)
+        if not messages and 'memory' in cols and row['memory']:
             try:
-                memory = json.loads(row['memory'])
-                msgs = memory.get('messages', []) or []
-                return {"messages": msgs[-limit:]}
-            except Exception:
-                pass
+                mem = json.loads(row['memory'])
+                messages = mem.get('messages', [])
+                return {"messages": messages[-limit:]}
+            except Exception as e:
+                 logger.warning(f"Failed to load legacy memory for {session_id}: {e}")
 
-        # 2) Newer schema: runs (may be large, so iterate in reverse and stop when limit reached)
-        if 'runs' in cols and row['runs']:
-            try:
-                runs_raw = row['runs']
-                runs = None
-                is_corrupted = False
-                
-                # Check if runs is corrupted (list of single chars) - known issue in some Agno versions
-                if isinstance(runs_raw, str) and len(runs_raw) > 0:
-                    # Try to parse as JSON array
-                    try:
-                        parsed = json.loads(runs_raw)
-                        # Validate: if it's a list of strings where each string is a single char, it's corrupted
-                        if isinstance(parsed, list) and len(parsed) > 0:
-                            if isinstance(parsed[0], str) and len(parsed[0]) == 1:
-                                # Corrupted - can't extract messages from this session
-                                return {"messages": [], "warning": "Session runs data is corrupted (characters stored as separate elements). Messages cannot be recovered from this session."}
-                            else:
-                                runs = parsed
-                    except Exception:
-                        pass
-                
-                # If runs is still None, try parsing as dict or keep as is
-                if runs is None:
-                    if isinstance(runs_raw, str):
-                        try:
-                            runs = json.loads(runs_raw)
-                        except Exception:
-                            runs = None
-                    else:
-                        runs = runs_raw
-                
-                # If we have a valid runs list, process it
-                if runs and isinstance(runs, list) and len(runs) > 0 and isinstance(runs[0], dict):
-                    collected = []
-                    # ... extraction logic continues below
+        return {"messages": messages or []}
 
-                # Process runs from newest to oldest so we can stop early
-                for raw_run in reversed(runs):
-                    if len(collected) >= limit:
-                        break
-
-                    run = None
-                    if isinstance(raw_run, str):
-                        # Try to parse string; if it fails, fall back to regex extraction
-                        try:
-                            run = json.loads(raw_run)
-                        except Exception:
-                            # fallback
-                            extracted = extract_from_run_string(raw_run, max_items=3)
-                            for it in extracted:
-                                collected.append(it)
-                                if len(collected) >= limit:
-                                    break
-                            continue
-
-                    elif isinstance(raw_run, dict):
-                        run = raw_run
-                    else:
-                        continue
-
-                    if not isinstance(run, dict):
-                        continue
-
-                    # If run contains structured messages, iterate them newest-first
-                    if isinstance(run.get('messages'), list) and run.get('messages'):
-                        for m in reversed(run.get('messages')):
-                            role = m.get('role', 'assistant') if isinstance(m, dict) else 'assistant'
-                            content = m.get('content', '') if isinstance(m, dict) else str(m)
-                            collected.append({'role': role, 'content': content})
-                            if len(collected) >= limit:
-                                break
-                        if len(collected) >= limit:
-                            break
-                        continue
-
-                    # Otherwise, reconstruct from run input/content
-                    inp = run.get('input')
-                    content = run.get('content')
-
-                    # Input could be dict or primitive
-                    if isinstance(inp, dict):
-                        input_content = inp.get('input_content') or inp.get('content')
-                    else:
-                        input_content = inp
-
-                    if input_content:
-                        collected.append({'role': 'user', 'content': input_content})
-                        if len(collected) >= limit:
-                            break
-
-                    if content:
-                        collected.append({'role': 'assistant', 'content': content})
-                        if len(collected) >= limit:
-                            break
-
-                # Reverse to chronological order before returning
-                collected.reverse()
-                return {"messages": collected}
-            except Exception:
-                pass
-
-        # 3) session_data fallback
-        if 'session_data' in cols and row['session_data']:
-            try:
-                sd = json.loads(row['session_data'])
-                msgs = sd.get('messages', []) or []
-                return {"messages": msgs[-limit:]}
-            except Exception:
-                pass
-
-        return {"messages": []}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error retrieving session history {session_id}: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Internal Server Error retrieving session")
 
 class CompactRequest(BaseModel):
     limit: int = 1000
@@ -428,6 +434,44 @@ from fastapi.responses import StreamingResponse
 from dataclasses import asdict, is_dataclass
 import json
 import asyncio
+from collections import deque
+
+TOOL_LOG_DIR = os.path.join("workspace", "logs", "tools")
+REQUEST_LOG_DIR = os.path.join("workspace", "logs", "requests")
+
+def _append_tool_log(session_id: str, task_id: str, payload: dict) -> None:
+    try:
+        os.makedirs(TOOL_LOG_DIR, exist_ok=True)
+        log_path = os.path.join(TOOL_LOG_DIR, f"{session_id}.jsonl")
+        record = {
+            "timestamp": time.time(),
+            "session_id": session_id,
+            "task_id": task_id,
+            "event": payload.get("event"),
+            "agent_name": payload.get("agent_name"),
+            "tool": payload.get("tool") or payload.get("tool_name"),
+            "data": payload
+        }
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    except Exception:
+        # Never block streaming on log errors
+        return
+
+def _append_request_log(session_id: str, message: str) -> None:
+    try:
+        os.makedirs(REQUEST_LOG_DIR, exist_ok=True)
+        log_path = os.path.join(REQUEST_LOG_DIR, f"{session_id}.jsonl")
+        record = {
+            "timestamp": time.time(),
+            "session_id": session_id,
+            "message_len": len(message or ""),
+            "message_preview": (message or "")[:300]
+        }
+        with open(log_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+    except Exception:
+        return
 
 @app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
@@ -435,43 +479,45 @@ async def chat_endpoint(request: ChatRequest):
     workflow = NexusWorkflow()
     
     async def event_generator():
-        plan_path = None
         try:
+            if request.session_id:
+                session_id = request.session_id
+            else:
+                import uuid
+                session_id = f"session_{uuid.uuid4().hex[:12]}"
+
+            _append_request_log(session_id, request.message or "")
+
             # Check if we should create a mission plan for complex requests
             should_plan = workflow.should_create_plan(request.message)
+
+            # Only create task entries when a mission is actually initiated
+            task_id = "default"
+            if should_plan:
+                task_id = start_task(request.message[:80], session_id=session_id)
+            if isinstance(task_id, str) and task_id.startswith("task_"):
+                os.environ["NEXUS_TASK_ID"] = task_id
+            else:
+                os.environ["NEXUS_TASK_ID"] = "default"
             
             if should_plan:
                 # Send planning event to frontend
                 planning_event = {
                     "event": "PlanningStarted",
-                    "content": "📋 Analizando solicitud y creando plan de misión..."
+                    "content": "📋 Analizando solicitud y creando plan de misión...",
+                    "session_id": session_id
                 }
-                yield f"data: {json.dumps(planning_event)}\\n\\n"
-                await asyncio.sleep(0)
-                
-                # Create basic plan (Manager will execute tasks)
-                session_id = request.session_id or "default"
-                tasks = workflow.extract_tasks_from_manager_response(request.message)
-                plan_path = workflow.create_mission_plan(
-                    user_request=request.message,
-                    session_id=session_id,
-                    tasks=tasks
-                )
-                
-                # Notify frontend
-                plan_created_event = {
-                    "event": "PlanCreated",
-                    "content": f"✅ Plan de misión creado: {len(tasks)} tareas identificadas",
-                    "plan_path": plan_path
-                }
-                yield f"data: {json.dumps(plan_created_event)}\\n\\n"
+                yield f"data: {json.dumps(planning_event)}\n\n"
                 await asyncio.sleep(0)
             
-            # Run Manager Agent with Session ID
-            stream = manager.run(
-                request.message, 
-                session_id=request.session_id, 
-                stream=True, 
+            # Ensure tools know the active session for file routing
+            os.environ["NEXUS_SESSION_ID"] = session_id
+
+            # Run Agno Workflow with Session ID
+            stream = workflow.run(
+                user_request=request.message,
+                session_id=session_id,
+                stream=True,
                 stream_events=True
             )
             for chunk in stream:
@@ -488,12 +534,34 @@ async def chat_endpoint(request: ChatRequest):
                      data["agent_name"] = chunk.agent_name
                 
                 # Normalizar eventos de Team a eventos genéricos
-                if data.get("event") == "TeamRunContent":
+                if data.get("event") == "WorkflowStarted":
+                    data["event"] = "RunStarted"
+                elif data.get("event") == "WorkflowCompleted":
+                    data["event"] = "RunCompleted"
+                elif data.get("event") == "StepOutput" and data.get("step_name") == "Planificación":
+                    plan_data = data.get("content") or {}
+                    if plan_data.get("created"):
+                        plan_created_event = {
+                            "event": "PlanCreated",
+                            "content": f"✅ Plan de misión creado: {len(plan_data.get('tasks', []))} tareas identificadas",
+                            "plan_path": plan_data.get("plan_path"),
+                            "session_id": session_id
+                        }
+                        yield f"data: {json.dumps(plan_created_event)}\n\n"
+                        await asyncio.sleep(0)
+                elif data.get("event") == "TeamRunContent":
                     data["event"] = "RunContent"
                 elif data.get("event") == "TeamRunStarted":
                     data["event"] = "RunStarted"
                 elif data.get("event") == "TeamRunCompleted":
                     data["event"] = "RunCompleted"
+
+                # Tool event logging (for workflow inspection)
+                if "session_id" not in data:
+                    data["session_id"] = session_id
+                event_type = (data.get("event") or "").lower()
+                if "tool" in event_type:
+                    _append_tool_log(session_id, os.environ.get("NEXUS_TASK_ID", "default"), data)
                 
                 # Formato SSE
                 yield f"data: {json.dumps(data)}\n\n"
@@ -506,6 +574,26 @@ async def chat_endpoint(request: ChatRequest):
             yield f"data: {json.dumps(error_data)}\n\n"
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+@app.get("/api/logs/tools")
+def get_tool_logs(session_id: str, tail: int = 200):
+    """Return recent tool-call logs for a session."""
+    tail = max(1, min(tail, 1000))
+    log_path = os.path.join(TOOL_LOG_DIR, f"{session_id}.jsonl")
+    if not os.path.exists(log_path):
+        return {"exists": False, "session_id": session_id, "events": []}
+    lines = deque(maxlen=tail)
+    with open(log_path, "r", encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                lines.append(line.strip())
+    events = []
+    for line in lines:
+        try:
+            events.append(json.loads(line))
+        except Exception:
+            events.append({"raw": line})
+    return {"exists": True, "session_id": session_id, "events": events}
 
 @app.get("/mission_plan/{session_id}")
 def get_mission_plan(session_id: str):
@@ -542,17 +630,20 @@ def upload_file(file: UploadFile = File(...)):
 
     try:
         # Ensure knowledge directory exists
-        knowledge_dir = "workspace/knowledge"
+        knowledge_dir = str(settings.workspace_dir / "knowledge")
         if not os.path.exists(knowledge_dir):
             os.makedirs(knowledge_dir)
 
-        # Save file
-        file_path = os.path.join(knowledge_dir, file.filename)
+        # Save file (prevent path traversal via filename)
+        safe_name = os.path.basename(file.filename)
+        if not safe_name:
+            raise HTTPException(status_code=400, detail="Invalid filename")
+        file_path = os.path.join(knowledge_dir, safe_name)
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
         
         # Trigger ingestion via Librarian
-        from agents.librarian import get_knowledge_base
+        from agents.squads.knowledge.librarian import get_knowledge_base
         kb = get_knowledge_base()
         if kb:
             kb.insert(path=file_path, reader=PDFReader(chunk=True))
@@ -563,7 +654,315 @@ def upload_file(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+# ========== TERMINAL STREAMING (SSE) ==========
+
+import asyncio
+from fastapi.responses import StreamingResponse
+from datetime import datetime as dt
+from datetime import timedelta
+import uuid
+
+# Global state for active code executions
+class ExecutionManager:
+    """Singleton to manage active terminal executions."""
+    def __init__(self):
+        self.active_executions = {}
+        self.lock = asyncio.Lock()
+        self.cleanup_task = None
+
+    async def register(self, execution_id: str, state: 'ExecutionState'):
+        async with self.lock:
+            self.active_executions[execution_id] = state
+
+    async def get(self, execution_id: str) -> Optional['ExecutionState']:
+        return self.active_executions.get(execution_id)
+
+    async def remove(self, execution_id: str):
+        async with self.lock:
+            if execution_id in self.active_executions:
+                del self.active_executions[execution_id]
+
+    async def cleanup_loop(self):
+        while True:
+            await asyncio.sleep(settings.execution_cleanup_interval)
+            cutoff = dt.now() - timedelta(seconds=settings.execution_ttl_seconds)
+            async with self.lock:
+                stale_ids = [
+                    eid for eid, exc in self.active_executions.items()
+                    if exc.last_activity < cutoff
+                ]
+                for eid in stale_ids:
+                    del self.active_executions[eid]
+
+    def start_cleanup(self):
+        self.cleanup_task = asyncio.create_task(self.cleanup_loop())
+
+    def stop_cleanup(self):
+        if self.cleanup_task:
+            self.cleanup_task.cancel()
+
+exec_manager = ExecutionManager()
+
+class ExecutionState:
+    """Manages state for a single code execution"""
+    def __init__(self, execution_id: str):
+        self.execution_id = execution_id
+        self.status = 'running'
+        self.output_queue = asyncio.Queue()
+        self.started_at = dt.now()
+        self.last_activity = self.started_at
+        self.exit_code = None
+        
+    async def add_line(self, line: str, stream_type: str, elapsed_time: float):
+        """Add output line to queue"""
+        self.last_activity = dt.now()
+        await self.output_queue.put({
+            'type': stream_type,
+            'line': line,
+            'timestamp': dt.now().isoformat(),
+            'elapsed': round(elapsed_time, 3)
+        })
+    
+    async def complete(self, exit_code: int, elapsed_time: float):
+        """Mark execution as complete"""
+        self.status = 'complete'
+        self.exit_code = exit_code
+        self.last_activity = dt.now()
+        await self.output_queue.put({
+            'type': 'complete',
+            'exit_code': exit_code,
+            'timestamp': dt.now().isoformat(),
+            'elapsed': round(elapsed_time, 3)
+        })
+
+
+
+@app.get("/api/terminal/stream/{execution_id}")
+async def stream_terminal_output(execution_id: str):
+    """
+    SSE endpoint for real-time terminal output streaming.
+    
+    Args:
+        execution_id: Unique execution identifier
+        
+    Returns:
+        Server-Sent Events stream
+    """
+    async def event_generator():
+        """Generate SSE events from execution output"""
+        # Wait for execution to be registered
+        timeout = 10  # Wait up to 10 seconds for execution to start
+        waited = 0
+        execution = await exec_manager.get(execution_id)
+        while not execution and waited < timeout:
+            await asyncio.sleep(0.1)
+            waited += 0.1
+            execution = await exec_manager.get(execution_id)
+        
+        if not execution:
+            yield f"data: {json.dumps({'type': 'error', 'message': 'Execution not found'})}\n\n"
+            return
+        
+        # execution = active_executions[execution_id] (Already got it)
+        
+        try:
+            # Stream output lines as they arrive
+            while execution.status == 'running' or not execution.output_queue.empty():
+                try:
+                    # Get next output with timeout
+                    event = await asyncio.wait_for(execution.output_queue.get(), timeout=0.5)
+                    yield f"data: {json.dumps(event)}\n\n"
+                    
+                    # Check if execution completed
+                    if event.get('type') == 'complete':
+                        break
+                        
+                except asyncio.TimeoutError:
+                    # Send keep-alive
+                    yield f": keepalive\n\n"
+                    continue
+            
+            # Send final completion event if not already sent
+            if execution.status != 'complete':
+                yield f"data: {json.dumps({'type': 'complete', 'exit_code': execution.exit_code or -1})}\n\n"
+                
+        except asyncio.CancelledError:
+            # Client disconnected
+            pass
+        finally:
+            # Cleanup output queue but keep execution state for stats until TTL
+            pass # Cleanup is handled by the background loop or explicitly when finished
+            # async with execution_lock:
+            #    if execution_id in active_executions:
+            #        del active_executions[execution_id]
+    
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"  # Disable nginx buffering
+        }
+    )
+
+# Helper function to register new execution
+async def register_execution(execution_id: str = None) -> str:
+    """Register new execution and return execution ID"""
+    if not execution_id:
+        execution_id = str(uuid.uuid4())
+    
+    await exec_manager.register(execution_id, ExecutionState(execution_id))
+    
+    return execution_id
+
+# Helper function to emit output to streaming clients
+async def emit_to_stream(execution_id: str, line: str, stream_type: str, elapsed_time: float):
+    """Emit output line to active streaming clients"""
+    execution = await exec_manager.get(execution_id)
+    if execution:
+        await execution.add_line(line, stream_type, elapsed_time)
+
+# ========== COST TRACKING ENDPOINTS ==========
+
+from costs.database import (
+    get_total_cost,
+    get_request_count,
+    get_recent_requests,
+    get_cost_by_agent,
+    get_cost_by_model,
+    get_daily_costs
+)
+from costs.pricing import list_available_models, get_pricing_info
+
+@app.get("/api/costs/summary")
+def get_cost_summary(
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    agent: Optional[str] = None,
+    model: Optional[str] = None
+):
+    """
+    Get cost summary with optional filters.
+    
+    Query params:
+        start_date: ISO timestamp (e.g., "2026-01-01T00:00:00")
+        end_date: ISO timestamp
+        agent: Filter by agent name
+        model: Filter by model name
+    """
+    try:
+        total_cost = get_total_cost(start_date, end_date, agent, model)
+        request_count = get_request_count(start_date, end_date, agent)
+        
+        # Calculate average cost per request
+        avg_cost = total_cost / request_count if request_count > 0 else 0
+        
+        # Get breakdowns
+        cost_by_agent = get_cost_by_agent(start_date, end_date)
+        cost_by_model = get_cost_by_model(start_date, end_date)
+        daily_costs = get_daily_costs(30)
+        
+        return {
+            "total_cost": round(total_cost, 4),
+            "total_requests": request_count,
+            "average_cost_per_request": round(avg_cost, 4),
+            "breakdown_by_agent": cost_by_agent,
+            "breakdown_by_model": cost_by_model,
+            "daily_costs": daily_costs,
+            "filters": {
+                "start_date": start_date,
+                "end_date": end_date,
+                "agent": agent,
+                "model": model
+            }
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/costs/recent")
+def get_recent_cost_requests(limit: int = 50):
+    """
+    Get most recent LLM requests with cost data.
+    
+    Query params:
+        limit: Number of requests to return (max 100)
+    """
+    try:
+        limit = min(limit, 100)  # Cap at 100
+        requests = get_recent_requests(limit)
+        
+        return {
+            "requests": requests,
+            "count": len(requests)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/costs/analytics")
+def get_cost_analytics():
+    """
+    Get analytics and insights about costs.
+    """
+    try:
+        # Get data for last 30 days
+        daily_costs = get_daily_costs(30)
+        cost_by_agent = get_cost_by_agent()
+        cost_by_model = get_cost_by_model()
+        total_cost = get_total_cost()
+        total_requests = get_request_count()
+        
+        # Calculate insights
+        most_expensive_agent = max(cost_by_agent.items(), key=lambda x: x[1])[0] if cost_by_agent else None
+        most_used_model = max(cost_by_model.items(), key=lambda x: x[1])[0] if cost_by_model else None
+        
+        # Daily averages
+        days_with_data = len([d for d in daily_costs if d['cost'] > 0])
+        avg_cost_per_day = sum(d['cost'] for d in daily_costs) / days_with_data if days_with_data > 0 else 0
+        avg_requests_per_day = sum(d['requests'] for d in daily_costs) / days_with_data if days_with_data > 0 else 0
+        avg_tokens_per_day = sum(d['tokens'] for d in daily_costs) / days_with_data if days_with_data > 0 else 0
+        
+        return {
+            "total_cost_all_time": round(total_cost, 4),
+            "total_requests_all_time": total_requests,
+            "most_expensive_agent": most_expensive_agent,
+            "most_used_model": most_used_model,
+            "average_cost_per_day": round(avg_cost_per_day, 4),
+            "average_requests_per_day": round(avg_requests_per_day, 2),
+            "average_tokens_per_day": round(avg_tokens_per_day, 0),
+            "days_tracked": days_with_data,
+            "cost_breakdown": {
+                "by_agent": cost_by_agent,
+                "by_model": cost_by_model
+            }
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/costs/models")
+def get_available_models_pricing():
+    """Get list of available models with pricing information."""
+    try:
+        models = list_available_models()
+        model_info = []
+        
+        for model in models:
+            pricing_str = get_pricing_info(model)
+            model_info.append({
+                "model": model,
+                "pricing": pricing_str
+            })
+        
+        return {
+            "models": model_info,
+            "count": len(model_info)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Montar archivos estáticos ANTES del endpoint catch-all
+# Mount assets folder for Visualizer charts
+app.mount("/assets", StaticFiles(directory="workspace/assets"), name="assets")
 app.mount("/static", StaticFiles(directory="frontend", html=True), name="static")
 
 # Servir archivos desde la raíz usando un manejador personalizado que prioriza la API

@@ -1,0 +1,174 @@
+{
+  "precio_cierre_actual_2025": 271.86,
+  "ath_2025": {
+    "precio_intradia": 288.62,
+    "precio_cierre": 286.19,
+    "fecha_ath": "2025-12-02"
+  },
+  "datos_mensuales_2025": [
+    {
+      "mes": "Enero 2025",
+      "precio_cierre": 234.94,
+      "volumen_mensual": null,
+      "retorno_mensual": null
+    },
+    {
+      "mes": "Febrero 2025",
+      "precio_cierre": 241.02,
+      "volumen_mensual": null,
+      "retorno_mensual": 2.59
+    },
+    {
+      "mes": "Marzo 2025",
+      "precio_cierre": 221.37,
+      "volumen_mensual": null,
+      "retorno_mensual": -8.15
+    },
+    {
+      "mes": "Abril 2025",
+      "precio_cierre": 169.21,
+      "volumen_mensual": null,
+      "retorno_mensual": -23.56
+    },
+    {
+      "mes": "Mayo 2025",
+      "precio_cierre": 232.55,
+      "volumen_mensual": null,
+      "retorno_mensual": 37.46
+    },
+    {
+      "mes": "Junio 2025",
+      "precio_cierre": 230.50,
+      "volumen_mensual": null,
+      "retorno_mensual": -0.88
+    },
+    {
+      "mes": "Julio 2025",
+      "precio_cierre": 215.78,
+      "volumen_mensual": null,
+      "retorno_mensual": -6.39
+    },
+    {
+      "mes": "Agosto 2025",
+      "precio_cierre": 234.89,
+      "volumen_mensual": null,
+      "retorno_mensual": 8.86
+    },
+    {
+      "mes": "Septiembre 2025",
+      "precio_cierre": 257.35,
+      "volumen_mensual": null,
+      "retorno_mensual": 9.57
+    },
+    {
+      "mes": "Octubre 2025",
+      "precio_cierre": 270.37,
+      "volumen_mensual": null,
+      "retorno_mensual": 5.06
+    },
+    {
+      "mes": "Noviembre 2025",
+      "precio_cierre": 278.85,
+      "volumen_mensual": null,
+      "retorno_mensual": 3.14
+    },
+    {
+      "mes": "Diciembre 2025",
+      "precio_cierre": 271.86,
+      "volumen_mensual": 924528800,
+      "retorno_mensual": -2.51
+    }
+  ],
+  "eventos_corporativos_2025": [
+    {
+      "fecha": "2025-01-30",
+      "evento": "Q1 FY2025 Earnings (trimestre ended Dic 2024)",
+      "impacto_precio": "Resultados trimestrales fiscal"
+    },
+    {
+      "fecha": "2025-02-14",
+      "evento": "Dividendo trimestral $0.26",
+      "impacto_precio": "Pago a accionistas"
+    },
+    {
+      "fecha": "2025-05-01",
+      "evento": "Q2 FY2025 Earnings",
+      "impacto_precio": "EPS $1.65 (beat estimates)"
+    },
+    {
+      "fecha": "2025-05-15",
+      "evento": "Dividendo trimestral $0.26",
+      "impacto_precio": "Pago a accionistas"
+    },
+    {
+      "fecha": "2025-07-31",
+      "evento": "Q3 FY2025 Earnings",
+      "impacto_precio": "EPS $1.43"
+    },
+    {
+      "fecha": "2025-08-14",
+      "evento": "Dividendo trimestral $0.26",
+      "impacto_precio": "Pago a accionistas"
+    },
+    {
+      "fecha": "2025-09-09",
+      "evento": "Lanzamiento iPhone 17",
+      "impacto_precio": "Caída -1.48% post-anuncio"
+    },
+    {
+      "fecha": "2025-10-20",
+      "evento": "Apple alcanza $3.9T valoración tras rally iPhone 17",
+      "impacto_precio": "Subida +4.2% a $262.90"
+    },
+    {
+      "fecha": "2025-10-30",
+      "evento": "Q4 FY2025 Earnings (trimestre ended Sep 2025)",
+      "impacto_precio": "EPS $1.85 (beat $1.74), Revenue $102.5B (+8% YoY)"
+    },
+    {
+      "fecha": "2025-11-10",
+      "evento": "Ex-Dividendo $0.26",
+      "impacto_precio": "Pago a accionistas"
+    },
+    {
+      "fecha": "2025-12-02",
+      "evento": "Nuevo ATH: $286.19 (cierre), $288.62 (intradía)",
+      "impacto_precio": "Máximo histórico del año"
+    }
+  ],
+  "precio_cierre_2024": 249.29,
+  "retorno_anual_2024": 34.5,
+  "retorno_anual_2025": 9.05,
+  "comparativa_yoy": {
+    "precio_inicial_2024": 185.64,
+    "precio_final_2024": 249.29,
+    "precio_inicial_2025": 249.29,
+    "precio_final_2025": 271.86,
+    "diferencia_precio_cierre": 22.57,
+    "diferencia_porcentual": 9.05,
+    "nota": "2025 tuvo rendimiento significativamente menor que 2024 (30%+), pero aún positivo"
+  },
+  "metricas_financieras_2025": {
+    "revenue_q4_2025": "102.5B USD (+8% YoY)",
+    "eps_fiscal_2025": 7.49 (+22.6% vs 2024)",
+    "servicios_revenue": "109.2B (crecimiento fuerte)",
+    "iphone_17_ventas_10_dias": "+14% vs iPhone 16"
+  },
+  "fuentes": [
+    "https://investor.apple.com/stock-price/default.aspx",
+    "https://finance.yahoo.com/quote/AAPL/history/",
+    "https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history",
+    "https://www.statmuse.com/money/ask/apple-stock-price-december-2025",
+    "https://stockanalysis.com/stocks/aapl/history/",
+    "https://www.apple.com/newsroom/2025/10/apple-reports-fourth-quarter-results/",
+    "https://investor.apple.com/dividend-history/default.aspx",
+    "https://www.financecharts.com/stocks/AAPL/performance",
+    "https://www.nasdaq.com/market-activity/stocks/aapl/earnings"
+  ],
+  "notas_metodologicas": {
+    "precio_cierre_actual": "Dato verificado de múltiples fuentes (Apple IR, Yahoo Finance, StatMuse)",
+    "valor_incorrecto_mencionado": "El precio de $243.18 mencionado en el reporte original es INCORRECTO",
+    "precio_correcto_diciembre_2025": "$271.86 (cierre 31 Dic 2025)",
+    "volumen_mensual": "Solo disponible para algunos meses; dato de diciembre 2025: ~924.5M acciones"
+  }
+}

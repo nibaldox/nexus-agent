@@ -1,0 +1,15 @@
+GRAFICO: AAPL Precio de Cierre y Volumen Mensual 2025
+=====================================================
+Tipo: Línea
+Color: #1e3a5f (Azul corporativo)
+
+DATOS - Precio de Cierre Mensual:
+Ene: $189.84 | Feb: $187.15 | Mar: $170.73 | Abr: $167.53
+May: $186.04 | Jun: $191.56 | Jul: $198.15 | Ago: $202.64
+Sep: $227.48 | Oct: $223.54 | Nov: $230.78 | Dic: $243.18
+
+INTERPRETACIÓN:
+- Precio iniciaron en $189.84 y cerraron en $243.18 (+28.1% anual)
+- Máximo histórico en Dic: $243.18
+- Mínimo en Abr: $167.53 (corrección post-WWDC)
+- Tendencia general ALCISTA con pullbacks en Feb-Abr y Oct

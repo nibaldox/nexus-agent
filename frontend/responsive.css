@@ -25,125 +25,17 @@ aside.collapsed * {
 }
 
 /* Adjust main content when sidebar is collapsed */
-aside.collapsed + div main {
+aside.collapsed+div main {
     padding-left: 1rem;
 }
 
-aside.collapsed + div #sidebar-toggle {
+aside.collapsed+div #sidebar-toggle {
     left: 1rem;
-}
-
-/* Responsive Design for Nexus Dashboard */
-
-:root {
-    --bg: #000000;
-    --surface: #0A0A0A;
-    --sidebar-bg: #111111;
-    --accent-cyan: #00E0FF;
-    --accent-orange: #FF8A00;
-    --accent-purple: #D946EF;
-    --text-main: #F0F0F0;
-    --text-muted: #888888;
-    --border: #222222;
-    --card-border: #1A1A1A;
-}
-
-body {
-    background-color: var(--bg);
-    color: var(--text-main);
-    font-family: 'IBM Plex Mono', monospace;
-    overflow: hidden;
-}
-
-.mono {
-    font-family: 'IBM Plex Mono', monospace;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.sidebar-item {
-    transition: all 0.2s ease;
-}
-
-.sidebar-item:hover {
-    color: var(--accent-cyan);
-    text-shadow: 0 0 10px rgba(0, 224, 255, 0.4);
-}
-
-.glow-cyan {
-    text-shadow: 0 0 8px rgba(0, 224, 255, 0.6);
-}
-
-.execution-card {
-    border: 1px solid var(--card-border);
-    background: rgba(255, 255, 255, 0.02);
-    transition: border-color 0.3s ease;
-}
-
-.execution-card:hover {
-    border-color: #333333;
-}
-
-.operator-bubble {
-    background: #111111;
-    border: 1px solid #222222;
-    border-radius: 12px;
-    padding: 16px 20px;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.blinking-cursor {
-    width: 8px;
-    height: 1.2em;
-    background-color: var(--accent-cyan);
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 2px;
-    animation: blink 1s step-end infinite;
-}
-
-/* Table Styling */
-.prose table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    font-size: 0.9em;
-}
-
-.prose th {
-    color: var(--accent-cyan);
-    font-weight: 700;
-    text-align: left;
-    padding: 0.75rem;
-    background-color: rgba(255, 255, 255, 0.03);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.8em;
-}
-
-.prose td {
-    padding: 0.75rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--text-main);
-}
-
-.prose tr:last-child td {
-    border-bottom: none;
-}
-
-.prose tr:hover td {
-    background-color: rgba(255, 255, 255, 0.02);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
     /* Mobile devices */
     aside {
         position: fixed;
@@ -175,11 +67,11 @@ body {
         min-height: 100vh;
     }
 
-    .w-[20%] {
+    .w-\[20\%\] {
         width: 100%;
     }
 
-    .max-w-[1000px] {
+    .max-w-\[1000px\] {
         max-width: 100%;
     }
 
@@ -200,19 +92,19 @@ body {
         gap: 0.75rem;
     }
 
-    .text-[10px] {
+    .text-\[10px\] {
         font-size: 0.875rem;
     }
 
-    .text-[12px] {
+    .text-\[12px\] {
         font-size: 1rem;
     }
 
-    .text-[15px] {
+    .text-\[15px\] {
         font-size: 1.125rem;
     }
 
-    .text-[18px] {
+    .text-\[18px\] {
         font-size: 1.25rem;
     }
 
@@ -277,7 +169,7 @@ body {
         padding-right: 0.5rem;
     }
 
-    .border-[var(--border)] {
+    .border-\[var(--border)\] {
         border-width: 1px;
     }
 
@@ -297,7 +189,7 @@ body {
         letter-spacing: 0.1em;
     }
 
-    .tracking-[0\.2em] {
+    .tracking-\[0\.2em\] {
         letter-spacing: 0.05em;
     }
 
@@ -309,15 +201,15 @@ body {
         font-weight: 600;
     }
 
-    .text-[var(--text-muted)] {
+    .text-\[var(--text-muted)\] {
         color: var(--text-muted);
     }
 
-    .text-[var(--text-main)] {
+    .text-\[var(--text-main)\] {
         color: var(--text-main);
     }
 
-    .text-[var(--accent-cyan)] {
+    .text-\[var(--accent-cyan)\] {
         color: var(--accent-cyan);
     }
 
@@ -389,9 +281,9 @@ body {
         width: 100%;
     }
 
-    .overflow-hidden {
+    /* .overflow-hidden {
         overflow: hidden;
-    }
+    } */
 
     .overflow-y-auto {
         overflow-y: auto;
@@ -414,11 +306,11 @@ body {
         outline: none;
     }
 
-    .text-[15px] {
+    .text-\[15px\] {
         font-size: 0.9375rem;
     }
 
-    .text-[10px] {
+    .text-\[10px\] {
         font-size: 0.625rem;
     }
 
@@ -442,7 +334,7 @@ body {
         opacity: 0.3;
     }
 
-    .shadow-[0_0_8px_var(--accent-cyan)] {
+    .shadow-\[0_0_8px_var(--accent-cyan)\] {
         box-shadow: 0 0 8px rgba(0, 224, 255, 0.4);
     }
 
@@ -488,12 +380,13 @@ body {
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+
     /* Tablets */
-    .w-[20%] {
+    .w-\[20\%\] {
         width: 20%;
     }
 
-    .max-w-[1000px] {
+    .max-w-\[1000px\] {
         max-width: 1000px;
     }
 
@@ -514,19 +407,19 @@ body {
         gap: 1rem;
     }
 
-    .text-[10px] {
+    .text-\[10px\] {
         font-size: 0.875rem;
     }
 
-    .text-[12px] {
+    .text-\[12px\] {
         font-size: 1rem;
     }
 
-    .text-[15px] {
+    .text-\[15px\] {
         font-size: 1.125rem;
     }
 
-    .text-[18px] {
+    .text-\[18px\] {
         font-size: 1.25rem;
     }
 
@@ -591,7 +484,7 @@ body {
         padding-right: 0.75rem;
     }
 
-    .border-[var(--border)] {
+    .border-\[var(--border)\] {
         border-width: 1px;
     }
 
@@ -611,7 +504,7 @@ body {
         letter-spacing: 0.1em;
     }
 
-    .tracking-[0\.2em] {
+    .tracking-\[0\.2em\] {
         letter-spacing: 0.05em;
     }
 
@@ -623,15 +516,15 @@ body {
         font-weight: 600;
     }
 
-    .text-[var(--text-muted)] {
+    .text-\[var(--text-muted)\] {
         color: var(--text-muted);
     }
 
-    .text-[var(--text-main)] {
+    .text-\[var(--text-main)\] {
         color: var(--text-main);
     }
 
-    .text-[var(--accent-cyan)] {
+    .text-\[var(--accent-cyan)\] {
         color: var(--accent-cyan);
     }
 
@@ -703,9 +596,9 @@ body {
         width: 100%;
     }
 
-    .overflow-hidden {
+    /* .overflow-hidden {
         overflow: hidden;
-    }
+    } */
 
     .overflow-y-auto {
         overflow-y: auto;
@@ -728,11 +621,11 @@ body {
         outline: none;
     }
 
-    .text-[15px] {
+    .text-\[15px\] {
         font-size: 0.9375rem;
     }
 
-    .text-[10px] {
+    .text-\[10px\] {
         font-size: 0.625rem;
     }
 
@@ -756,7 +649,7 @@ body {
         opacity: 0.3;
     }
 
-    .shadow-[0_0_8px_var(--accent-cyan)] {
+    .shadow-\[0_0_8px_var(--accent-cyan)\] {
         box-shadow: 0 0 8px rgba(0, 224, 255, 0.4);
     }
 
@@ -802,12 +695,13 @@ body {
 }
 
 @media (min-width: 1025px) {
+
     /* Desktop */
-    .w-[20%] {
+    .w-\[20\%\] {
         width: 20%;
     }
 
-    .max-w-[1000px] {
+    .max-w-\[1000px\] {
         max-width: 1000px;
     }
 
@@ -828,19 +722,19 @@ body {
         gap: 1.25rem;
     }
 
-    .text-[10px] {
+    .text-\[10px\] {
         font-size: 0.9em;
     }
 
-    .text-[12px] {
+    .text-\[12px\] {
         font-size: 1rem;
     }
 
-    .text-[15px] {
+    .text-\[15px\] {
         font-size: 1.125rem;
     }
 
-    .text-[18px] {
+    .text-\[18px\] {
         font-size: 1.25rem;
     }
 
@@ -905,7 +799,7 @@ body {
         padding-right: 1rem;
     }
 
-    .border-[var(--border)] {
+    .border-\[var(--border)\] {
         border-width: 1px;
     }
 
@@ -925,7 +819,7 @@ body {
         letter-spacing: 0.1em;
     }
 
-    .tracking-[0\.2em] {
+    .tracking-\[0\.2em\] {
         letter-spacing: 0.05em;
     }
 
@@ -937,15 +831,15 @@ body {
         font-weight: 600;
     }
 
-    .text-[var(--text-muted)] {
+    .text-\[var(--text-muted)\] {
         color: var(--text-muted);
     }
 
-    .text-[var(--text-main)] {
+    .text-\[var(--text-main)\] {
         color: var(--text-main);
     }
 
-    .text-[var(--accent-cyan)] {
+    .text-\[var(--accent-cyan)\] {
         color: var(--accent-cyan);
     }
 
@@ -1017,9 +911,9 @@ body {
         width: 100%;
     }
 
-    .overflow-hidden {
+    /* .overflow-hidden {
         overflow: hidden;
-    }
+    } */
 
     .overflow-y-auto {
         overflow-y: auto;
@@ -1042,11 +936,11 @@ body {
         outline: none;
     }
 
-    .text-[15px] {
+    .text-\[15px\] {
         font-size: 0.9375rem;
     }
 
-    .text-[10px] {
+    .text-\[10px\] {
         font-size: 0.625rem;
     }
 
@@ -1070,7 +964,7 @@ body {
         opacity: 0.3;
     }
 
-    .shadow-[0_0_8px_var(--accent-cyan)] {
+    .shadow-\[0_0_8px_var(--accent-cyan)\] {
         box-shadow: 0 0 8px rgba(0, 224, 255, 0.4);
     }
 

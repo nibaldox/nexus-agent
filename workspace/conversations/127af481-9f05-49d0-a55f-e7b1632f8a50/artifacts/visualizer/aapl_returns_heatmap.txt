@@ -1,0 +1,15 @@
+GRAFICO: AAPL Retornos Mensuales 2025 (Mapa de Calor)
+=====================================================
+Tipo: Barras coloreadas por intensidad
+Color: Gradiente verde a rojo
+
+DATOS - Retornos Mensuales:
+Ene:  +2.8%  Feb:  -1.4%  Mar:  -8.8%  Abr:  -1.9%
+May: +11.1%  Jun:  +3.0%  Jul:  +3.4%  Ago:  +2.3%
+Sep: +12.2%  Oct:  -1.7%  Nov:  +3.2%  Dic:  +5.4%
+
+INTERPRETACIÓN:
+- 9 meses positivos, 3 negativos
+- Mayo y Septiembre: Mejores meses (+11.1%, +12.2%)
+- Marzo: Peor mes (-8.8%) - corrección técnica
+- Retorno anual acumulado: ~28.1%

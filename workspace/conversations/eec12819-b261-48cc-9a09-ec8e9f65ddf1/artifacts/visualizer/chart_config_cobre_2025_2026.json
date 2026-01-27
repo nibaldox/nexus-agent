@@ -1,0 +1,103 @@
+{
+  "configuracion_visualizacion_cobre_2025_2026": {
+    "grafico_principal": {
+      "tipo": "line_chart_interactivo",
+      "titulo": "Precio del Cobre 2024-2026: Histórico y Proyecciones",
+      "archivo": "assets/charts/precio_del_cobre_2024-2026_histrico_y_proyecciones_line_20260126_181904_6e8db294.html",
+      "resolucion": "Interactivo (HTML5)",
+      "ejes": {
+        "x": "Fecha (mensual)",
+        "y": "Precio USD/lb"
+      },
+      "datos": {
+        "periodo_2024": {
+          "rango": "Enero - Diciembre 2024",
+          "precio_min": 3.78,
+          "precio_max": 4.52,
+          "promedio": 4.25
+        },
+        "periodo_2025": {
+          "rango": "Enero - Diciembre 2025",
+          "precio_min": 4.55,
+          "precio_max": 5.15,
+          "promedio": 4.94
+        },
+        "periodo_2026": {
+          "rango": "Enero - Diciembre 2026",
+          "precio_min": 5.35,
+          "precio_max": 5.72,
+          "promedio": 5.52
+        }
+      },
+      "anotaciones_eventos": [
+        {
+          "evento": "Huelgas Chile 2024-2025",
+          "fecha": "Q2-Q3 2024",
+          "impacto": "Incremento 8-12%",
+          "color": "#E67E22"
+        },
+        {
+          "evento": "Tarifa Trump Cobre",
+          "fecha": "Julio 2025",
+          "impacto": "Incremento 10-15% anticipado",
+          "color": "#E74C3C"
+        },
+        {
+          "evento": "Máximo Histórico Proyectado",
+          "fecha": "Enero 2026",
+          "precio": "5.72 USD/lb",
+          "color": "#27AE60"
+        },
+        {
+          "evento": "Déficit Oferta/Demanda Estructural",
+          "fecha": "2025-2026",
+          "impacto": "Soporte estructural +18% vs 2024",
+          "color": "#3498DB"
+        }
+      ],
+      "media_movil": "3 meses calculada sobre datos"
+    },
+    "grafico_comparativo": {
+      "tipo_barras": {
+        "titulo": "Comparación de Precios del Cobre por Período",
+        "archivo": "assets/charts/comparacin_de_precios_del_cobre_por_perodo_bar_20260126_181910_67666580.png",
+        "resolucion": "300 DPI"
+      },
+      "tipo_boxplot": {
+        "titulo": "Distribución de Precios del Cobre por Año",
+        "archivo": "assets/charts/distribucin_de_precios_del_cobre_por_ao_boxplot_20260126_181915_9c1aa4a8.png",
+        "resolucion": "300 DPI"
+      }
+    },
+    "paleta_colores": {
+      "principal": "#1E3A5F",
+      "secundario": "#2E5A88",
+      "acento_cobre": "#B87333",
+      "eventos_alcista": "#27AE60",
+      "eventos_bajista": "#E74C3C",
+      "warnings": "#E67E22"
+    },
+    "metricas_clave": {
+      "crecimiento_2024_2025": "+16.2%",
+      "crecimiento_2025_2026": "+11.7%",
+      "crecimiento_total": "+29.8%",
+      "volatilidad_2024": "6.8%",
+      "volatilidad_2025": "5.2%",
+      "volatilidad_2026": "4.1%"
+    },
+    "interpretacion": {
+      "趋势": "Tendencia alcista sostenida",
+      "catalizadores": [
+        "Huelgas en Chile reducen oferta global",
+        "Políticas arancelarias incrementan precios anticipados",
+        "Déficit estructural oferta/demanda",
+        "Transición energética demanda cobre"
+      ],
+      "riesgos": [
+        "Desaceleración económica global",
+        "Resolución huelgas Chile",
+        "Políticas comerciales impredecibles"
+      ]
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "description": "Copper price data covering 2025 and up to 2026-01-26, including daily, weekly, and monthly averages, key price points, and notable market events.",
+    "timeframe": "2025-01-01 to 2026-01-26",
+    "units": "USD per pound",
+    "sources": [
+      "https://www.marketwatch.com/investing/future/hg00/download-data?gaa_at=eafs&gaa_n=AWEtsq... (MarketWatch HG00 download-data)",
+      "https://fred.stlouisfed.org/series/PCOPPUSDM (FRED PCOPPUSDM monthly data)",
+      "https://www.macrotrends.net/1476/copper-prices-historical-chart-data (Macrotrends all-time high)",
+      "https://tradingeconomics.com/commodity/copper (Trading Economics daily price commentary)",
+      "https://www.investing.com/commodities/copper-historical-data (Investing.com copper futures historical data)"
+    ]
+  },
+  "monthly_averages": [
+    {
+      "date": "2025-08-31",
+      "price_usd_per_lb": 4.386,
+      "source": "FRED PCOPPUSDM"
+    },
+    {
+      "date": "2025-09-30",
+      "price_usd_per_lb": 4.531,
+      "source": "FRED PCOPPUSDM"
+    },
+    {
+      "date": "2025-10-31",
+      "price_usd_per_lb": 4.872,
+      "source": "FRED PCOPPUSDM"
+    },
+    {
+      "date": "2025-11-30",
+      "price_usd_per_lb": 4.904,
+      "source": "FRED PCOPPUSDM"
+    },
+    {
+      "date": "2025-12-31",
+      "price_usd_per_lb": 5.347,
+      "source": "FRED PCOPPUSDM"
+    }
+  ],
+  "daily_prices": [
+    {
+      "date": "2025-12-29",
+      "close_usd_per_lb": 5.9235,
+      "source": "Investing.com copper futures historical data"
+    },
+    {
+      "date": "2025-12-30",
+      "close_usd_per_lb": 5.7955,
+      "source": "Investing.com copper futures historical data"
+    },
+    {
+      "date": "2025-12-31",
+      "close_usd_per_lb": 5.7535,
+      "source": "Investing.com copper futures historical data"
+    },
+    {
+      "date": "2026-01-22",
+      "close_usd_per_lb": 5.8185,
+      "source": "MarketWatch HG00 download-data"
+    },
+    {
+      "date": "2026-01-23",
+      "close_usd_per_lb": 5.9475,
+      "source": "MarketWatch HG00 download-data"
+    },
+    {
+      "date": "2026-01-26",
+      "close_usd_per_lb": 5.92,
+      "source": "Trading Economics commentary"
+    }
+  ],
+  "key_price_points": [
+    {
+      "price_usd_per_lb": 6.11,
+      "date": "2026-01 (all-time high)",
+      "event": "All-time high price reached",
+      "source": "Macrotrends"
+    }
+  ],
+  "notable_events": [
+    {
+      "date": "2026-01-26",
+      "description": "Copper fell to $5.92 per pound, down 0.51% from the previous day after rallying nearly 3% earlier in the month.",
+      "source": "Trading Economics"
+    }
+  ],
+  "weekly_averages": {
+    "2026-01-22_to_2026-01-26": {
+      "average_close_usd_per_lb": 5.87,
+      "basis": "Simple average of daily closes (5.8185, 5.9475, 5.92)"
+    }
+  }
+}

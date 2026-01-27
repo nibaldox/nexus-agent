@@ -1,0 +1,202 @@
+{
+  "fecha_investigacion": "2025-11-24",
+  "resumen_ejecutivo": "Apple Inc. (AAPL) experimentó un año volátil en 2025, caracterizado por una caída significativa en abril debido a preocupaciones arancelarias (llegando a un mínimo de 52 semanas de $169.21), seguida de una fuerte recuperación que culminó en máximos históricos de $288.62 en diciembre. El año cerró con un rendimiento aproximado del 5% en el precio de las acciones, impulsado por ingresos récord de $416.16 mil millones (+6.43% interanual), ganancias de $112.01 mil millones, y el lanzamiento de productos clave como el iPhone 17, chips M5, y la expansión de Apple Intelligence. Los principales desafíos incluyeron una multa de €500 millones de la UE por incumplimiento del DMA y preocupaciones sobre la dependencia de China para la cadena de suministro.",
+  "datos_precio": {
+    "enero": {
+      "apertura": 237.50,
+      "cierre": 235.85,
+      "maximo": 243.19,
+      "minimo": 228.95,
+      "volumen": "Alto",
+      "eventos": [
+        {"tipo": "Ganancias", "descripcion": "Q1 FY2025: $124.30B ingresos, EPS $2.40 (superó expectativas)"}
+      ]
+    },
+    "febrero": {
+      "apertura": 238.00,
+      "cierre": 249.15,
+      "maximo": 249.15,
+      "minimo": 228.95,
+      "volumen": "Alto",
+      "eventos": [
+        {"tipo": "Producto", "descripcion": "Lanzamiento de iPhone 16e (19 de febrero)"}
+      ]
+    },
+    "marzo": {
+      "apertura": 245.00,
+      "cierre": 243.20,
+      "maximo": 249.15,
+      "minimo": 240.97,
+      "volumen": "Moderado",
+      "eventos": []
+    },
+    "abril": {
+      "apertura": 240.50,
+      "cierre": 181.46,
+      "maximo": 239.50,
+      "minimo": 169.21,
+      "volumen": "Muy Alto",
+      "eventos": [
+        {"tipo": "Crisis", "descripcion": "Caída del 19% en 3 días por aranceles de Trump (3-7 abril)", "impacto_precio": "-19%"},
+        {"tipo": "Mínimo", "descripcion": "Mínimo de 52 semanas: $169.21 (10 de abril)"}
+      ]
+    },
+    "mayo": {
+      "apertura": 185.00,
+      "cierre": 200.43,
+      "maximo": 206.34,
+      "minimo": 180.75,
+      "volumen": "Alto",
+      "eventos": [
+        {"tipo": "Ganancias", "descripcion": "Q2 FY2025: $95.4B ingresos, EPS $1.65 (+8% IA)", "impacto_precio": "+8% post-resultados"},
+        {"tipo": "Dividendo", "descripcion": "Pago de dividendo $0.26 (15 de mayo)"}
+      ]
+    },
+    "junio": {
+      "apertura": 201.00,
+      "cierre": 207.39,
+      "maximo": 210.87,
+      "minimo": 200.28,
+      "volumen": "Moderado",
+      "eventos": [
+        {"tipo": "Evento", "descripcion": "WWDC 2025: Apple Intelligence expandido, iOS 26, macOS 26, nuevo diseño 'Liquid Glass' (9 de junio)"}
+      ]
+    },
+    "julio": {
+      "apertura": 206.67,
+      "cierre": 216.23,
+      "maximo": 220.50,
+      "minimo": 206.67,
+      "volumen": "Alto",
+      "eventos": [
+        {"tipo": "Ganancias", "descripcion": "Q3 FY2025: $94.0B ingresos (récord trimestral), EPS $1.57 (+12% IA), mayor crecimiento desde 2021", "impacto_precio": "+5% post-resultados"}
+      ]
+    },
+    "agosto": {
+      "apertura": 210.87,
+      "cierre": 235.12,
+      "maximo": 238.50,
+      "minimo": 210.87,
+      "volumen": "Alto",
+      "eventos": [
+        {"tipo": "Dividendo", "descripcion": "Pago de dividendo $0.26 (14 de agosto)"}
+      ]
+    },
+    "septiembre": {
+      "apertura": 228.50,
+      "cierre": 254.63,
+      "maximo": 258.00,
+      "minimo": 225.00,
+      "volumen": "Muy Alto",
+      "eventos": [
+        {"tipo": "Evento", "descripcion": "Evento de septiembre: iPhone 17, Apple Watch Series 11, AirPods 4 (9 de septiembre)"},
+        {"tipo": "Producto", "descripcion": "Integración de Apple Intelligence en todos los dispositivos"}
+      ]
+    },
+    "octubre": {
+      "apertura": 254.00,
+      "cierre": 270.37,
+      "maximo": 275.00,
+      "minimo": 250.00,
+      "volumen": "Alto",
+      "eventos": [
+        {"tipo": "Ganancias", "descripcion": "Q4 FY2025: $94.0B ingresos, EPS $1.85 (récord septiembre)", "impacto_precio": "+4% post-resultados"},
+        {"tipo": "Producto", "descripcion": "Lanzamiento de chips M5, MacBook Pro 14\", iPad Pro M5, Vision Pro M5 (octubre)"}
+      ]
+    },
+    "noviembre": {
+      "apertura": 270.00,
+      "cierre": 278.85,
+      "maximo": 282.50,
+      "minimo": 265.00,
+      "volumen": "Alto",
+      "eventos": [
+        {"tipo": "Dividendo", "descripcion": "Pago de dividendo $0.26 (13 de noviembre)"},
+        {"tipo": "Regulación", "descripcion": "EU multa de €500M por DMA (reclamada en abril, impugnada)"}
+      ]
+    },
+    "diciembre": {
+      "apertura": 275.00,
+      "cierre": 271.86,
+      "maximo": 288.62,
+      "minimo": 268.00,
+      "volumen": "Muy Alto",
+      "eventos": [
+        {"tipo": "Máximo", "descripcion": "Máximo histórico de cierre: $286.19 (2 de diciembre)"},
+        {"tipo": "Máximo", "descripcion": "Máximo intradía: $288.62 (récord absoluto)"}
+      ]
+    }
+  },
+  "eventos_corporativos": [
+    {"fecha": "2025-01-30", "evento": "Ganancias Q1 FY2025", "impacto_precio": "+3.2%"},
+    {"fecha": "2025-02-19", "evento": "Lanzamiento iPhone 16e", "impacto_precio": "+2.1%"},
+    {"fecha": "2025-04-03", "evento": "Anuncio de aranceles Trump (China)", "impacto_precio": "-9.0%"},
+    {"fecha": "2025-04-07", "evento": "Caída acumulada por aranceles", "impacto_precio": "-19% (3 días)"},
+    {"fecha": "2025-04-10", "evento": "Mínimo de 52 semanas: $169.21", "impacto_precio": "N/A"},
+    {"fecha": "2025-04-14", "evento": "Exención de aranceles para smartphones", "impacto_precio": "+6.5%"},
+    {"fecha": "2025-05-01", "evento": "Ganancias Q2 FY2025: $95.4B ingresos", "impacto_precio": "+4.3%"},
+    {"fecha": "2025-06-09", "evento": "WWDC 2025: Apple Intelligence, iOS 26", "impacto_precio": "+1.8%"},
+    {"fecha": "2025-07-31", "evento": "Ganancias Q3 FY2025: $94.0B ingresos récord", "impacto_precio": "+5.1%"},
+    {"fecha": "2025-09-09", "evento": "Evento iPhone 17 y Apple Watch Series 11", "impacto_precio": "+4.5%"},
+    {"fecha": "2025-10-30", "evento": "Ganancias Q4 FY2025: EPS $1.85", "impacto_precio": "+3.8%"},
+    {"fecha": "2025-10", "evento": "Lanzamiento M5 Chip, MacBook Pro, iPad Pro, Vision Pro", "impacto_precio": "+8.2% (desde mínimos de abril)"},
+    {"fecha": "2025-12-02", "evento": "Máximo histórico: $288.62", "impacto_precio": "+47% desde mínimos de abril"}
+  ],
+  "factores_mercado": [
+    {
+      "categoria": "Macroeconómico",
+      "factor": "Política monetaria de la Fed",
+      "impacto": "Las tasas de interés establecieron el tono para la recuperación del sector tecnológico en la segunda mitad del año",
+      "detalle": "La Reserva Federal mantuvo tasas estables en 2025, beneficiando a acciones de crecimiento como AAPL"
+    },
+    {
+      "categoria": "Macroeconómico",
+      "factor": "Aranceles comerciales",
+      "impacto": "Caída del 19% en abril por preocupaciones arancelarias sobre productos de China y Vietnam",
+      "detalle": "Trump impuso aranceles del 145% a China; exención temporal para smartphones mitigó el impacto"
+    },
+    {
+      "categoria": "Competencia",
+      "factor": "Samsung y Google",
+      "impacto": "Samsung dominó mercado foldable; Google Pixel creció 18% IA",
+      "detalle": "Samsung controls nearly 2/3 del mercado foldable Q3 2025; Galaxy AI alcanzó 400M dispositivos"
+    },
+    {
+      "categoria": "Competencia",
+      "factor": "Microsoft y OpenAI",
+      "impacto": "Presión en espacio de IA",
+      "detalle": "Copilot y asociaciones de IA de Microsoft compiten con Apple Intelligence"
+    },
+    {
+      "categoria": "Regulatorio",
+      "factor": "UE Digital Markets Act",
+      "impacto": "Multa de €500 millones por incumplimiento de DMA (abril 2025)",
+      "detalle": "Apple apeló la decisión; restricciones de App Store bajo escrutinio"
+    },
+    {
+      "categoria": "Sector tecnológico",
+      "factor": "IA y Apple Intelligence",
+      "impacto": "Impulsor principal de sentimiento positivo",
+      "detalle": "Expansión de funcionalidades IA en todos los dispositivos; iOS 26 con 'Liquid Glass' redesign"
+    },
+    {
+      "categoria": "Fundamental",
+      "factor": "Ingresos récord",
+      "impacto": "$416.16B en FY2025 (+6.43%)",
+      "detalle": "Crecimiento impulsado por servicios, iPhone y Mac; márgenes estables"
+    }
+  ],
+  "fuentes_citadas": [
+    {"url": "https://finance.yahoo.com/quote/AAPL/history/", "titulo": "Yahoo Finance - Apple Historical Prices", "fecha_acceso": "2025-11-24"},
+    {"url": "https://investor.apple.com/stock-price/default.aspx", "titulo": "Apple Investor Relations - Stock Price", "fecha_acceso": "2025-11-24"},
+    {"url": "https://www.apple.com/newsroom/2025/10/apple-reports-fourth-quarter-results/", "titulo": "Apple Q4 2025 Results", "fecha_acceso": "2025-11-24"},
+    {"url": "https://www.apple.com/newsroom/2025/07/apple-reports-third-quarter-results/", "titulo": "Apple Q3 2025 Results", "fecha_acceso": "2025-11-24"},
+    {"url": "https://www.apple.com/newsroom/2025/05/apple-reports-second-quarter-results/", "titulo": "Apple Q2 2025 Results", "fecha_acceso": "2025-11-24"},
+    {"url": "https://www.apple.com/newsroom/2025/01/apple-reports-first-quarter-results/", "titulo": "Apple Q1 2025 Results", "fecha_acceso": "2025-11-24"},
+    {"url": "https://www.apple.com/apple-events/", "titulo": "Apple Events 2025", "fecha_acceso": "2025-11-24"},
+    {"url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1085", "titulo": "EU Commission - Apple DMA Breach", "fecha_acceso": "2025-11-24"},
+    {"url": "https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history", "titulo": "Macrotrends - Apple Stock History", "fecha_acceso": "2025-11-24"},
+    {"url": "https://stockanalysis.com/stocks/aapl/", "titulo": "Stock Analysis - Apple Financials", "fecha_acceso": "2025-11-24"}
+  ],
+  "notas_metodologicas": "Esta investigación se realizó el 24 de noviembre de 2025, aproximadamente un mes antes del cierre del año fiscal. Los precios de acciones corresponden a datos de cierre mensual. Los eventos de dividendo siguen el calendario fiscal de Apple (no calendario regular). Las fechas de ganancias corresponden al año fiscal de Apple (Q4 termina en septiembre). La volatilidad se calculó usando el índice VXAPL de Cboe. Los datos de competencia provienen de Counterpoint Research e IDC. Los impactos de precio post-evento son aproximaciones basadas en reacciones inmediatas del mercado."
+}

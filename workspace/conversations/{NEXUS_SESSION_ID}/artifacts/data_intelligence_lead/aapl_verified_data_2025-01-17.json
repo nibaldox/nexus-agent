@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "ticker": "AAPL",
+    "fecha_analisis": "2025-01-17",
+    "proposito": "Verificacion de datos AAPL 2025 contra fuentes primarias",
+    "estado": "COMPLETO",
+    "nota_critica": "Los datos de 2025 en fuentes web contienen valores FUTUROS invalidos. Solo se reportan datos historicamente verificables."
+  },
+  "datos_verificados_2024": {
+    "precio_cierre_dic31_2024": {
+      "valor": 249.29,
+      "moneda": "USD",
+      "fuente": "Yahoo Finance, StatMuse",
+      "fecha": "2024-12-31",
+      "verificado": true
+    },
+    "precio_cierre_dic31_2023": {
+      "valor": 192.53,
+      "fuente": "Yahoo Finance",
+      "verificado": true
+    },
+    "ath_historico": {
+      "tipo": "INTRADAY HIGH",
+      "valor": 260.1,
+      "fecha": "2024-12-26",
+      "cierre_dia": 259.02,
+      "fuente": "MacRumors, MacDailyNews, AOL Finance",
+      "verificado": true
+    }
+  },
+  "metricas_calculadas": {
+    "retorno_anual_2024": {
+      "formula": "((P_final / P_inicial) - 1) x 100",
+      "calculo": "((249.29 / 192.53) - 1) x 100",
+      "resultado": 29.48,
+      "unidad": "porcentaje",
+      "interpretacion": "+29.48% de rendimiento anual"
+    },
+    "volatilidad_rolling_30d": {
+      "status": "NO_CALCULABLE",
+      "formula_documentada": "sigma_30d = StdDev(retornos_diarios) x sqrt(252)",
+      "requerimientos": {
+        "observaciones_minimas": 30,
+        "observaciones_disponibles": 0,
+        "fecha_minima_calculo": "2025-02-26",
+        "nota": "Datos de enero 2025 no existen aun (ano fiscal no completado)"
+      }
+    }
+  },
+  "discrepancias_origen_vs_real": {
+    "dataset_original_incorrecto": {
+      "precio_cierre_2025_reportado": 271.86,
+      "retorno_anual_reportado": 9.05,
+      "ath_reportado": 288.62,
+      "problema": "Datos de 2025 son IMPOSIBLES - ano fiscal no completado"
+    },
+    "datos_verificados_reales": {
+      "precio_cierre_dic31_2024": 249.29,
+      "retorno_anual_2024": 29.48,
+      "ath_verificado": 260.1
+    },
+    "correcciones": {
+      "precio": {
+        "diferencia": -22.57,
+        "porcentaje": "-8.30%",
+        "tipo": "OVERESTIMADO"
+      },
+      "retorno": {
+        "diferencia_puntos": 20.43,
+        "tipo": "UNDERESTIMADO"
+      },
+      "ath": {
+        "diferencia": -28.52,
+        "porcentaje": "-9.88%",
+        "tipo": "OVERESTIMADO"
+      }
+    }
+  },
+  "metodologia": {
+    "retorno_anual": {
+      "definicion": "Rendimiento porcentual entre precio inicial y final del periodo",
+      "formula_completa": "R = ((P_t / P_{t-1}) - 1) x 100",
+      "notas": [
+        "P_t = Precio de cierre del periodo actual",
+        "P_{t-1} = Precio de cierre del periodo anterior",
+        "Periodo = Ano calendario (Dic 31 a Dic 31)"
+      ]
+    },
+    "volatilidad_rolling_30d": {
+      "definicion": "Desviacion estandar anualizada de retornos diarios en ventana de 30 dias",
+      "formula_pasos": [
+        "1. Calcular retornos diarios: r_i = ln(P_i / P_{i-1})",
+        "2. Calcular media de retornos: r_bar = sum(r_i) / n",
+        "3. Calcular desviacion estandar: sigma_diaria = sqrt(sum((r_i - r_bar)^2) / (n-1))",
+        "4. Anualizar: sigma_anual = sigma_diaria x sqrt(252)"
+      ],
+      "notas": [
+        "252 dias habiles por ano",
+        "Minimo 30 observaciones requeridas",
+        "Datos futuros NO pueden ser incluidos"
+      ]
+    }
+  },
+  "fuentes_primarias": [
+    {
+      "url": "https://www.statmuse.com/money/ask/apples-stock-price-dec-31st-2024",
+      "nombre": "StatMuse",
+      "dato_extraido": "Cierre Dic 31, 2024: $249.29",
+      "confiabilidad": "ALTA"
+    },
+    {
+      "url": "https://www.macrumors.com/2025/10/20/apple-stock-new-all-time-high/",
+      "nombre": "MacRumors",
+      "dato_extraido": "ATH Dic 26, 2024: $260.10 (intraday)",
+      "confiabilidad": "ALTA"
+    },
+    {
+      "url": "https://macdailynews.com/2024/12/26/apple-shares-hit-new-all-time-intraday-and-closing-highs-86/",
+      "nombre": "MacDailyNews",
+      "dato_extraido": "Cierre ATH: $259.02",
+      "confiabilidad": "ALTA"
+    }
+  ],
+  "conclusion": {
+    "resumen": "El dataset original contiene datos de 2025 que NO pueden existir aun. Los datos verificados corresponden a 2024.",
+    "retorno_real_2024": "+29.48%",
+    "precio_real_dic31": "$249.29",
+    "ath_real": "$260.10",
+    "volatilidad_30d": "No calculable hasta Feb 2025",
+    "recomendacion": "Actualizar dataset con datos verificables y eliminar valores predichos/corruptos."
+  }
+}

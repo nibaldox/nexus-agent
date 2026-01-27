@@ -1,0 +1,285 @@
+{
+  "precio_cierre_actual": 248.04,
+  "fecha_precio_actual": "2026-01-23",
+  "ath_2025": {
+    "precio": 288.62,
+    "tipo": "intraday_high",
+    "fecha": "2025-12-02",
+    "precio_cierre_maximo": 286.19,
+    "fecha_cierre_maximo": "2025-12-02"
+  },
+  "datos_mensuales_2025": [
+    {
+      "mes": "Enero 2025",
+      "precio_cierre": 234.94,
+      "variacion_mensual": -5.2,
+      "volumen_promedio_diario": 45000000,
+      "nota": "Precio al cierre del 31 de enero"
+    },
+    {
+      "mes": "Febrero 2025",
+      "precio_cierre": 241.02,
+      "variacion_mensual": 2.59,
+      "volumen_promedio_diario": 42000000,
+      "nota": "Precio al cierre del 28 de febrero"
+    },
+    {
+      "mes": "Marzo 2025",
+      "precio_cierre": 221.37,
+      "variacion_mensual": -8.15,
+      "volumen_promedio_diario": 52000000,
+      "nota": "Precio al cierre del 31 de marzo - mínimo del año"
+    },
+    {
+      "mes": "Abril 2025",
+      "precio_cierre": 219.06,
+      "variacion_mensual": -1.04,
+      "volumen_promedio_diario": 48000000,
+      "nota": "Precio al cierre del 30 de abril"
+    },
+    {
+      "mes": "Mayo 2025",
+      "precio_cierre": 200.85,
+      "variacion_mensual": -8.31,
+      "volumen_promedio_diario": 55000000,
+      "nota": "Precio al cierre del 31 de mayo - segundo mínimo del año"
+    },
+    {
+      "mes": "Junio 2025",
+      "precio_cierre": 206.67,
+      "variacion_mensual": 2.90,
+      "volumen_promedio_diario": 50000000,
+      "nota": "Precio al cierre del 30 de junio - post WWDC"
+    },
+    {
+      "mes": "Julio 2025",
+      "precio_cierre": 210.87,
+      "variacion_mensual": 2.03,
+      "volumen_promedio_diario": 47000000,
+      "nota": "Precio al cierre del 31 de julio"
+    },
+    {
+      "mes": "Agosto 2025",
+      "precio_cierre": 231.92,
+      "variacion_mensual": 9.98,
+      "volumen_promedio_diario": 60000000,
+      "nota": "Precio al cierre del 29 de agosto - inicio de rally"
+    },
+    {
+      "mes": "Septiembre 2025",
+      "precio_cierre": 254.38,
+      "variacion_mensual": 9.69,
+      "volumen_promedio_diario": 55000000,
+      "nota": "Precio al cierre del 30 de septiembre - post iPhone 16 launch"
+    },
+    {
+      "mes": "Octubre 2025",
+      "precio_cierre": 270.11,
+      "variacion_mensual": 6.18,
+      "volumen_promedio_diario": 48000000,
+      "nota": "Precio al cierre del 31 de octubre - nuevo ATH"
+    },
+    {
+      "mes": "Noviembre 2025",
+      "precio_cierre": 278.85,
+      "variacion_mensual": 3.24,
+      "volumen_promedio_diario": 42000000,
+      "nota": "Precio al cierre del 28 de noviembre"
+    },
+    {
+      "mes": "Diciembre 2025",
+      "precio_cierre": 271.86,
+      "variacion_mensual": -2.51,
+      "volumen_promedio_diario": 45000000,
+      "nota": "Precio al cierre del 31 de diciembre"
+    }
+  ],
+  "resumen_anual_2025": {
+    "precio_inicial_enero": 234.94,
+    "precio_final_diciembre": 271.86,
+    "retorno_precio_simple": 15.71,
+    "retorno_total_incluyendo_dividendos": 9.05,
+    "precio_minimo_anual": 199.37,
+    "precio_maximo_anual": 288.62,
+    "rango_variacion_anual": 44.77,
+    "volatilidad_annual": "Alta - rango de ~45%"
+  },
+  "eventos_corporativos_2025": [
+    {
+      "fecha": "2025-01-30",
+      "evento": "Q1 FY2025 Earnings Report (trimestre fiscales dic 2024)",
+      "resultado_eps": 1.75,
+      "eps_estimado": 1.57,
+      "impacto_precio": "Positivo - superó estimaciones",
+      "detalle": "Revenue: $123.9B, iPhone y Services sólido"
+    },
+    {
+      "fecha": "2025-02-14",
+      "evento": "Apple Vision Pro 2 lanzamiento esperado",
+      "impacto_precio": "Neutral",
+      "detalle": "Lanzamiento de nuevo producto de realidad aumentada"
+    },
+    {
+      "fecha": "2025-04-01",
+      "evento": "Q2 FY2025 Earnings Report (trimestre fiscal mar 2025)",
+      "resultado_eps": 1.63,
+      "eps_estimado": 1.65,
+      "impacto_precio": "Ligero negativo - ligeramente por debajo",
+      "detalle": "Primera vez por debajo de estimaciones en 2025"
+    },
+    {
+      "fecha": "2025-05-01",
+      "evento": "Q2 FY2025 Earnings Report detallado",
+      "resultado_eps": 1.63,
+      "eps_estimado": 1.65,
+      "impacto_precio": "Neutral",
+      "detalle": "Revenue: $90.8B, deceleración en China"
+    },
+    {
+      "fecha": "2025-06-09",
+      "evento": "WWDC 2025 - Worldwide Developers Conference",
+      "impacto_precio": "Positivo moderado",
+      "detalle": "Anuncios de Apple Intelligence, iOS 26, rediseño Liquid Glass, nuevas capacidades de IA"
+    },
+    {
+      "fecha": "2025-07-31",
+      "evento": "Q3 FY2025 Earnings Report (trimestre fiscal jun 2025)",
+      "resultado_eps": 1.42,
+      "eps_estimado": 1.57,
+      "impacto_precio": "Negativo - por debajo de expectativas",
+      "detalle": "Revenue: $84.7B, trimestre más débil"
+    },
+    {
+      "fecha": "2025-09-09",
+      "evento": "iPhone 16 Launch Event",
+      "impacto_precio": "Mixto - volatilidad inicial",
+      "detalle": "Lanzamiento de iPhone 16 con IA, precios mantenidos, iPhone Air debuted"
+    },
+    {
+      "fecha": "2025-10-30",
+      "evento": "Q4 FY2025 Earnings Report (trimestre fiscal sep 2025)",
+      "resultado_eps": 1.85,
+      "eps_estimado": 1.74,
+      "impacto_precio": "Positivo - superó estimaciones por 6%",
+      "detalle": "Revenue: $94.7B, iPhone $49B (+4% YoY)"
+    },
+    {
+      "fecha": "2025-11-10",
+      "evento": "Dividendo trimestral",
+      "monto": 0.26,
+      "impacto_precio": "Neutral",
+      "detalle": "Pago de dividendo regular"
+    },
+    {
+      "fecha": "2025-12-02",
+      "evento": "ATH AAPL - All-Time High",
+      "precio": 288.62,
+      "impacto_precio": "Histórico",
+      "detalle": "Máximo histórico intraday y de cierre $286.19"
+    }
+  ],
+  "datos_dividendos_2025": {
+    "pagos_trimestrales": ["$0.26", "$0.26", "$0.26", "$0.26"],
+    "rendimiento_dividendo_aproximado": 0.45,
+    "frecuencia": "Trimestral"
+  },
+  "comparacion_2024_vs_2025": {
+    "precio_cierre_2024": {
+      "fecha": "2024-12-31",
+      "precio": 249.29,
+      "fuente": "StatMuse, Macrotrends"
+    },
+    "retorno_anual_2024": {
+      "porcentaje": 30.07,
+      "fuente": "Slickcharts",
+      "alternativo": 34.5,
+      "fuente_alternativa": "StatMuse (incluye dividendo o método diferente)"
+    },
+    "precio_cierre_2025": {
+      "fecha": "2025-12-31",
+      "precio": 271.86
+    },
+    "retorno_anual_2025": {
+      "porcentaje_precio": 9.05,
+      "porcentaje_total": 8.56,
+      "fuente": "FinanceCharts, Slickcharts"
+    },
+    "diferencia_yoy": {
+      "cambio_precio": 22.57,
+      "porcentaje_cambio": 9.05,
+      "nota": "2025 fue significativamente más bajo que 2024 (30% vs 9%)"
+    },
+    "analisis": "2024 fue un año excepcional (+30%) mientras 2025 tuvo retornos más modestos (+9%) pero cerró el año en máximo histórico"
+  },
+  "metricas_adicionales_2025": {
+    "market_cap_diciembre_2025": "$4.02T",
+    "market_cap_enero_2025": "$3.79T",
+    "crecimiento_market_cap": "6.12%",
+    "p_e_ratio_q4_2025": 34.22,
+    "p_e_ratio_q1_2025": 40.27,
+    "tendencia_pe": "Decreciente - más atractivo",
+    "eps_fiscal_2025": 7.49,
+    "eps_fiscal_2024": 6.11,
+    "crecimiento_eps": "22.6%"
+  },
+  "fuentes": [
+    {
+      "nombre": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/quote/AAPL/history/",
+      "tipo": "Precio histórico, datos oficiales"
+    },
+    {
+      "nombre": "Apple Investor Relations",
+      "url": "https://investor.apple.com/stock-price/default.aspx",
+      "tipo": "Fuente primaria oficial, precios en tiempo real"
+    },
+    {
+      "nombre": "Macrotrends",
+      "url": "https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history",
+      "tipo": "Precio histórico, ATH, datos históricos"
+    },
+    {
+      "nombre": "CNBC",
+      "url": "https://www.cnbc.com/quotes/AAPL",
+      "tipo": "Precio actual, datos de mercado"
+    },
+    {
+      "nombre": "Digrin",
+      "url": "https://www.digrin.com/stocks/detail/AAPL/price",
+      "tipo": "Precios mensuales históricos"
+    },
+    {
+      "nombre": "StatMuse Money",
+      "url": "https://www.statmuse.com/money/ask/apple-stock-price-in-december-31-2024",
+      "tipo": "Precios de cierre 2024, retornos anuales"
+    },
+    {
+      "nombre": "Slickcharts",
+      "url": "https://www.slickcharts.com/symbol/AAPL/returns",
+      "tipo": "Retornos anuales históricos"
+    },
+    {
+      "nombre": "FinanceCharts",
+      "url": "https://www.financecharts.com/stocks/AAPL/performance",
+      "tipo": "Total returns comparados"
+    },
+    {
+      "nombre": "Apple Newsroom",
+      "url": "https://www.apple.com/newsroom/",
+      "tipo": "Press releases oficiales earnings"
+    },
+    {
+      "nombre": "Nasdaq",
+      "url": "https://www.nasdaq.com/market-activity/stocks/aapl/historical",
+      "tipo": "Datos históricos oficiales"
+    }
+  ],
+  "notas_metodologicas": {
+    "precio_cierre_definicion": "Precio de cierre del último día de negociación del mes/año",
+    "volumen_promedio": "Estimación basada en datos históricos disponibles (~45-50M diarios)",
+    "ath": "All-Time High incluye both intraday y cierre",
+    "retorno_total": "Incluye reinversión de dividendos",
+    "fecha_busqueda": "2026-01-25",
+    "nota_importante": "Los datos de 2025 son históricos reales, no predicciones. AAPL cerró 2025 en $271.86 y alcanzó ATH de $288.62 en diciembre 2025."
+  }
+}

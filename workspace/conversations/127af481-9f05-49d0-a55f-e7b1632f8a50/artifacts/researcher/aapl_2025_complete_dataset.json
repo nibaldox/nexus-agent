@@ -1,0 +1,296 @@
+{
+  "metadata": {
+    "ticker": "AAPL",
+    "company": "Apple Inc.",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "data_coverage": "2025 (datos históricos y comparativos 2023-2024)",
+    "last_updated": "2025-01-26",
+    "data_sources": [
+      "Yahoo Finance - finance.yahoo.com/quote/AAPL/history/",
+      "Apple Investor Relations - investor.apple.com",
+      "Investing.com",
+      "Macrotrends.net",
+      "Federal Reserve",
+      "PIIE - Peterson Institute for International Economics"
+    ]
+  },
+  
+  "annual_summary_2025": {
+    "year_change_pct": 9.05,
+    "closing_price_end_2025": 271.86,
+    "all_time_high": 288.62,
+    "all_time_high_date": "2025-12-02",
+    "fifty_two_week_high": 288.62,
+    "fifty_two_week_low": 169.21,
+    "dividend_yield": 0.41,
+    "earnings_calls_2025": 4
+  },
+
+  "quarterly_price_data_2025": {
+    "Q1_2025": {
+      "period": "2025-01-01 to 2025-03-31",
+      "fiscal_quarter": "Q1 FY2025",
+      "earnings_date": "2025-01-30",
+      "opening_price": 247.32,
+      "closing_price": 224.24,
+      "high": 259.61,
+      "low": 216.10,
+      "volume_daily_avg": "N/A - datos históricos requieren consulta específica"
+    },
+    "Q2_2025": {
+      "period": "2025-04-01 to 2025-06-30",
+      "fiscal_quarter": "Q2 FY2025",
+      "earnings_date": "2025-05-01",
+      "opening_price": 224.24,
+      "closing_price": 249.74,
+      "high": 258.64,
+      "low": 210.24,
+      "volume_daily_avg": "N/A"
+    },
+    "Q3_2025": {
+      "period": "2025-07-01 to 2025-09-30",
+      "fiscal_quarter": "Q3 FY2025",
+      "earnings_date": "2025-07-31",
+      "opening_price": 249.74,
+      "closing_price": 255.69,
+      "high": 260.10,
+      "low": 232.50,
+      "volume_daily_avg": "N/A"
+    },
+    "Q4_2025": {
+      "period": "2025-10-01 to 2025-12-31",
+      "fiscal_quarter": "Q4 FY2025",
+      "earnings_date": "2025-10-30",
+      "opening_price": 255.69,
+      "closing_price": 271.86,
+      "high": 288.62,
+      "low": 236.18,
+      "volume_daily_avg": "N/A",
+      "notes": "Alcance máximo histórico de $288.62 el 2 de diciembre de 2025"
+    }
+  },
+
+  "corporate_events": {
+    "dividends_2025": [
+      {
+        "quarter": "Q1 FY2025",
+        "ex_dividend_date": "2025-02-10",
+        "record_date": "2025-02-12",
+        "payment_date": "2025-02-14",
+        "amount_per_share": 0.26,
+        "type": "Regular Cash Dividend"
+      },
+      {
+        "quarter": "Q2 FY2025",
+        "ex_dividend_date": "2025-05-12",
+        "record_date": "2025-05-14",
+        "payment_date": "2025-05-15",
+        "amount_per_share": 0.26,
+        "type": "Regular Cash Dividend"
+      },
+      {
+        "quarter": "Q3 FY2025",
+        "ex_dividend_date": "2025-08-11",
+        "record_date": "2025-08-13",
+        "payment_date": "2025-08-14",
+        "amount_per_share": 0.26,
+        "type": "Regular Cash Dividend"
+      },
+      {
+        "quarter": "Q4 FY2025",
+        "ex_dividend_date": "2025-11-10",
+        "record_date": "2025-11-12",
+        "payment_date": "2025-11-14",
+        "amount_per_share": 0.26,
+        "type": "Regular Cash Dividend"
+      }
+    ],
+    "stock_splits": [
+      {
+        "status": "No split in 2025",
+        "last_split": {
+          "date": "2020-08-31",
+          "ratio": "4-for-1",
+          "notes": "Split histórico más reciente de Apple"
+        }
+      }
+    ],
+    "annual_meeting": {
+      "date": "2026-02-24",
+      "time": "8:00 AM PT",
+      "format": "Virtual",
+      "notes": "Próxima junta anual de accionistas"
+    },
+    "earnings_calls_2025": [
+      {
+        "quarter": "Q1 FY2025",
+        "date": "2025-01-30",
+        "time": "5:00 PM ET",
+        "fiscal_period_ending": "December 2024",
+        "url": "apple.com/newsroom"
+      },
+      {
+        "quarter": "Q2 FY2025",
+        "date": "2025-05-01",
+        "time": "5:00 PM ET",
+        "fiscal_period_ending": "March 2025",
+        "url": "apple.com/newsroom"
+      },
+      {
+        "quarter": "Q3 FY2025",
+        "date": "2025-07-31",
+        "time": "5:00 PM ET",
+        "fiscal_period_ending": "June 2025",
+        "url": "apple.com/newsroom"
+      },
+      {
+        "quarter": "Q4 FY2025",
+        "date": "2025-10-30",
+        "time": "2:00 PM PT",
+        "fiscal_period_ending": "September 2025",
+        "url": "apple.com/newsroom"
+      }
+    ]
+  },
+
+  "macroeconomic_context_2025": {
+    "federal_reserve": {
+      "federal_funds_rate_dec_2025": "3.50% - 3.75%",
+      "rate_action_dec_2025": "25 basis point cut",
+      "rate_action_jul_2025": "Rate cut announced",
+      "key_decisions": [
+        {
+          "date": "2025-12-10",
+          "action": "Fed cuts rate to 3.50%-3.75%",
+          "details": "Three-year low for US short-term interest rate target"
+        }
+      ],
+      "target_inflation": "2.0% annual"
+    },
+    "us_inflation": {
+      "cpi_2025": "~2.8% year-over-year (October 2025)",
+      "trend": "Gradual descent toward 2% target",
+      "notes": "PIIE forecast indicates gradual moderation throughout 2025"
+    },
+    "geopolitical_events": {
+      "trade_war": {
+        "status": "Active US-China tensions",
+        "tariff_rate_apr_2025": "~27% effective tariff rate",
+        "tariff_rate_start_2025": "~2.5%",
+        "impact": "US GDP growth reduced by 0.23 percentage points; inflation pressure"
+      },
+      "supply_chain": {
+        "status": "Ongoing semiconductor supply chain concerns",
+        "tech_sector": "AI and semiconductor export restrictions"
+      }
+    },
+    "gdp_growth": {
+      "us_outlook": "Moderate growth despite tariff pressures",
+      "global_outlook": "Global inflation forecast at 4.5% for 2025"
+    }
+  },
+
+  "historical_comparison_2023_2024": {
+    "annual_returns": {
+      "2023": {
+        "return_pct": 49.01,
+        "source": "FinanceCharts",
+        "closing_price_2023": 192.25
+      },
+      "2024": {
+        "return_pct": 30.71,
+        "source": "FinanceCharts",
+        "closing_price_2024": 251.51
+      },
+      "2025": {
+        "return_pct": 9.05,
+        "source": "Macrotrends",
+        "closing_price_2025": 271.86
+      }
+    },
+    "performance_analysis": {
+      "cumulative_2023_2025": "+110.76%",
+      "vs_sp500_2023": "Outperformed significantly",
+      "vs_sp500_2024": "Strong performance",
+      "vs_sp500_2025": "Moderate growth compared to 2023-2024",
+      "notes": "2023 fue un año excepcional con retorno de ~49%, seguido de otro año fuerte en 2024 (~31%). 2025 muestra desaceleración pero aún así positivo."
+    }
+  },
+
+  "key_highlights_2025": {
+    "revenue": {
+      "q4_2025_revenue": "$102.5 billion (record)",
+      "q4_2025_growth": "+8% year-over-year"
+    },
+    "price_milestones": [
+      {
+        "date": "2025-12-02",
+        "event": "All-time high closing price",
+        "price": 286.19
+      },
+      {
+        "date": "2025-12-02",
+        "event": "All-time intraday high",
+        "price": 288.62
+      }
+    ],
+    "year_review": "2025 fue un año de consolidación para Apple tras los fuertes retornos de 2023-2024. La acción alcanzó nuevos máximos históricos mientras la empresa reportaba ingresos récord en Q4."
+  },
+
+  "data_quality_notes": [
+    "Datos diarios de volumen requieren consulta a fuentes específicas (Yahoo Finance, NASDAQ)",
+    "Precios de apertura/cierre por trimestre calculados a partir de datos mensuales",
+    "Dividendos de $0.26 por acción pagados trimestralmente en 2025",
+    "No hubo split de acciones en 2025 (último split fue agosto 2020)",
+    "Contexto macroeconómico basado en datos disponibles hasta diciembre 2025"
+  ],
+
+  "sources": [
+    {
+      "title": "Apple Inc. (AAPL) Stock Historical Prices & Data",
+      "url": "https://finance.yahoo.com/quote/AAPL/history/",
+      "type": "Primary - Stock Data"
+    },
+    {
+      "title": "Stock Price - Apple Investor Relations",
+      "url": "https://investor.apple.com/stock-price/default.aspx",
+      "type": "Primary - Official Company Data"
+    },
+    {
+      "title": "Apple - 46 Year Stock Price History | AAPL",
+      "url": "https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history",
+      "type": "Secondary - Financial Data Aggregator"
+    },
+    {
+      "title": "Dividend History - Apple Investor Relations",
+      "url": "https://investor.apple.com/dividend-history/default.aspx",
+      "type": "Primary - Official Dividend Data"
+    },
+    {
+      "title": "Apple Earnings Dates & Reports",
+      "url": "https://marketchameleon.com/Overview/AAPL/Earnings/Earnings-Dates/",
+      "type": "Secondary - Earnings Calendar"
+    },
+    {
+      "title": "Apple reports fourth quarter results",
+      "url": "https://www.apple.com/newsroom/2025/10/apple-reports-fourth-quarter-results/",
+      "type": "Primary - Press Release"
+    },
+    {
+      "title": "Federal Reserve FOMC Statement December 2025",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20251210a.htm",
+      "type": "Primary - Central Bank Data"
+    },
+    {
+      "title": "The global trade war: An update | PIIE",
+      "url": "https://www.piie.com/blogs/realtime-economics/2025/global-trade-war-update",
+      "type": "Secondary - Economic Research"
+    },
+    {
+      "title": "Apple (AAPL) Performance History & Total Returns",
+      "url": "https://www.financecharts.com/stocks/AAPL/performance",
+      "type": "Secondary - Performance Data"
+    }
+  ]
+}

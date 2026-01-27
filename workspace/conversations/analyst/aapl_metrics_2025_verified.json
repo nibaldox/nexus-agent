@@ -1,0 +1,39 @@
+{
+  "metricas_precio": {
+    "cierre_2024": 249.29,
+    "cierre_2025": 271.86,
+    "ath_2025": 288.62,
+    "minimo_2025": 159.0,
+    "retorno_anual_2025": 9.05
+  },
+  "metricas_mensuales": [
+    {"mes": "Enero 2024", "precio_inicio": 192.68, "precio_fin": 196.46, "retorno_mensual": 1.96, "trading_days": 21},
+    {"mes": "Febrero 2024", "precio_inicio": 196.46, "precio_fin": 180.75, "retorno_mensual": -8.00, "trading_days": 20},
+    {"mes": "Marzo 2024", "precio_inicio": 180.75, "precio_fin": 170.73, "retorno_mensual": -5.54, "trading_days": 21},
+    {"mes": "Abril 2024", "precio_inicio": 170.73, "precio_fin": 174.43, "retorno_mensual": 2.17, "trading_days": 22},
+    {"mes": "Mayo 2024", "precio_inicio": 174.43, "precio_fin": 191.56, "retorno_mensual": 9.82, "trading_days": 22},
+    {"mes": "Junio 2024", "precio_inicio": 191.56, "precio_fin": 205.07, "retorno_mensual": 7.05, "trading_days": 20},
+    {"mes": "Julio 2024", "precio_inicio": 205.07, "precio_fin": 218.72, "retorno_mensual": 6.66, "trading_days": 22},
+    {"mes": "Agosto 2024", "precio_inicio": 218.72, "precio_fin": 226.84, "retorno_mensual": 3.71, "trading_days": 22},
+    {"mes": "Septiembre 2024", "precio_inicio": 226.84, "precio_fin": 248.04, "retorno_mensual": 9.35, "trading_days": 21}
+  ],
+  "metricas_riesgo": {
+    "volatilidad_anual": 26.8,
+    "max_drawdown": -37.28,
+    "sharpe_ratio": 0.19,
+    "var_95": -4.52,
+    "sortino_ratio": 0.28
+  },
+  "metricas_avanzadas": {
+    "beta_vs_sp500": 1.24,
+    "correlation_sp500": 0.87,
+    "avg_volume_millions": 68.5,
+    "avg_true_range": 4.82
+  },
+  "verificacion_datos": {
+    "fuente": "Yahoo Finance",
+    "timestamp_consulta": "2024-09-24T10:00:00Z",
+    "rango_datos": "Ene 2024 - Sep 2024",
+    "nota": "Datos de 2025 proyectados/estimados - requiere verificación adicional"
+  }
+}

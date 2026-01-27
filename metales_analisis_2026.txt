@@ -1,0 +1,38 @@
+# Proyecciones de Metales 2026 - Análisis de Escenarios
+
+## Resumen de Proyecciones
+
+| Metal | Unidad | Pesimista | Base | Optimista |
+|-------|--------|-----------|------|-----------|
+| Oro | USD/onza | $3,800 - $4,200 | $4,500 - $5,000 | $6,000 - $6,600 |
+| Plata | USD/onza | $50 - $65 | $75 - $100 | $120 - $150 |
+| Cobre | USD/tonelada | $9,000 - $10,000 | $11,000 - $12,500 | $14,000 - $15,000 |
+
+## Variación Porcentual Estimada (vs. precios actuales de referencia)
+
+### Oro:
+- Pesimista: +60%
+- Base: +90%
+- Optimista: +152%
+
+### Plata:
+- Pesimista: +92%
+- Base: +192%
+- Optimista: +350%
+
+### Cobre:
+- Pesimista: +6%
+- Base: +31%
+- Optimista: +61%
+
+## Gráficos Generados
+
+1. `metales_boxplot_escenarios.png` - Boxplot de los 3 escenarios por metal
+2. `metales_variaciones_pct.png` - Variaciones porcentuales esperadas
+3. `metales_rangos_comparacion.png` - Comparación de rangos por escenario
+
+## Notas
+- Los escenarios pesimistas asumen condiciones macroeconómicas adversas
+- El escenario base refleja expectativas de consenso de mercado
+- Los escenarios optimistas consideran factores alcistas significativos
+- El rango completo (mínimo-máximo) está representado en cada escenario

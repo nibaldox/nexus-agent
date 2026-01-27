@@ -1,0 +1,917 @@
+{
+  "squads": {
+    "Data Intelligence": {
+      "Researcher": {
+        "activity": "Literature research on EV advantages completed; markdown summary saved to workspace/conversations/0/artifacts/data_intelligence_lead/literature_summary.md",
+        "progress": 100,
+        "last_update": 1769525313.848746
+      },
+      "Analyst": {
+        "activity": "Created comprehensive markdown report on copper price behavior (Informe sobre el comportamiento del precio del cobre durante 2025 y 2026) and saved to workspace/conversations/NEXUS_2026_01/artifacts/data_intelligence_lead/informe_cobre.md",
+        "progress": 100,
+        "last_update": 1769476469.6542528
+      },
+      "Visualizer": {
+        "activity": "Creando gr\u00e1fico interactivo del pron\u00f3stico del clima Madrid (26 Ene - 1 Feb 2025)",
+        "progress": 10,
+        "last_update": 1769471688.9373362
+      },
+      "Web Research Specialist": {
+        "activity": "Recopilando datos finales de precios y eventos corporativos de Apple AAPL 2025",
+        "progress": 85,
+        "last_update": 1769367344.6914504
+      },
+      "Data Intelligence Lead": {
+        "activity": "Iniciando investigaci\u00f3n sobre precios del cobre 2025-2026",
+        "progress": 5,
+        "last_update": 1769434275.4232802
+      },
+      "L\u00edder de Escuadr\u00f3n": {
+        "activity": "Iniciando investigaci\u00f3n sobre Computaci\u00f3n Cu\u00e1ntica 2025",
+        "progress": 5,
+        "last_update": 1769390869.329416
+      },
+      "Lead": {
+        "activity": "Iniciando investigaci\u00f3n exhaustiva sobre tendencias de IA 2025",
+        "progress": 10,
+        "last_update": 1769473520.9691355
+      },
+      "Data Visualization Specialist": {
+        "activity": "Creando gr\u00e1fico interactivo del pron\u00f3stico del clima Madrid (26 Ene - 1 Feb 2025)",
+        "progress": 100,
+        "last_update": 1769471754.8375068
+      }
+    },
+    "Financial Research": {
+      "Web Research Specialist": {
+        "activity": "Organizando datos de AAPL en estructura JSON",
+        "progress": 0,
+        "last_update": 1769370288.0997632
+      }
+    },
+    "AAPL Analysis": {
+      "Data Visualizer": {
+        "activity": "Visualizaciones AAPL 2025 completadas",
+        "progress": 100,
+        "last_update": 1769367615.66856
+      }
+    },
+    "Conocimiento": {
+      "Knowledge Lead": {
+        "activity": "Informe t\u00e9cnico completado y revisado",
+        "progress": 100,
+        "last_update": 1769392490.8671684
+      }
+    },
+    "Development": {
+      "Quality Assurance Specialist": {
+        "activity": "Evaluaci\u00f3n de calidad completada - Dictamen final B- con observaciones",
+        "progress": 100,
+        "last_update": 1769368157.6884437
+      },
+      "Backend Expert": {
+        "activity": "Implementando simulador de circuito cu\u00e1ntico de 2 qubits con numpy",
+        "progress": 100,
+        "last_update": 1769392822.7385757
+      },
+      "DevOps Expert": {
+        "activity": "Preparando directorio de artefactos para el proyecto cu\u00e1ntico",
+        "progress": 100,
+        "last_update": 1769392822.7421892
+      }
+    },
+    "Knowledge": {
+      "Knowledge Lead": {
+        "activity": "QA Review completado - 2 issues cr\u00edticos, 4 high/medium, 1 low",
+        "progress": 100,
+        "last_update": 1769368468.335465
+      },
+      "Reviewer": {
+        "activity": "Completed review of Coquimbo weather report; feedback documented",
+        "progress": 100,
+        "last_update": 1769507123.9645524
+      }
+    },
+    "Research": {
+      "Web Research Specialist": {
+        "activity": "Investigando precios hist\u00f3ricos y proyecciones del cobre para 2025-2026",
+        "progress": 100,
+        "last_update": 1769462153.6862442
+      },
+      "Librarian": {
+        "activity": "Completed search for Coquimbo weather report",
+        "progress": 100,
+        "last_update": 1769505910.2250705
+      },
+      "Analyst": {
+        "activity": "Evaluando capacidades para m\u00e9tricas de mercado de IA",
+        "progress": 10,
+        "last_update": 1769473467.641741
+      }
+    },
+    "Financial Analysis": {
+      "Quantitative Analyst": {
+        "activity": "Calculating AAPL verified metrics",
+        "progress": 100,
+        "last_update": 1769369646.2606618
+      },
+      "Web Research Specialist": {
+        "activity": "Investigaci\u00f3n de AAPL 2025 completada",
+        "progress": 100,
+        "last_update": 1769370429.7965066
+      },
+      "Analista Cuantitativo": {
+        "activity": "Completando an\u00e1lisis de datos financieros de Intel (INTC) para 2025 y enero 2026",
+        "progress": 100,
+        "last_update": 1769430151.763677
+      }
+    },
+    "Quantitative Analysis": {
+      "Quant Analyst": {
+        "activity": "M\u00e9tricas AAPL completadas",
+        "progress": 100,
+        "last_update": 1769369681.1132386
+      }
+    },
+    "Quantum Computing Analysis": {
+      "Quantitative Analyst": {
+        "activity": "Completando an\u00e1lisis de disponibilidad de datos",
+        "progress": 100,
+        "last_update": 1769391020.4105594
+      }
+    },
+    "Data Visualization": {
+      "Visualization Specialist": {
+        "activity": "Completando visualizaciones del reporte de Computaci\u00f3n Cu\u00e1ntica 2025",
+        "progress": 100,
+        "last_update": 1769391179.432124
+      }
+    },
+    "Knowledge Squad": {
+      "Technical Writer": {
+        "activity": "Esperando archivo de investigaci\u00f3n del Librarian",
+        "progress": 0,
+        "last_update": 1769392120.6637237
+      }
+    },
+    "Review": {
+      "Quality Assurance Specialist": {
+        "activity": "Revisi\u00f3n completa del informe t\u00e9cnico \"Estado de la Computaci\u00f3n Cu\u00e1ntica en 2025\"",
+        "progress": 100,
+        "last_update": 1769392428.153208
+      }
+    },
+    "An\u00e1lisis Financiero": {
+      "Analista Cuantitativo": {
+        "activity": "Completando an\u00e1lisis cuantitativo de Intel (INTC) - 2025/Enero 2026",
+        "progress": 100,
+        "last_update": 1769429993.1511528
+      }
+    },
+    "Intel Analysis": {
+      "Data Visualization Specialist": {
+        "activity": "Creando visualizaciones de datos para Intel (INTC) - Gr\u00e1ficos 2, 3 y 4",
+        "progress": 60,
+        "last_update": 1769430219.4484046
+      }
+    },
+    "An\u00e1lisis de Materias Primas": {
+      "Analista Cuantitativo": {
+        "activity": "Esperando datos de precios del cobre del Researcher para iniciar an\u00e1lisis cuantitativo",
+        "progress": 10,
+        "last_update": 1769434398.0228744
+      }
+    },
+    "An\u00e1lisis Cobre": {
+      "Data Visualization Specialist": {
+        "activity": "Preparado para visualizar precios del cobre 2025-2026. Esperando datos num\u00e9ricos del Researcher.",
+        "progress": 10,
+        "last_update": 1769434420.8117306
+      }
+    },
+    "NEXUS Financial Analysis": {
+      "Analista Cuantitativo": {
+        "activity": "An\u00e1lisis de precios del cobre completado - Reporte generado",
+        "progress": 100,
+        "last_update": 1769462051.676469
+      },
+      "Analyst Cuantitativo": {
+        "activity": "Completando an\u00e1lisis de recomendaci\u00f3n de gr\u00e1ficos para precios del cobre",
+        "progress": 0,
+        "last_update": 1769462306.013758
+      }
+    },
+    "Analytics": {
+      "Data Visualization Specialist": {
+        "activity": "Visualizaci\u00f3n completada: 3 gr\u00e1ficos generados + configuraci\u00f3n JSON",
+        "progress": 100,
+        "last_update": 1769462379.7768645
+      }
+    },
+    "Weather Research": {
+      "Web Research Specialist": {
+        "activity": "Compilando datos meteorol\u00f3gicos de m\u00faltiples fuentes",
+        "progress": 100,
+        "last_update": 1769471440.3820813
+      },
+      "Researcher": {
+        "activity": "Gathered current and forecast weather data for Coquimbo, Chile",
+        "progress": 100,
+        "last_update": 1769505266.7020092
+      }
+    },
+    "Visualization": {
+      "Data Intelligence Lead": {
+        "activity": "Creando brief de visualizaci\u00f3n completo para datos del clima de Madrid (7 d\u00edas, 3 series de datos)",
+        "progress": 100,
+        "last_update": 1769471592.2093956
+      }
+    },
+    "AI Research 2025": {
+      "Web Research Specialist": {
+        "activity": "Investigaci\u00f3n completada - 45+ fuentes procesadas, informe final generado y guardado",
+        "progress": 100,
+        "last_update": 1769473447.7597406
+      }
+    },
+    "AI Trends Research": {
+      "Web Research Specialist": {
+        "activity": "Investigaci\u00f3n completada - Modelos de IA 2025, regulaciones y casos de uso",
+        "progress": 100,
+        "last_update": 1769473671.9859533
+      }
+    },
+    "CopperData": {
+      "Copper Research Specialist": {
+        "activity": "Completed copper price data retrieval and saved JSON file",
+        "progress": 100,
+        "last_update": 1769475163.769211
+      }
+    },
+    "Data Intelligence Lead": {
+      "Research Specialist": {
+        "activity": "Reviewing technical, economic, and environmental aspects of ICE to hybrid conversion",
+        "progress": 80,
+        "last_update": 1769522695.312576
+      }
+    },
+    "Literature Research": {
+      "Research Assistant": {
+        "activity": "Literature research and summary completed",
+        "progress": 100,
+        "last_update": 1769525261.9605737
+      }
+    }
+  },
+  "variables": {
+    "aapl_2025_dataset": {
+      "value": {
+        "ticker": "AAPL",
+        "year_change_pct": 9.05,
+        "closing_price_2025": 271.86,
+        "all_time_high": 288.62,
+        "returns_2023_2025": {
+          "2023": 49.01,
+          "2024": 30.71,
+          "2025": 9.05
+        },
+        "quarterly": {
+          "Q1": {
+            "open": 247.32,
+            "close": 224.24
+          },
+          "Q2": {
+            "open": 224.24,
+            "close": 249.74
+          },
+          "Q3": {
+            "open": 249.74,
+            "close": 255.69
+          },
+          "Q4": {
+            "open": 255.69,
+            "close": 271.86
+          }
+        }
+      },
+      "updated_at": 1769367654.0176444
+    },
+    "aapl_2025_qa_review": {
+      "value": {
+        "reviewed_date": "2025-01-26",
+        "reviewer": "Knowledge Lead - Conocimiento Squad",
+        "artifacts_reviewed": {
+          "dataset": "aapl_2025_complete_dataset.json",
+          "report": "aapl_2025_ejecutive_report.md",
+          "visualizations": [
+            "aapl_price_volume.txt",
+            "aapl_returns_heatmap.txt",
+            "aapl_volatility.txt",
+            "aapl_events_timeline.txt",
+            "aapl_comparison.txt"
+          ]
+        },
+        "completeness_score": 84.2,
+        "status": "requires_changes",
+        "issues": [
+          {
+            "id": "CRIT-001",
+            "severity": "CRITICAL",
+            "category": "data_consistency",
+            "title": "Inconsistencia de precio de cierre 2025",
+            "description": "Dataset reporta precio de cierre $271.86 pero visualizaciones muestran $243.18 para diciembre 2025",
+            "affected_artefacts": [
+              "Dataset JSON (closing_price_end_2025)",
+              "Visualizaci\u00f3n precio/volumen",
+              "Reporte ejecutivo"
+            ],
+            "impact": "Afecta credibilidad de todo el an\u00e1lisis de retornos",
+            "suggested_fix": "Unificar el precio de cierre a $271.86 (consistente con dataset y fuentes oficiales)"
+          },
+          {
+            "id": "CRIT-002",
+            "severity": "CRITICAL",
+            "category": "data_consistency",
+            "title": "Discrepancia de retorno anual 2025",
+            "description": "Dataset reporta +9.05% pero visualizaci\u00f3n de heatmap calcula +28.1% acumulado",
+            "affected_artefacts": [
+              "Dataset JSON (year_change_pct)",
+              "Visualizaci\u00f3n heatmap returns"
+            ],
+            "impact": "Conclusi\u00f3n principal del reporte incorrecta",
+            "suggested_fix": "Verificar c\u00e1lculo: (+243.18 - $189.84) / $189.84 = +28.1%. Si el retorno real es 28.1%, actualizar dataset. Si es 9.05%, revisar datos de visualizaci\u00f3n"
+          },
+          {
+            "id": "HIGH-003",
+            "severity": "HIGH",
+            "category": "data_consistency",
+            "title": "Inconsistencia en volatilidad anual",
+            "description": "Reporte ejecutivo reporta volatilidad de 46.0% con rango $119.41, pero visualizaci\u00f3n muestra promedio de 21.4%",
+            "affected_artefacts": [
+              "Reporte ejecutivo",
+              "Visualizaci\u00f3n volatilidad"
+            ],
+            "impact": "M\u00e9trica de riesgo fundamental incorrecta",
+            "suggested_fix": "Aclarar si 46% es volatilidad m\u00e1xima vs promedio de 21.4% en visualizaci\u00f3n"
+          },
+          {
+            "id": "HIGH-004",
+            "severity": "HIGH",
+            "category": "methodology",
+            "title": "M\u00e9tricas de riesgo sin metodolog\u00eda documentada",
+            "description": "Ratio Sharpe (0.10) y Max Drawdown (-41.4%) reportados sin fuente ni metodolog\u00eda de c\u00e1lculo",
+            "affected_artefacts": [
+              "Reporte ejecutivo (secci\u00f3n M\u00e9tricas de Riesgo)"
+            ],
+            "impact": "No verificables ni reproducibles",
+            "suggested_fix": "Documentar f\u00f3rmula: Sharpe = (Return - RiskFree) / Volatility. Show data source for drawdown calculation"
+          },
+          {
+            "id": "MED-005",
+            "severity": "MEDIUM",
+            "category": "data_quality",
+            "title": "Datos de volumen diario faltantes",
+            "description": "Los 4 campos volume_daily_avg est\u00e1n marcados como 'N/A' sin justificaci\u00f3n",
+            "affected_artefacts": [
+              "Dataset JSON (quarterly_price_data)"
+            ],
+            "impact": "An\u00e1lisis de volumen incompleto",
+            "suggested_fix": "Consultar Yahoo Finance para obtener datos hist\u00f3ricos o documentar como 'no disponible' con raz\u00f3n"
+          },
+          {
+            "id": "MED-006",
+            "severity": "MEDIUM",
+            "category": "sources",
+            "title": "Inconsistencias en listado de fuentes",
+            "description": "Investing.com en metadata pero sin URL. MarketChameleon, Apple Newsroom, FinanceCharts tienen URL pero no est\u00e1n en metadata",
+            "affected_artefacts": [
+              "Dataset JSON (metadata.sources y sources section)"
+            ],
+            "impact": "Traza de auditor\u00eda incompleta",
+            "suggested_fix": "Unificar fuentes: agregar URLs faltantes y mover fuentes secundarias a metadata"
+          },
+          {
+            "id": "LOW-007",
+            "severity": "LOW",
+            "category": "completeness",
+            "title": " ATH visualizaci\u00f3n no coincide con dataset",
+            "description": "Dataset reporta ATH $288.62 el 2 de diciembre pero visualizaci\u00f3n muestra precio m\u00e1ximo $243.18",
+            "affected_artefacts": [
+              "Dataset JSON (all_time_high)",
+              "Visualizaci\u00f3n precio/volumen"
+            ],
+            "impact": "Menor - dato de m\u00e1ximo hist\u00f3rico inconsistente",
+            "suggested_fix": "Verificar si visualizaci\u00f3n usa precio de cierre vs intradiario"
+          },
+          {
+            "id": "LOW-008",
+            "severity": "LOW",
+            "category": "data_quality",
+            "title": "Valores aproximados en contexto macro",
+            "description": "CPI ~2.8%, tarifa arancel ~27%, tarifa inicial ~2.5% sin fuente precisa",
+            "affected_artefacts": [
+              "Dataset JSON (macroeconomic_context)"
+            ],
+            "impact": "Menor - reduce precisi\u00f3n del an\u00e1lisis",
+            "suggested_fix": "Proporcionar valores exactos con fecha de referencia"
+          }
+        ],
+        "recommendations": [
+          {
+            "priority": 1,
+            "action": "Corregir discrepancia cr\u00edtica de precio de cierre",
+            "description": "Unificar precio de cierre 2025 a $271.86 verificando contra Yahoo Finance y Apple Investor Relations"
+          },
+          {
+            "priority": 2,
+            "action": "Reconciliar c\u00e1lculo de retorno anual",
+            "description": "Verificar si retorno real es 9.05% (dataset) o 28.1% (visualizaci\u00f3n) y corregir\u4e0d\u4e00\u81f4 (inconsistencia)"
+          },
+          {
+            "priority": 3,
+            "action": "Documentar metodolog\u00eda de m\u00e9tricas de riesgo",
+            "description": "Agregar secci\u00f3n de metodolog\u00eda con f\u00f3rmulas y fuentes para Sharpe ratio y Max Drawdown"
+          },
+          {
+            "priority": 4,
+            "action": "Obtener datos de volumen o documentar ausencia",
+            "description": "Consultar Yahoo Finance para volumen diario o incluir nota explicativa de por qu\u00e9 no est\u00e1 disponible"
+          },
+          {
+            "priority": 5,
+            "action": "Unificar sistema de fuentes",
+            "description": "Reconciliar lista de fuentes entre metadata y secci\u00f3n sources, agregar URLs faltantes"
+          },
+          {
+            "priority": 6,
+            "action": "Aclarar m\u00e9trica de volatilidad",
+            "description": "Explicar diferencia entre volatilidad m\u00e1xima (46%) y promedio (21.4%) con contexto"
+          },
+          {
+            "priority": 7,
+            "action": "Precisar valores macroecon\u00f3micos",
+            "description": "Reemplazar valores aproximados (~) con datos exactos y fechas de referencia"
+          }
+        ],
+        "summary": "El informe AAPL 2025 contiene 2 errores CR\u00cdTICOS de consistencia de datos que impiden su aprobaci\u00f3n: 1) precio de cierre diverge entre dataset ($271.86) y visualizaciones ($243.18), y 2) retorno anual reportado como +9.05% pero calculado como +28.1% desde precio inicial $189.84. Adicionalmente, m\u00e9tricas de riesgo clave (Sharpe, Drawdown) carecen de metodolog\u00eda documentada. Aunque la estructura del reporte es profesional, las inconsistencias num\u00e9ricas fundamentales requieren correcci\u00f3n antes de publicaci\u00f3n. Score de completitud: 84.2/100. Status: REQUIERE CAMBIOS."
+      },
+      "updated_at": 1769368249.6255283
+    },
+    "copper_research_params": {
+      "value": {
+        "request": "Investigaci\u00f3n completa de precios del cobre 2025-2026",
+        "required_data": [
+          "precios_promedio_mensuales_2025",
+          "precios_promedio_mensuales_2026",
+          "tendencias_fluctuaciones",
+          "factores_precio",
+          "proyecciones_analistas_2026",
+          "fuentes_verificables"
+        ]
+      },
+      "updated_at": 1769434275.429743
+    },
+    "coquimbo_weather_alerts": {
+      "value": {
+        "dmc_alert": "Thunderstorm alert for Cordillera Costa, Precordillera, and valles precordilleranos in Coquimbo.",
+        "precipitation_forecast": "Regional alert for up to 45 mm of rain in some sectors of Coquimbo Region, especially mountainous areas.",
+        "source_links": [
+          "https://www.latercera.com/servicios/noticia/dmc-emite-aviso-meteorologico-por-probables-tormentas-electricas-para-cinco-regiones-de-chile/",
+          "https://www.gorecoquimbo.cl/alerta-por-pronostico-de-intensas-lluvias-para-la-region-de-coquimbo/gorecoquimbo/2016-06-02/122216.html"
+        ]
+      },
+      "updated_at": 1769505435.441622
+    }
+  },
+  "tasks": [
+    {
+      "id": "task_1769367239",
+      "title": "realiza una investigacion sobre el comportamiento de las acciones de apple duran",
+      "session_id": "127af481-9f05-49d0-a55f-e7b1632f8a50",
+      "status": "COMPLETED",
+      "created_at": 1769367239.2593203,
+      "updated_at": 1769367723.037339,
+      "agents": {
+        "Researcher": {
+          "activity": "Investigando comportamiento acciones Apple (AAPL) 2025 - recopilando datos de fuentes financieras",
+          "progress": 0,
+          "last_update": 1769367279.51858,
+          "squad": "Data Intelligence"
+        },
+        "Analyst": {
+          "activity": "Pendiente - esperando datos del Researcher",
+          "progress": 0,
+          "last_update": 1769367279.5225556,
+          "squad": "Data Intelligence"
+        },
+        "Visualizer": {
+          "activity": "Pendiente - esperando datos del Analyst",
+          "progress": 0,
+          "last_update": 1769367279.524714,
+          "squad": "Data Intelligence"
+        },
+        "Web Research Specialist": {
+          "activity": "Dataset JSON de AAPL 2025 completado y guardado",
+          "progress": 100,
+          "last_update": 1769367481.3689501,
+          "squad": "Financial Research"
+        },
+        "Data Visualizer": {
+          "activity": "Visualizaciones AAPL 2025 completadas",
+          "progress": 100,
+          "last_update": 1769367615.668564,
+          "squad": "AAPL Analysis"
+        },
+        "Data Intelligence Lead": {
+          "activity": "An\u00e1lisis AAPL 2025 completado - reporte ejecutivo generado",
+          "progress": 100,
+          "last_update": 1769367723.0373383,
+          "squad": "Data Intelligence"
+        }
+      }
+    },
+    {
+      "id": "task_1769376872",
+      "title": "crea un reporte comparativo sonre la correlaccion que existe en tre el preico de",
+      "session_id": "057778a7-41a6-4b80-9542-70e4697bf550",
+      "status": "RUNNING",
+      "created_at": 1769376872.329078,
+      "updated_at": 1769376872.329078,
+      "agents": {}
+    },
+    {
+      "id": "task_1769390547",
+      "title": "Hola, estas operativo?",
+      "session_id": "test_session_final",
+      "status": "RUNNING",
+      "created_at": 1769390547.6058333,
+      "updated_at": 1769390547.6058333,
+      "agents": {}
+    },
+    {
+      "id": "task_1769390735",
+      "title": "Hola, \u00bfpuedes ver la interfaz gr\u00e1fica?",
+      "session_id": "89d9c8bd-3ef3-46c3-a64e-5c5ac3ca0eaf",
+      "status": "RUNNING",
+      "created_at": 1769390735.7169952,
+      "updated_at": 1769390735.7169955,
+      "agents": {}
+    },
+    {
+      "id": "task_1769390837",
+      "title": "Investiga el estado actual de la 'Computaci\u00f3n Cu\u00e1ntica' en 2025. 1. Usa el Data ",
+      "session_id": "0488a449-c426-40c8-bd51-366a9a02e2ec",
+      "status": "COMPLETED",
+      "created_at": 1769390837.1675427,
+      "updated_at": 1769392822.742194,
+      "agents": {
+        "L\u00edder de Escuadr\u00f3n": {
+          "activity": "Iniciando investigaci\u00f3n sobre Computaci\u00f3n Cu\u00e1ntica 2025",
+          "progress": 5,
+          "last_update": 1769390869.3294208,
+          "squad": "Data Intelligence"
+        },
+        "Web Research Specialist": {
+          "activity": "Completed research on quantum computing state 2025 - final report saved",
+          "progress": 100,
+          "last_update": 1769390976.834996,
+          "squad": "Research"
+        },
+        "Quantitative Analyst": {
+          "activity": "Completando an\u00e1lisis de disponibilidad de datos",
+          "progress": 100,
+          "last_update": 1769391020.4105659,
+          "squad": "Quantum Computing Analysis"
+        },
+        "Analyst": {
+          "activity": "Solicitando datos t\u00e9cnicos de m\u00e9tricas al Researcher",
+          "progress": 25,
+          "last_update": 1769391058.5819588,
+          "squad": "Data Intelligence"
+        },
+        "Visualizer": {
+          "activity": "Iniciando visualizaci\u00f3n de datos cu\u00e1nticos",
+          "progress": 10,
+          "last_update": 1769391058.5849276,
+          "squad": "Data Intelligence"
+        },
+        "Visualization Specialist": {
+          "activity": "Completando visualizaciones del reporte de Computaci\u00f3n Cu\u00e1ntica 2025",
+          "progress": 100,
+          "last_update": 1769391179.432135,
+          "squad": "Data Visualization"
+        },
+        "Knowledge Lead": {
+          "activity": "Informe t\u00e9cnico completado y revisado",
+          "progress": 100,
+          "last_update": 1769392490.8671732,
+          "squad": "Conocimiento"
+        },
+        "Librarian": {
+          "activity": "Documentando investigaci\u00f3n de Computaci\u00f3n Cu\u00e1ntica 2025 - Completo",
+          "progress": 100,
+          "last_update": 1769391732.1586413,
+          "squad": "Research"
+        },
+        "Technical Writer": {
+          "activity": "Esperando archivo de investigaci\u00f3n del Librarian",
+          "progress": 0,
+          "last_update": 1769392120.663729,
+          "squad": "Knowledge Squad"
+        },
+        "Quality Assurance Specialist": {
+          "activity": "Revisi\u00f3n completa del informe t\u00e9cnico \"Estado de la Computaci\u00f3n Cu\u00e1ntica en 2025\"",
+          "progress": 100,
+          "last_update": 1769392428.1532118,
+          "squad": "Review"
+        },
+        "Backend Expert": {
+          "activity": "Implementando simulador de circuito cu\u00e1ntico de 2 qubits con numpy",
+          "progress": 100,
+          "last_update": 1769392822.738581,
+          "squad": "Development"
+        },
+        "DevOps Expert": {
+          "activity": "Preparando directorio de artefactos para el proyecto cu\u00e1ntico",
+          "progress": 100,
+          "last_update": 1769392822.7421935,
+          "squad": "Development"
+        }
+      }
+    },
+    {
+      "id": "task_1769429572",
+      "title": "cime cual fue el desempe\u00f1o de las acciones de intel durante 2025 y lo que llevam",
+      "session_id": "17d46ffe-f35c-4c81-ade8-0b28ad164a23",
+      "status": "COMPLETED",
+      "created_at": 1769429572.12198,
+      "updated_at": 1769430273.239588,
+      "agents": {
+        "Web Research Specialist": {
+          "activity": "Completed Intel research report - documented 7 major corporate events, financial results, leadership changes, and semiconductor industry trends for 2025 and January 2026",
+          "progress": 100,
+          "last_update": 1769429738.4515703,
+          "squad": "Research"
+        },
+        "Analista Cuantitativo": {
+          "activity": "Completando an\u00e1lisis de datos financieros de Intel (INTC) para 2025 y enero 2026",
+          "progress": 100,
+          "last_update": 1769430151.7636845,
+          "squad": "Financial Analysis"
+        },
+        "Data Visualization Specialist": {
+          "activity": "Creando visualizaciones de datos para Intel (INTC) - Gr\u00e1ficos 2, 3 y 4",
+          "progress": 60,
+          "last_update": 1769430219.4484088,
+          "squad": "Intel Analysis"
+        },
+        "Data Intelligence Lead": {
+          "activity": "Informe ejecutivo completado",
+          "progress": 100,
+          "last_update": 1769430273.2395875,
+          "squad": "Data Intelligence"
+        }
+      }
+    },
+    {
+      "id": "task_1769434240",
+      "title": "realiza un analisis del precio del cobre durante 2025 y lo qyue llevamos de 2026",
+      "session_id": "afad3b7a-a5c0-4ae0-9a6e-409829c9c999",
+      "status": "COMPLETED",
+      "created_at": 1769434240.387456,
+      "updated_at": 1769434825.3918428,
+      "agents": {
+        "Data Intelligence Lead": {
+          "activity": "Iniciando investigaci\u00f3n sobre precios del cobre 2025-2026",
+          "progress": 5,
+          "last_update": 1769434275.4232876,
+          "squad": "Data Intelligence"
+        },
+        "Web Research Specialist": {
+          "activity": "Investigaci\u00f3n completada - Dataset de cobre 2025-2026 creado",
+          "progress": 100,
+          "last_update": 1769434608.6007407,
+          "squad": "Research"
+        },
+        "Analista Cuantitativo": {
+          "activity": "An\u00e1lisis completado - Reporte guardado en artifacts/analyst/",
+          "progress": 100,
+          "last_update": 1769434825.3918421,
+          "squad": "NEXUS Financial Analysis"
+        },
+        "Data Visualization Specialist": {
+          "activity": "Preparado para visualizar precios del cobre 2025-2026. Esperando datos num\u00e9ricos del Researcher.",
+          "progress": 10,
+          "last_update": 1769434420.8117347,
+          "squad": "An\u00e1lisis Cobre"
+        },
+        "Researcher": {
+          "activity": "Recopilaci\u00f3n de datos del precio del cobre (2025-2026) completada. Dataset generado con precios mensuales, eventos clave, inventarios y correlaciones.",
+          "progress": 100,
+          "last_update": 1769434631.7780097,
+          "squad": "Data Intelligence"
+        }
+      }
+    },
+    {
+      "id": "task_1769434868",
+      "title": "realiza una ionvestigacion sobre el precio del cobre, de 2025 y 2026",
+      "session_id": "34ea190c-9543-4f6a-9250-929a7a614302",
+      "status": "COMPLETED",
+      "created_at": 1769434868.180897,
+      "updated_at": 1769435060.0796993,
+      "agents": {
+        "Researcher": {
+          "activity": "Buscando proyecciones del precio del cobre 2025-2026 en fuentes confiables",
+          "progress": 0,
+          "last_update": 1769434897.9471602,
+          "squad": "Data Intelligence"
+        },
+        "Web Research Specialist": {
+          "activity": "Investigaci\u00f3n completada - Reporte de proyecciones de cobre 2025-2026",
+          "progress": 100,
+          "last_update": 1769435060.0796988,
+          "squad": "Research"
+        }
+      }
+    },
+    {
+      "id": "task_1769460002",
+      "title": "realiza una investigacion sobre las 3 principales empresas de tecnologia durante",
+      "session_id": "5823177e-28a9-4497-8d28-e005b44c31e1",
+      "status": "COMPLETED",
+      "created_at": 1769460002.7824924,
+      "updated_at": 1769460274.8510447,
+      "agents": {
+        "Lead": {
+          "activity": "Iniciando investigaci\u00f3n de empresas tecnol\u00f3gicas 2025-2026",
+          "progress": 5,
+          "last_update": 1769460029.0488055,
+          "squad": "Data Intelligence"
+        },
+        "Web Research Specialist": {
+          "activity": "Investigaci\u00f3n completada - Documento generado exitosamente",
+          "progress": 100,
+          "last_update": 1769460274.851044,
+          "squad": "Research"
+        }
+      }
+    },
+    {
+      "id": "task_1769461609",
+      "title": "analiza el precio del cobre durante 2025 y lo que llevamos de 20267",
+      "session_id": "eec12819-b261-48cc-9a09-ec8e9f65ddf1",
+      "status": "COMPLETED",
+      "created_at": 1769461609.8799767,
+      "updated_at": 1769462379.7768707,
+      "agents": {
+        "Web Research Specialist": {
+          "activity": "Investigando precios hist\u00f3ricos y proyecciones del cobre para 2025-2026",
+          "progress": 100,
+          "last_update": 1769462153.686252,
+          "squad": "Research"
+        },
+        "Researcher": {
+          "activity": "Investigaci\u00f3n de precios hist\u00f3ricos del cobre (2025-2026) completada. Generado reporte con datos mensuales/semanales, eventos econ\u00f3micos clave y fuentes verificables.",
+          "progress": 100,
+          "last_update": 1769461808.3404868,
+          "squad": "Data Intelligence"
+        },
+        "Analista Cuantitativo": {
+          "activity": "An\u00e1lisis de precios del cobre completado - Reporte generado",
+          "progress": 100,
+          "last_update": 1769462051.6764748,
+          "squad": "NEXUS Financial Analysis"
+        },
+        "Analyst": {
+          "activity": "Analizando datos de precios del cobre",
+          "progress": 0,
+          "last_update": 1769462065.8691742,
+          "squad": "Data Intelligence"
+        },
+        "Analyst Cuantitativo": {
+          "activity": "Completando an\u00e1lisis de recomendaci\u00f3n de gr\u00e1ficos para precios del cobre",
+          "progress": 0,
+          "last_update": 1769462306.0137625,
+          "squad": "NEXUS Financial Analysis"
+        },
+        "Data Visualization Specialist": {
+          "activity": "Visualizaci\u00f3n completada: 3 gr\u00e1ficos generados + configuraci\u00f3n JSON",
+          "progress": 100,
+          "last_update": 1769462379.7768698,
+          "squad": "Analytics"
+        }
+      }
+    },
+    {
+      "id": "task_1769471354",
+      "title": "por favor crea un grafico con el clima actual y el pron\u00f3stico de los pr\u00f3ximos di",
+      "session_id": "ae9f11ec-97fe-4b61-80cf-128bb31c27f2",
+      "status": "COMPLETED",
+      "created_at": 1769471354.8222682,
+      "updated_at": 1769471592.2094045,
+      "agents": {
+        "Web Research Specialist": {
+          "activity": "Compilando datos meteorol\u00f3gicos de m\u00faltiples fuentes",
+          "progress": 100,
+          "last_update": 1769471440.3820858,
+          "squad": "Weather Research"
+        },
+        "Researcher": {
+          "activity": "B\u00fasqueda del pron\u00f3stico del tiempo para Madrid, Espa\u00f1a",
+          "progress": 100,
+          "last_update": 1769471491.3314385,
+          "squad": "Data Intelligence"
+        },
+        "Data Intelligence Lead": {
+          "activity": "Creando brief de visualizaci\u00f3n completo para datos del clima de Madrid (7 d\u00edas, 3 series de datos)",
+          "progress": 100,
+          "last_update": 1769471592.209404,
+          "squad": "Visualization"
+        }
+      }
+    },
+    {
+      "id": "task_1769471650",
+      "title": "crea un grafico interactivo",
+      "session_id": "ae9f11ec-97fe-4b61-80cf-128bb31c27f2",
+      "status": "COMPLETED",
+      "created_at": 1769471650.125521,
+      "updated_at": 1769471754.8375132,
+      "agents": {
+        "Visualizer": {
+          "activity": "Creando gr\u00e1fico interactivo del pron\u00f3stico del clima Madrid (26 Ene - 1 Feb 2025)",
+          "progress": 10,
+          "last_update": 1769471688.9373412,
+          "squad": "Data Intelligence"
+        },
+        "Data Visualization Specialist": {
+          "activity": "Creando gr\u00e1fico interactivo del pron\u00f3stico del clima Madrid (26 Ene - 1 Feb 2025)",
+          "progress": 100,
+          "last_update": 1769471754.8375125,
+          "squad": "Data Intelligence"
+        }
+      }
+    },
+    {
+      "id": "task_1769474650",
+      "title": "realiza un informe sobre el comportamiento del precio de cobre durante 2025 y lo",
+      "session_id": "9282cd25-d836-4d2a-9f53-aa28521b8658",
+      "status": "COMPLETED",
+      "created_at": 1769474650.8872607,
+      "updated_at": 1769476469.6542585,
+      "agents": {
+        "Copper Research Specialist": {
+          "activity": "Completed copper price data retrieval and saved JSON file",
+          "progress": 100,
+          "last_update": 1769475163.7692244,
+          "squad": "CopperData"
+        },
+        "Analyst": {
+          "activity": "Created comprehensive markdown report on copper price behavior (Informe sobre el comportamiento del precio del cobre durante 2025 y 2026) and saved to workspace/conversations/NEXUS_2026_01/artifacts/data_intelligence_lead/informe_cobre.md",
+          "progress": 100,
+          "last_update": 1769476469.6542583,
+          "squad": "Data Intelligence"
+        }
+      }
+    },
+    {
+      "id": "task_1769522310",
+      "title": "realiza un informe detallado sobre los pros y contras de convedrtir automoviles ",
+      "session_id": "dff4add9-473c-4951-893f-c175ec8ebd28",
+      "status": "RUNNING",
+      "created_at": 1769522310.1316555,
+      "updated_at": 1769522695.312583,
+      "agents": {
+        "Research Specialist": {
+          "activity": "Reviewing technical, economic, and environmental aspects of ICE to hybrid conversion",
+          "progress": 80,
+          "last_update": 1769522695.3125825,
+          "squad": "Data Intelligence Lead"
+        }
+      }
+    },
+    {
+      "id": "task_1769525084",
+      "title": "realiza un informe detalla sobre las ventajas de los autos electricos sobre los ",
+      "session_id": "e7b8ef8b-d94f-40dd-80b0-54efc423291c",
+      "status": "COMPLETED",
+      "created_at": 1769525084.4920056,
+      "updated_at": 1769525313.8487563,
+      "agents": {
+        "Research Assistant": {
+          "activity": "Literature research and summary completed",
+          "progress": 100,
+          "last_update": 1769525261.9605808,
+          "squad": "Literature Research"
+        },
+        "Researcher": {
+          "activity": "Literature research on EV advantages completed; markdown summary saved to workspace/conversations/0/artifacts/data_intelligence_lead/literature_summary.md",
+          "progress": 100,
+          "last_update": 1769525313.8487554,
+          "squad": "Data Intelligence"
+        }
+      }
+    }
+  ]
+}

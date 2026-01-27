@@ -1,0 +1,17 @@
+Metales - Proyecciones de Precios 2026
+=========================================
+
+ORO (USD/onza):
+  Pesimista: $3,800 - $4,200 (punto medio: $4,000)
+  Base: $4,500 - $5,000 (punto medio: $4,750)
+  Optimista: $6,000 - $6,600 (punto medio: $6,300)
+
+PLATA (USD/onza):
+  Pesimista: $50 - $65 (punto medio: $57.5)
+  Base: $75 - $100 (punto medio: $87.5)
+  Optimista: $120 - $150 (punto medio: $135)
+
+COBRE (USD/tonelada):
+  Pesimista: $9,000 - $10,000 (punto medio: $9,500)
+  Base: $11,000 - $12,500 (punto medio: $11,750)
+  Optimista: $14,000 - $15,000 (punto medio: $14,500)

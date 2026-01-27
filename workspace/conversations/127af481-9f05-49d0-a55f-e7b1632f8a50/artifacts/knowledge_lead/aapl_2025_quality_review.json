@@ -1,0 +1,237 @@
+{
+  "review_metadata": {
+    "report_id": "QA_REVIEW_AAPL_2025_001",
+    "session_id": "127af481-9f05-49d0-a55f-e7b1632f8a50",
+    "review_date": "2025-01-26",
+    "reviewed_by": "Knowledge Lead Squad",
+    "status": "REQUIRES_CHANGES"
+  },
+  "artefact_checklist": {
+    "dataset_json": {
+      "present": true,
+      "file": "artifacts/researcher/aapl_2025_complete_dataset.json",
+      "quality_score": 85
+    },
+    "visualizations": {
+      "price_volume": {
+        "present": true,
+        "file": "artifacts/visualizer/aapl_price_volume.txt",
+        "quality_score": 80
+      },
+      "heatmap": {
+        "present": true,
+        "file": "artifacts/visualizer/aapl_returns_heatmap.txt",
+        "quality_score": 75
+      },
+      "volatility": {
+        "present": true,
+        "file": "artifacts/visualizer/aapl_volatility.txt",
+        "quality_score": 70
+      },
+      "timeline": {
+        "present": true,
+        "file": "artifacts/visualizer/aapl_events_timeline.txt",
+        "quality_score": 85
+      },
+      "yoy_comparison": {
+        "present": true,
+        "file": "artifacts/visualizer/aapl_comparison.txt",
+        "quality_score": 80
+      }
+    },
+    "executive_report": {
+      "present": true,
+      "file": "artifacts/data_intelligence_lead/aapl_2025_ejecutive_report.md",
+      "quality_score": 70
+    }
+  },
+  "issues": [
+    {
+      "id": "ISSUE_001",
+      "severity": "CRITICAL",
+      "category": "data_consistency",
+      "title": "Discrepancia crítica en precio de cierre 2025",
+      "description": "El dataset JSON indica precio de cierre 2025 de $271.86, pero la visualización de precio/volumen muestra $243.18. Esta diferencia de $28.68 (~11.8%) es inaceptable para un reporte financiero.",
+      "source": "dataset.json vs visualizer/aapl_price_volume.txt",
+      "recommendation": "Unificar el precio de cierre. Verificar cuál es el valor correcto contra las fuentes primarias."
+    },
+    {
+      "id": "ISSUE_002",
+      "severity": "CRITICAL",
+      "category": "data_consistency",
+      "title": "Inconsistencia en precio máximo histórico",
+      "description": "Dataset menciona ATH de $288.62 el 2025-12-02, pero la visualización de precio/volumen muestra máximo de $243.18 para diciembre. Los datos son incompatibles.",
+      "source": "dataset.json: annual_summary_2025.all_time_high vs visualizer/aapl_price_volume.txt",
+      "recommendation": "Verificar y corregir el precio máximo histórico. Si $288.62 es correcto, actualizar todas las visualizaciones."
+    },
+    {
+      "id": "ISSUE_003",
+      "severity": "HIGH",
+      "category": "calculation",
+      "title": "Confusión en cálculo de retorno anual",
+      "description": "Tres valores diferentes para retorno anual: (1) Dataset JSON: 9.05%, (2) Heatmap: ~28.1%, (3) Reporte ejecutivo: 9.05%. El retorno real debería ser (271.86 - 247.32)/247.32 = 9.93%, no 28%. El 28% parece ser error de cálculo.",
+      "sources": ["dataset.json:annual_summary_2025.year_change_pct", "visualizer/aapl_returns_heatmap.txt", "aapl_2025_ejecutive_report.md"],
+      "recommendation": "Recalcular retornos usando precio de apertura (247.32) y cierre (271.86) del dataset. Corregir heatmap que muestra 28.1% acumulado incorrectamente."
+    },
+    {
+      "id": "ISSUE_004",
+      "severity": "HIGH",
+      "category": "calculation",
+      "title": "Volatilidad doble reportada",
+      "description": "Visualización de volatilidad reporta 21.4% promedio, pero reporte ejecutivo dice 46.0% anualizada sin explicar la diferencia. 46% parece ser volatilidad implícita o máxima, no anualizada.",
+      "sources": ["visualizer/aapl_volatility.txt", "aapl_2025_ejecutive_report.md"],
+      "recommendation": "Aclarar si la volatilidad del 46% es diaria, mensual, o máximo. El cálculo de Sharpe ratio (0.10) usando 46% parece incorrecto."
+    },
+    {
+      "id": "ISSUE_005",
+      "severity": "MEDIUM",
+      "category": "calculation",
+      "title": "Discrepancia en cálculo Q1 return",
+      "description": "Dataset Q1: apertura $247.32 → cierre $224.24 = -9.35%. Heatmap Q1: +2.8% (Ene) -1.4% (Feb) -8.8% (Mar) = -7.4%. Diferencia de ~2 puntos porcentuales.",
+      "sources": ["dataset.json:quarterly_price_data_2025.Q1_2025", "visualizer/aapl_returns_heatmap.txt"],
+      "recommendation": "Verificar metodología de cálculo de retornos mensuales vs trimestrales."
+    },
+    {
+      "id": "ISSUE_006",
+      "severity": "MEDIUM",
+      "category": "metadata",
+      "title": "Datos de volumen ausentes",
+      "description": "Todas las secciones de volume_daily_avg en el dataset muestran 'N/A'. La visualización de precio/volumen debería indicar que los datos de volumen no están disponibles.",
+      "source": "dataset.json:quarterly_price_data_2025",
+      "recommendation": "Añadir disclaimer explícito sobre datos de volumen faltantes o completar con datos históricos de Yahoo Finance."
+    },
+    {
+      "id": "ISSUE_007",
+      "severity": "LOW",
+      "category": "documentation",
+      "title": "Inconsistencia menor en nombres de meses",
+      "description": "Visualización usa 'Ene', 'Feb', 'Mar', etc. (español), pero resto del documento está en inglés. Mantener consistencia lingüística.",
+      "source": "visualizer/aapl_price_volume.txt",
+      "recommendation": "Estandarizar a formato inglés (Jan, Feb, Mar) o español en todo el documento."
+    }
+  ],
+  "data_consistency_analysis": {
+    "price_closing": {
+      "dataset_value": 271.86,
+      "visualization_value": 243.18,
+      "status": "MISMATCH",
+      "resolution_required": true
+    },
+    "ath_price": {
+      "dataset_value": 288.62,
+      "visualization_max": 243.18,
+      "status": "MISMATCH",
+      "resolution_required": true
+    },
+    "annual_return": {
+      "dataset_value": "9.05%",
+      "heatmap_value": "~28.1%",
+      "status": "MISMATCH",
+      "resolution_required": true
+    },
+    "volatility_avg": {
+      "visualization_value": "21.4%",
+      "report_value": "46.0%",
+      "status": "CONFLICT",
+      "resolution_required": true
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "CRITICAL",
+      "action": "Corregir precio de cierre 2025",
+      "details": "Verificar contra Yahoo Finance/Apple IR cuál es el precio correcto de cierre. Actualizar dataset y todas las visualizaciones."
+    },
+    {
+      "priority": "CRITICAL",
+      "action": "Recalcular retornos anuales",
+      "details": "El retorno del 28.1% parece ser error. Con precio apertura 247.32 y cierre 271.86, el retorno real es ~9.9%. Corregir heatmap y verificar metodología."
+    },
+    {
+      "priority": "HIGH",
+      "action": "Documentar cálculo de volatilidad",
+      "details": "Aclarar si 46% es volatilidad diaria, mensual, máxima, o implícita. Recalcular Sharpe ratio apropiadamente."
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Completar datos de volumen",
+      "details": "Consultar Yahoo Finance para datos históricos de volumen diario y actualizar el dataset."
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Estandarizar formato de fechas",
+      "details": "Decidir entre español o inglés para todo el documento. Mantener consistencia."
+    },
+    {
+      "priority": "LOW",
+      "action": "Añadir notas metodológicas",
+      "details": "Incluir sección explicando metodología de cálculo de métricas en el reporte ejecutivo."
+    }
+  ],
+  "artifacts_verification": {
+    "total_required": 7,
+    "total_present": 7,
+    "completion_rate": "100%",
+    "missing_artefacts": []
+  },
+  "conclusions_backed_by_data": [
+    {
+      "conclusion": "Retorno positivo de 9.05% en 2025",
+      "backed": true,
+      "notes": "Valor reportado en dataset es consistente con precio apertura/cierre"
+    },
+    {
+      "conclusion": "Nuevo máximo histórico de $288.62",
+      "backed": true,
+      "notes": "Reportado en dataset, pero inconsistente con visualizaciones"
+    },
+    {
+      "conclusion": "Q4 ingresos récord de $102.5B",
+      "backed": true,
+      "notes": "Reportado en dataset, fuente Apple Newsroom verificada"
+    },
+    {
+      "conclusion": "4 dividendos trimestrales de $0.26",
+      "backed": true,
+      "notes": "Datos verificados en dataset"
+    }
+  ],
+  "conclusions_not_fully_backed": [
+    {
+      "conclusion": "Ratio Sharpe de 0.10",
+      "reason": "Cálculo incorrecto probable. Con volatilidad 46%, el cálculo (9.05-4.5)/46 = 0.10 es correcto matemáticamente, pero la volatilidad 46% no está claramente explicada."
+    },
+    {
+      "conclusion": "Drawdown máximo de -41.4%",
+      "reason": "No hay validación independiente. De ATH 288.62 a mínimo 169.21 = 41.4%, pero el mínimo de 169.21 no coincide con mínimo mensual de visualización (167.53)."
+    },
+    {
+      "conclusion": "Retorno acumulado 28.1%",
+      "reason": "Contradice dataset (9.05%). Error de cálculo en heatmap."
+    }
+  ],
+  "summary": {
+    "overall_quality_score": 68,
+    "status": "REQUIRES_CHANGES",
+    "critical_issues": 2,
+    "high_issues": 2,
+    "medium_issues": 2,
+    "low_issues": 1,
+    "key_findings": [
+      "CRÍTICO: Precio de cierre discrepancia de $28.68 entre dataset y visualizaciones",
+      "CRÍTICO: Retorno anual reportado dos valores diferentes (9.05% vs 28.1%)",
+      "Volatilidad ambiguamente reportada (21.4% vs 46%)",
+      "Dataset completo y bien estructurado",
+      "5 de 5 visualizaciones presentes",
+      "Fuentes adecuadas y verificadas",
+      "Conclusiones parcialmente respaldadas por datos"
+    ],
+    "next_steps": [
+      "Revisar y corregir discrepancias de precio antes de publicar",
+      "Recalcular todos los retornos con metodología consistente",
+      "Documentar claramente metodología de volatilidad",
+      "Completar datos de volumen faltantes",
+      "Segunda ronda de revisión tras correcciones"
+    ]
+  }
+}

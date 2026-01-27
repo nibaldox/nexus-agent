@@ -1,8 +1,6 @@
 from agents.manager import manager
-from agents.researcher import researcher
-from agents.analyst import analyst
-from agents.librarian import librarian
-from agents.visualizer import visualizer
-from agents.reviewer import reviewer
+from agents.squads.development.squad_leader import dev_squad
+from agents.squads.data_intelligence.squad_leader import data_intelligence_squad
+from agents.squads.knowledge.squad_leader import knowledge_squad
 
-__all__ = ['manager', 'researcher', 'analyst', 'librarian', 'visualizer', 'reviewer']
+__all__ = ['manager', 'dev_squad', 'data_intelligence_squad', 'knowledge_squad']

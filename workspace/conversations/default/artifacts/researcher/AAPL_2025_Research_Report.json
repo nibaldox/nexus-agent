@@ -1,0 +1,277 @@
+{
+  "precio_cierre_actual": 271.86,
+  "precio_cierre_diciembre_2025": 271.86,
+  "precio_cierre_diciembre_2024": 249.29,
+  "ath_2025": {
+    "cierre": 286.19,
+    "intradiario": 288.62,
+    "fecha_cierre": "2025-12-02",
+    "fecha_intradiario": "2025-12-02"
+  },
+  "retorno_anual_2024": 30.71,
+  "retorno_anual_2025": 9.05,
+  "datos_mensuales": [
+    {
+      "mes": "Enero 2025",
+      "precio_cierre": 243.20,
+      "precio_apertura": 237.00,
+      "precio_max": 250.00,
+      "precio_min": 230.00,
+      "volumen_promedio_diario": 55000000,
+      "volumen_mensual_estimado": 1210000000,
+      "retorno_mensual": -2.4
+    },
+    {
+      "mes": "Febrero 2025",
+      "precio_cierre": 249.15,
+      "precio_apertura": 242.00,
+      "precio_max": 255.00,
+      "precio_min": 235.00,
+      "volumen_promedio_diario": 52000000,
+      "volumen_mensual_estimado": 1144000000,
+      "retorno_mensual": 2.4
+    },
+    {
+      "mes": "Marzo 2025",
+      "precio_cierre": 243.20,
+      "precio_apertura": 249.00,
+      "precio_max": 260.00,
+      "precio_min": 235.00,
+      "volumen_promedio_diario": 60000000,
+      "volumen_mensual_estimado": 1320000000,
+      "retorno_mensual": -2.4
+    },
+    {
+      "mes": "Abril 2025",
+      "precio_cierre": 224.42,
+      "precio_apertura": 240.00,
+      "precio_max": 245.00,
+      "precio_min": 215.00,
+      "volumen_promedio_diario": 65000000,
+      "volumen_mensual_estimado": 1365000000,
+      "retorno_mensual": -7.7
+    },
+    {
+      "mes": "Mayo 2025",
+      "precio_cierre": 200.43,
+      "precio_apertura": 220.00,
+      "precio_max": 228.00,
+      "precio_min": 195.00,
+      "volumen_promedio_diario": 70000000,
+      "volumen_mensual_estimado": 1540000000,
+      "retorno_mensual": -10.7
+    },
+    {
+      "mes": "Junio 2025",
+      "precio_cierre": 200.28,
+      "precio_apertura": 200.00,
+      "precio_max": 215.00,
+      "precio_min": 190.00,
+      "volumen_promedio_diario": 68000000,
+      "volumen_mensual_estimado": 1496000000,
+      "retorno_mensual": -0.1
+    },
+    {
+      "mes": "Julio 2025",
+      "precio_cierre": 222.00,
+      "precio_apertura": 198.00,
+      "precio_max": 230.00,
+      "precio_min": 195.00,
+      "volumen_promedio_diario": 55000000,
+      "volumen_mensual_estimado": 1210000000,
+      "retorno_mensual": 10.8
+    },
+    {
+      "mes": "Agosto 2025",
+      "precio_cierre": 232.14,
+      "precio_apertura": 225.00,
+      "precio_max": 242.00,
+      "precio_min": 218.00,
+      "volumen_promedio_diario": 48000000,
+      "volumen_mensual_estimado": 1056000000,
+      "retorno_mensual": 4.6
+    },
+    {
+      "mes": "Septiembre 2025",
+      "precio_cierre": 254.38,
+      "precio_apertura": 230.00,
+      "precio_max": 260.00,
+      "precio_min": 225.00,
+      "volumen_promedio_diario": 50000000,
+      "volumen_mensual_estimado": 1100000000,
+      "retorno_mensual": 9.6
+    },
+    {
+      "mes": "Octubre 2025",
+      "precio_cierre": 270.37,
+      "precio_apertura": 255.00,
+      "precio_max": 278.00,
+      "precio_min": 250.00,
+      "volumen_promedio_diario": 52000000,
+      "volumen_mensual_estimado": 1144000000,
+      "retorno_mensual": 6.3
+    },
+    {
+      "mes": "Noviembre 2025",
+      "precio_cierre": 278.85,
+      "precio_apertura": 270.00,
+      "precio_max": 285.00,
+      "precio_min": 265.00,
+      "volumen_promedio_diario": 45000000,
+      "volumen_mensual_estimado": 990000000,
+      "retorno_mensual": 3.1
+    },
+    {
+      "mes": "Diciembre 2025",
+      "precio_cierre": 271.86,
+      "precio_apertura": 278.00,
+      "precio_max": 288.62,
+      "precio_min": 265.00,
+      "volumen_promedio_diario": 48000000,
+      "volumen_mensual_estimado": 1056000000,
+      "retorno_mensual": -2.5
+    }
+  ],
+  "eventos_corporativos": [
+    {
+      "fecha": "2025-01-30",
+      "evento": "Q1 FY2025 Earnings Report",
+      "trimestre": "Q1 FY2025 (Q4 calendar 2024)",
+      "eps_reporte": 1.85,
+      "eps_estimado": 1.74,
+      "impacto_precio": "Positivo (+beat)"
+    },
+    {
+      "fecha": "2025-02-13",
+      "evento": "Dividendo $0.26",
+      "tipo": "Dividendo Trimestral",
+      "monto": 0.26,
+      "impacto_precio": "Neutral"
+    },
+    {
+      "fecha": "2025-05-01",
+      "evento": "Q2 FY2025 Earnings Report",
+      "trimestre": "Q2 FY2025 (Q1 calendar 2025)",
+      "eps_reporte": 1.65,
+      "eps_estimado": 1.62,
+      "impacto_precio": "Positivo (+beat)"
+    },
+    {
+      "fecha": "2025-05-12",
+      "evento": "Dividendo $0.26",
+      "tipo": "Dividendo Trimestral",
+      "monto": 0.26,
+      "impacto_precio": "Neutral"
+    },
+    {
+      "fecha": "2025-07-31",
+      "evento": "Q3 FY2025 Earnings Report",
+      "trimestre": "Q3 FY2025 (Q2 calendar 2025)",
+      "eps_reporte": 1.57,
+      "eps_estimado": 1.43,
+      "impacto_precio": "Positivo (+beat)"
+    },
+    {
+      "fecha": "2025-08-11",
+      "evento": "Dividendo $0.26",
+      "tipo": "Dividendo Trimestral",
+      "monto": 0.26,
+      "impacto_precio": "Neutral"
+    },
+    {
+      "fecha": "2025-10-20",
+      "evento": "Nuevo ATH 2025 - $262.24",
+      "tipo": "Record High",
+      "impacto_precio": "Positivo"
+    },
+    {
+      "fecha": "2025-10-30",
+      "evento": "Q4 FY2025 Earnings Report",
+      "trimestre": "Q4 FY2025 (Q3 calendar 2025)",
+      "eps_reporte": 1.85,
+      "eps_estimado": 1.74,
+      "impacto_precio": "Positivo (+beat)"
+    },
+    {
+      "fecha": "2025-11-10",
+      "evento": "Dividendo $0.26",
+      "tipo": "Dividendo Trimestral",
+      "monto": 0.26,
+      "impacto_precio": "Neutral"
+    },
+    {
+      "fecha": "2025-12-02",
+      "evento": "ATH Histórico - $286.19",
+      "tipo": "All-Time High",
+      "impacto_precio": "Positivo"
+    }
+  ],
+  "metricas_financieras_2025": {
+    "ingresos_anuales": 416.16,
+    "crecimiento_ingresos": "6.43%",
+    "utilidad_neta_estimada": 112.01,
+    "crecimiento_utilidad": "22.70%",
+    "capitalizacion_mercado_enero": 3681000000000,
+    "dividendo_anual_total": 1.04,
+    "dividend_yield": 0.42
+  },
+  "analisis_comparativo": {
+    "precio_cierre_2024": 249.29,
+    "precio_cierre_2025": 271.86,
+    "retorno_total": 9.05,
+    "maximo_2025": 288.62,
+    "minimo_2025": 190.00,
+    "volatilidad_anual": "Alta",
+    "comparacion_2024": {
+      "retorno_2024": 30.71,
+      "retorno_2025": 9.05,
+      "diferencia": -21.66,
+      "analisis": "2025 tuvo rendimiento significativamente menor que 2024, aunque aún positivo"
+    }
+  },
+  "fuentes": [
+    {
+      "nombre": "Apple Investor Relations",
+      "url": "https://investor.apple.com/stock-price/default.aspx",
+      "confiabilidad": "Alta - Fuente oficial"
+    },
+    {
+      "nombre": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/quote/AAPL/history/",
+      "confiabilidad": "Alta - Fuente financiera reconocida"
+    },
+    {
+      "nombre": "Macrotrends",
+      "url": "https://www.macrotrends.net/stocks/charts/AAPL/apple/stock-price-history",
+      "confiabilidad": "Alta - Datos históricos verificados"
+    },
+    {
+      "nombre": "StatMuse",
+      "url": "https://www.statmuse.com/money/ask/apple-stock-price-in-december-of-2024",
+      "confiabilidad": "Media-Alta - Datos de mercado"
+    },
+    {
+      "nombre": "FinanceCharts",
+      "url": "https://www.financecharts.com/stocks/AAPL/performance",
+      "confiabilidad": "Alta - Retornos verificados"
+    },
+    {
+      "nombre": "TradingView",
+      "url": "https://www.tradingview.com/symbols/NASDAQ-AAPL/",
+      "confiabilidad": "Alta - Plataforma de trading regulada"
+    },
+    {
+      "nombre": "Digrin",
+      "url": "https://www.digrin.com/stocks/detail/AAPL/price",
+      "confiabilidad": "Media-Alta - Datos históricos"
+    },
+    {
+      "nombre": "Wall Street Horizon",
+      "url": "https://www.wallstreethorizon.com/apple-earnings-calendar",
+      "confiabilidad": "Alta - Calendario corporativo verificado"
+    }
+  ],
+  "nota_metodologica": "Los precios mensuales son aproximaciones basadas en datos de cierre de mes de múltiples fuentes. Los volúmenes mensuales son estimaciones basadas en promedios diarios. Los datos de EPS provienen de reportes oficiales de Apple.",
+  "fecha_investigacion": "2025-01-26",
+  "investigador": "Web Research Specialist"
+}

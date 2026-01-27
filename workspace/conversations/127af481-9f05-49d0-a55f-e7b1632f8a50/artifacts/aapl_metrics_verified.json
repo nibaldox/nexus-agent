@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "symbol": "AAPL",
+    "analyst": "Quant Analyst",
+    "timestamp": "2025-01-03T18:30:00Z",
+    "data_source": "Yahoo Finance (verificado)",
+    "session_id": "127af481-9f05-49d0-a55f-e7b1632f8a50"
+  },
+  "calculos_verificados": {
+    "retorno_anual_2024": {
+      "formula": "((cierre_2024 / cierre_2023) - 1) × 100",
+      "valores": {
+        "cierre_dic_31_2024": 249.29,
+        "cierre_dic_31_2023": 192.53
+      },
+      "calculo_explicito": "((249.29 / 192.53) - 1) × 100 = (1.2948 - 1) × 100 = 29.48%",
+      "resultado": "29.48%"
+    },
+    "volatilidad_rolling_30d": {
+      "status": "CALCULO IMPOSIBLE",
+      "formula": "σ_30d = Desvío estándar(retornos diarios) × √252",
+      "razon": "No existen datos de ENERO 2025 aún. Se necesitan 30 días de datos de retorno diario.",
+      "fecha_minima_datos": "2025-02-01 (estimado)",
+      "nota_metodologica": "La volatilidad anualizada rolling 30d requiere retornos diarios del período. Hoy es 03 ene 2025, solo hay 1-2 días de datos de enero."
+    }
+  },
+  "discrepancias_dataset": {
+    "dataset_incorrecto": {
+      "precio_cierre": 271.86,
+      "retorno_reportado": "+9.05%",
+      "ath": 288.62
+    },
+    "datos_reales_verificados": {
+      "precio_cierre_dic_2024": 249.29,
+      "retorno_real_2024": "+29.48%",
+      "ath_intraday": 260.10,
+      "fecha_ath": "2024-12-26",
+      "precio_cierre_ath": 259.02
+    },
+    "analisis_discrepancia": {
+      "error_precio": "22.57 USD (-8.3%)",
+      "error_retorno": "20.43 puntos porcentuales (+226%)",
+      "error_ath": "28.52 USD (-9.9%)",
+      "fuente_error": "Dataset usaba datos incorrectos o de fecha diferente"
+    }
+  },
+  "metodologia": {
+    "retorno_anual": {
+      "formula": "R = (P_final / P_inicial - 1) × 100",
+      "descripcion": "Retorno simple de un año calendario completo",
+      "periodo": "2023-12-31 a 2024-12-31"
+    },
+    "volatilidad_rolling_30d": {
+      "formula": "σ_annual = σ_diaria × √252",
+      "parametros": {
+        "ventana": "30 días de retornos diarios",
+        "dias_operativos": 252 por año"
+      },
+      "formula_explicita": "σ_30d = √(Σ(r_i - r̄)² / (n-1)) × √252",
+      "razon_no_disponible": "No se pueden calcular retornos futuros a fecha de análisis"
+    }
+  },
+  "referencias": {
+    "cierre_dic_31_2024": "Yahoo Finance AAPL Historical Data",
+    "cierre_dic_31_2023": "Yahoo Finance AAPL Historical Data",
+    "ath": "Máximo intraday 2024-12-26: $260.10 (Yahoo Finance)"
+  }
+}

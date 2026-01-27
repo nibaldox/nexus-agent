@@ -1,0 +1,126 @@
+{
+  "report_title": "Clima Actual en Nueva York, NY - Informe de Investigación",
+  "report_date": "2026-01-27",
+  "researcher": "Web Research Specialist",
+  "data_sources": [
+    {
+      "source": "National Weather Service (NOAA) - Central Park",
+      "url": "https://tgftp.nws.noaa.gov/weather/current/KNYC.html",
+      "reliability": "ALTA",
+      "last_updated": "Verificado en tiempo real"
+    },
+    {
+      "source": "AccuWeather",
+      "url": "https://www.accuweather.com/en/us/new-york/10021/current-weather/349727",
+      "reliability": "ALTA",
+      "last_updated": "Verificado en tiempo real"
+    },
+    {
+      "source": "Weather.com (The Weather Channel)",
+      "url": "https://weather.com/es-US/tiempo/10dias/l/Central+Park+Manhattan+Nueva+York",
+      "reliability": "ALTA",
+      "last_updated": "Verificado en tiempo real"
+    }
+  ],
+  "weather_data": {
+    "location": "Nueva York, NY (Central Park)",
+    "current_conditions": {
+      "temperature_celsius": {
+        "value": -6.0,
+        "unit": "°C",
+        "source": "NWS/NOAA"
+      },
+      "temperature_fahrenheit": {
+        "value": 21.0,
+        "unit": "°F",
+        "source": "NWS/NOAA"
+      },
+      "general_conditions": {
+        "description": "Nevisca/Nublado con neviscas",
+        "sky": "Cielo cubierto",
+        "precipitation_type": "Nieve/Llovizna helada",
+        "source": "NWS/NOAA"
+      },
+      "relative_humidity": {
+        "value": "85%",
+        "source": "NWS/NOAA"
+      },
+      "feels_like": {
+        "wind_chill_celsius": -20.0,
+        "wind_chill_fahrenheit": -4.0,
+        "description": "Sensación térmica muy baja debido al viento",
+        "source": "NWS/NOAA"
+      },
+      "wind": {
+        "speed_mph": 10,
+        "speed_kmh": 16,
+        "direction": "NE (Noreste)",
+        "gusts_mph": "Hasta 18-23 mph",
+        "source": "NWS/NOAA & AccuWeather"
+      },
+      "pressure": {
+        "value": "30.45 in Hg",
+        "metric_value": "1031 hPa",
+        "description": "Alta presión - condiciones estables",
+        "source": "NWS/NOAA"
+      },
+      "uv_index": {
+        "value": 1,
+        "description": "Baja",
+        "source": "clima.com"
+      },
+      "visibility": {
+        "value": "10 millas",
+        "metric_value": "~16 km",
+        "source": "AccuWeather"
+      },
+      "dew_point": {
+        "celsius": -13.9,
+        "fahrenheit": 7.0,
+        "source": "NWS/NOAA"
+      }
+    },
+    "forecast": {
+      "today": {
+        "description": "Mezcla invernal a primera hora, nevadas ligeras, mejorando gradualmente durante el día",
+        "high_f": 29,
+        "high_c": -2,
+        "low_f": 14,
+        "low_c": -10,
+        "precipitation_probability": "30-80%",
+        "source": "NWS & AccuWeather"
+      },
+      "tomorrow": {
+        "description": "Períodos de nubes y sol,仍然寒冷",
+        "high_f": 20,
+        "high_c": -7,
+        "low_f": 12,
+        "low_c": -11,
+        "precipitation_probability": "5%"
+      },
+      "outlook": "Condiciones invernales persistentes, temperaturas muy por debajo de lo normal para la temporada"
+    },
+    "alerts": {
+      "active_alerts": "Posibles advertencias de frío extremo / wind chill",
+      "recommendations": [
+        "Usar múltiples capas de ropa térmica",
+        "Limitar exposición exterior prolongada",
+        "Protección para manos, pies y rostro",
+        "Precaución en carreteras por posible hielo"
+      ]
+    }
+  },
+  "summary": {
+    "key_findings": [
+      "Nueva York experimenta condiciones invernales severas con temperaturas de aproximadamente -6°C (21°F)",
+      "La sensación térmica es extremadamente baja, entre -11°C a -20°C debido al viento del NE",
+      "Humedad alta del 83-85% con cielo mayormente nublado/cubierto",
+      "Presión atmosférica alta (1031 hPa) indicando estabilidad atmosférica a pesar del frío",
+      "Viento del NE de 10-16 km/h con ráfagas de hasta 37 km/h",
+      "Índice UV bajo (1) debido a la nubosidad y ángulo solar bajo",
+      "Probabilidad de precipitación de nieve/llovizna helada entre 30-80%"
+    ],
+    "data_consistency": "ALTA - Múltiples fuentes oficiales (NOAA/NWS, AccuWeather, Weather.com) coinciden en los datos principales",
+    "report_timestamp": "2026-01-27 - Investigación completada"
+  }
+}

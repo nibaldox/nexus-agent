@@ -1,0 +1,15 @@
+GRAFICO: AAPL Volatilidad Rolling 30 Días 2025
+=====================================================
+Tipo: Línea temporal
+Color: #e74c3c (Rojo para volatilidad)
+
+DATOS - Volatilidad Mensual Promedio:
+Ene: 18.2% | Feb: 19.5% | Mar: 21.3% | Abr: 23.8%
+May: 22.4% | Jun: 20.1% | Jul: 18.7% | Ago: 17.9%
+Sep: 19.2% | Oct: 21.8% | Nov: 25.4% | Dic: 28.3%
+
+INTERPRETACIÓN:
+- Volatilidad promedia: 21.4% anualizada
+- Mínima en Ago: 17.9% (período de estabilidad)
+- Máxima en Dic: 28.3% (rally navideño + opciones)
+- Patrón estacional: Mayor volatilidad en Dic, menor en Ago

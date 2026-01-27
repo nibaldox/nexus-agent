@@ -1,0 +1,25 @@
+{
+  "status": "NEEDS_REVISION",
+  "confidence": "HIGH",
+  "issues": [
+    "Discrepancia CRÍTICA: Researcher reporta dividendo de $0.1250 (noviembre 2025) => $0.50/año, pero Analyst reporta $1.50/año (2.76% yield). Esto es una inconsistencia de +200% que requiere esclarecimiento inmediato.",
+    "Dividendo anual inconsistente: $0.50 vs $1.50. También no coincide con P/E Ratio de 27.6x en contexto de dividendos/rentabilidad.",
+    "Cálculo potencialmente incorrecto: El % yield de 2.76% debería calcularse como Dividendo / Precio = $1.50 / $54.25 = 2.76% (correcto), pero si fuera $0.50/año, el yield sería 0.92%, no 2.76%.",
+    "Datos numéricos confusos: El Dividendo muestra $0.1250 pero el yield es 2.76%. A menos que haya pago extra en otro trimestre, la cifra base de $0.1250 no genera un yield de 2.76%."
+  ],
+  "missing_tasks": [
+    "Falta métrica EBITDA (Earnings Before Interest, Taxes, Depreciation and Amortization)",
+    "Falta Margen Neto (%)",
+    "Falta EPS (Earnings Per Share)",
+    "Falta Variación cuatrimestral (QoQ) de ingresos",
+    "Sin explicar por qué el dividendo reportado como $0.1250 (noviembre 2025) genera un yield de 2.76%"
+  ],
+  "recommendations": [
+    "Revisar y corregir los datos del dividendo: especificar claramente si el pago es cuatrimestral, semestral o anual.",
+    "Confirmar el dividendo anual real de Intel: verificar si hay múltiples pagos durante el año fiscal.",
+    "Calcular correctamente el % yield: debe coincidir con (Dividendo Anual / Precio Actual).",
+    "Agregar métricas de valoración y rentabilidad: EBITDA, margen operativo, margen neto, EPS."
+  ],
+  "quality_score": 72,
+  "summary": "Informe con fundamentos sólidos y buenos gráficos profesionales, pero contiene una DISCREPANCIA CRÍTICA en los datos del dividendo que afecta su credibilidad matemática. Se requiere revisión inmediata del dividendo anual y su correspondiente yield."
+}

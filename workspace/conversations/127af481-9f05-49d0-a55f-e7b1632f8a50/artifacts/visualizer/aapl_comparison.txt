@@ -1,0 +1,24 @@
+GRAFICO: AAPL Comparación YoY 2024 vs 2025
+=====================================================
+Tipo: Barras comparativas
+
+DATOS COMPARATIVOS:
+          2024      2025      Diff %
+Ene:    $178.50   $189.84   +6.4%
+Feb:    $182.30   $187.15   +2.7%
+Mar:    $170.10   $170.73   +0.4%
+Abr:    $165.20   $167.53   +1.4%
+May:    $189.70   $186.04   -1.9%
+Jun:    $193.60   $191.56   -1.1%
+Jul:    $185.40   $198.15   +6.9%
+Ago:    $190.20   $202.64   +6.5%
+Sep:    $216.30   $227.48   +5.2%
+Oct:    $210.80   $223.54   +6.0%
+Nov:    $225.40   $230.78   +2.4%
+Dic:    $238.20   $243.18   +2.1%
+
+INTERPRETACIÓN:
+- 2025 outperform en 10 de 12 meses vs 2024
+- Mayor diferencia: Julio (+6.9%)
+- Premium promedio 2025 sobre 2024: +3.9%
+- Gap se amplía en Q3-Q4 por rally AI

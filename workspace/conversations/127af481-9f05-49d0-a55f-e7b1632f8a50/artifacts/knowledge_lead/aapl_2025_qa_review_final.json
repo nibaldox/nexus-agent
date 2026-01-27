@@ -1,0 +1,371 @@
+{
+  "build_review_json": {
+    "report_metadata": {
+      "title": "Informe de Investigación Apple (AAPL) 2025",
+      "nexus_session_id": "127af481-9f05-49d0-a55f-e7b1632f8a50",
+      "review_date": "2025-01-26",
+      "reviewed_by": "Knowledge Lead Squad",
+      "reviewer_role": "Quality Coordinator"
+    },
+    "artifacts_verification": {
+      "status": "PARTIAL",
+      "required_artefacts": {
+        "dataset_json": {
+          "present": true,
+          "file": "aapl_2025_complete_dataset.json",
+          "valid_json": true
+        },
+        "visualization_price_volume": {
+          "present": true,
+          "file": "aapl_price_volume.txt",
+          "status": "OK"
+        },
+        "visualization_heatmap": {
+          "present": true,
+          "file": "aapl_returns_heatmap.txt",
+          "status": "OK"
+        },
+        "visualization_volatility": {
+          "present": true,
+          "file": "aapl_volatility.txt",
+          "status": "OK"
+        },
+        "visualization_events_timeline": {
+          "present": true,
+          "file": "aapl_events_timeline.txt",
+          "status": "OK"
+        },
+        "visualization_comparison_yoy": {
+          "present": true,
+          "file": "aapl_comparison.txt",
+          "status": "OK"
+        },
+        "quantitative_analysis": {
+          "present": true,
+          "status": "NEEDS_VERIFICATION"
+        },
+        "macroeconomic_context": {
+          "present": true,
+          "in_dataset": true
+        },
+        "sources_consulted": {
+          "present": true,
+          "in_dataset": true,
+          "url_count": 9
+        }
+      },
+      "missing_artefacts": ["reporte_ejecutivo.md"],
+      "notes": "Reporte ejecutivo referenciado pero no encontrado como artefacto separado"
+    },
+    "data_consistency_analysis": {
+      "overall_status": "CRITICAL_ISSUES_FOUND",
+      "critical_issues": [
+        {
+          "id": "CRIT-001",
+          "severity": "CRITICAL",
+          "category": "price_inconsistency",
+          "title": "Discrepancia crítica en precio de cierre 2025",
+          "finding": "Precio de cierre diverge significativamente entre fuentes",
+          "evidence": {
+            "dataset_closing_price": 271.86,
+            "visualization_closing_price": 243.18,
+            "difference_pct": 10.54
+          },
+          "impact": "Afecta credibilidad de retornos calculados y conclusiones del análisis",
+          "resolution_required": "Unificar precio de cierre verificando contra fuente primaria"
+        },
+        {
+          "id": "CRIT-002",
+          "severity": "CRITICAL",
+          "category": "return_calculation_error",
+          "title": "Retorno anual reportado inconsistente con datos",
+          "finding": "Retorno anual de +9.05% no coincide con cálculo visual",
+          "evidence": {
+            "dataset_reported_return": 9.05,
+            "calculated_return_from_visual": 28.1,
+            "calculation_basis": "(243.18 - 189.84) / 189.84 * 100"
+          },
+          "impact": "Conclusión principal del reporte ('desaceleración vs 2023-2024') contradictoria con datos",
+          "resolution_required": "Verificar si 9.05% es error tipográfico o cálculo desde fecha específica"
+        },
+        {
+          "id": "CRIT-003",
+          "severity": "CRITICAL",
+          "category": "ath_inconsistency",
+          "title": "All-Time High incompatible con precio de cierre",
+          "finding": "ATH ($288.62) > precio cierre ($243.18 o $271.86), pero visualización muestra máximo menor",
+          "evidence": {
+            "dataset_ath": 288.62,
+            "dataset_ath_date": "2025-12-02",
+            "visualization_max_price": 243.18
+          },
+          "impact": "Visualización no representa correctamente el rango de precios del año",
+          "resolution_required": "Actualizar visualización para mostrar ATH real o explicar discrepancia"
+        }
+      ],
+      "high_issues": [
+        {
+          "id": "HIGH-001",
+          "severity": "HIGH",
+          "category": "volatility_inconsistency",
+          "title": "Volatilidad reportada con valores contradictorios",
+          "finding": "Reporte ejecutivo menciona 46% volatilidad pero visualización muestra 21.4% promedio",
+          "evidence": {
+            "executive_report_volatility": "46.0%",
+            "visualization_avg_volatility": "21.4%",
+            "visualization_max_volatility": "28.3%"
+          },
+          "impact": "Confusión sobre métrica de riesgo real de la acción",
+          "resolution_required": "Aclarar si 46% es volatilidad máxima anual, implícita, o error"
+        },
+        {
+          "id": "HIGH-002",
+          "severity": "HIGH",
+          "category": "missing_methodology",
+          "title": "Métricas de riesgo sin metodología documentada",
+          "finding": "Ratio Sharpe (0.10) y Max Drawdown (-41.4%) reportados sin fórmula ni fuente",
+          "evidence": {
+            "sharpe_ratio_reported": 0.10,
+            "max_drawdown_reported": "-41.4%",
+            "methodology_documented": false
+          },
+          "impact": "Métricas no verificables ni reproducibles",
+          "resolution_required": "Documentar cálculo: Sharpe = (Rp - Rf) / σp. Indicar Rf usado y período"
+        }
+      ],
+      "medium_issues": [
+        {
+          "id": "MED-001",
+          "severity": "MEDIUM",
+          "category": "volume_data_missing",
+          "title": "Datos de volumen diario marcados como N/A",
+          "finding": "Los 4 campos volume_daily_avg están sin completar",
+          "evidence": {
+            "missing_quarters": ["Q1", "Q2", "Q3", "Q4"],
+            "justification": "N/A - datos históricos requieren consulta específica"
+          },
+          "impact": "Análisis de volumen incompleto, no permite verificar patrones de trading",
+          "resolution_required": "Obtener datos de Yahoo Finance o documentar ausencia justificada"
+        },
+        {
+          "id": "MED-002",
+          "severity": "MEDIUM",
+          "category": "source_inconsistency",
+          "title": "Inconsistencias en sistema de fuentes",
+          "finding": "Fuentes en metadata no coinciden exactamente con lista de fuentes",
+          "evidence": {
+            "metadata_sources": ["Yahoo Finance", "Apple IR", "Investing.com", "Macrotrends", "Fed", "PIIE"],
+            "sources_section_count": 9,
+            "url_mismatches": true
+          },
+          "impact": "Traza de auditoría reducida",
+          "resolution_required": "Reconciliar listas y agregar URLs faltantes"
+        }
+      ],
+      "low_issues": [
+        {
+          "id": "LOW-001",
+          "severity": "LOW",
+          "category": "approximate_values",
+          "title": "Valores aproximados en contexto macroeconómico",
+          "finding": "CPI ~2.8%, tarifa arancel ~27% usan aproximaciones",
+          "evidence": {
+            "cpi_reported": "~2.8%",
+            "tariff_reported": "~27%"
+          },
+          "impact": "Reduce precisión del análisis macro",
+          "resolution_required": "Reemplazar con valores exactos y fechas de referencia"
+        }
+      ]
+    },
+    "data_cross_validation": {
+      "price_series_consistency": {
+        "status": "FAILED",
+        "details": [
+          "Dataset Q1 opening: $247.32 vs Visualization Ene: $189.84 (inconsistente)",
+          "Dataset Q4 closing: $271.86 vs Visualization Dic: $243.18 (inconsistente)"
+        ]
+      },
+      "quarterly_pattern_validation": {
+        "status": "VERIFIED",
+        "v_shape_pattern_confirmed": true,
+        "details": "Secuencia Q1-Q4 consistente con patrón V-shape descrito"
+      },
+      "year_over_year_comparison": {
+        "status": "VERIFIED",
+        "details": "Datos 2024 vs 2025 consistentes en visualización comparativa"
+      },
+      "dividend_data": {
+        "status": "VERIFIED",
+        "amount": 0.26,
+        "frequency": "quarterly",
+        "quarters": 4
+      },
+      "earnings_calls": {
+        "status": "VERIFIED",
+        "count": 4,
+        "dates_match": true
+      }
+    },
+    "conclusions_validation": {
+      "overall_assessment": "PARTIALLY_SUPPORTED",
+      "supported_conclusions": [
+        {
+          "conclusion": "Patrón trimestral V-shape",
+          "support": "VERIFIED - Datos dataset confirman secuencia Q1-Q4"
+        },
+        {
+          "conclusion": "Desaceleración vs 2023-2024",
+          "support": "QUESTIONABLE - Dataset dice 9.05%, visualización sugiere 28.1%"
+        },
+        {
+          "conclusion": "Q4 ingresos récord $102.5B",
+          "support": "VERIFIED - Apple Newsroom cited"
+        },
+        {
+          "conclusion": "Contexto macro (tasas Fed, aranceles)",
+          "support": "VERIFIED - Fed y PIIE sources cited"
+        }
+      ],
+      "unsupported_conclusions": [
+        {
+          "conclusion": "Ratio Sharpe 0.10",
+          "reason": "Sin metodología ni fuente"
+        },
+        {
+          "conclusion": "Max Drawdown -41.4%",
+          "reason": "Sin metodología ni fuente"
+        },
+        {
+          "conclusion": "Impacto eventos: +$35.50 total",
+          "reason": "Atribución de precio sin metodología de causalidad"
+        },
+        {
+          "conclusion": "Fase de maduración del ciclo",
+          "reason": "Conclusión estratégica sin datos de soporte"
+        }
+      ]
+    },
+    "quality_scores": {
+      "completeness": {
+        "score": 85,
+        "weight": 0.2,
+        "weighted_score": 17,
+        "notes": "Faltan volumen diario y reporte ejecutivo como artefacto"
+      },
+      "consistency": {
+        "score": 45,
+        "weight": 0.35,
+        "weighted_score": 15.75,
+        "notes": "Precios y retornos inconsistentes entre dataset y visualizaciones"
+      },
+      "accuracy": {
+        "score": 50,
+        "weight": 0.25,
+        "weighted_score": 12.5,
+        "notes": "Métricas de riesgo sin fuente, datos aproximados"
+      },
+      "methodology": {
+        "score": 55,
+        "weight": 0.1,
+        "weighted_score": 5.5,
+        "notes": "Falta documentar fórmulas y período de cálculo"
+      },
+      "sources": {
+        "score": 80,
+        "weight": 0.1,
+        "weighted_score": 8,
+        "notes": "Fuentes primarias citadas pero con inconsistencias en metadata"
+      },
+      "overall_score": {
+        "raw": 58.75,
+        "grade": "D+",
+        "status": "REQUIRES_CHANGES"
+      }
+    },
+    "recommendations": [
+      {
+        "priority": 1,
+        "action": "Corregir discrepancia de precio de cierre",
+        "description": "Verificar contra Yahoo Finance y Apple Investor Relations. Elegir precio único ($243.18 o $271.86) y aplicar consistentemente en todos los artefactos",
+        "estimated_effort": "2-3 horas",
+        "artifacts_affected": ["dataset_json", "visualizations", "executive_report"]
+      },
+      {
+        "priority": 2,
+        "action": "Reconciliar cálculo de retorno anual",
+        "description": "Determinar retorno real: Si es 9.05%, corregir visualización. Si es 28.1%, actualizar dataset. Documentar metodología de cálculo.",
+        "estimated_effort": "1-2 horas",
+        "artifacts_affected": ["dataset_json", "visualization_heatmap", "executive_report"]
+      },
+      {
+        "priority": 3,
+        "action": "Documentar metodología de métricas de riesgo",
+        "description": "Agregar sección de metodología con: Fórmula Sharpe, tasa libre de riesgo usada, período de cálculo, fuente de datos drawdown",
+        "estimated_effort": "1 hora",
+        "artifacts_affected": ["executive_report"]
+      },
+      {
+        "priority": 4,
+        "action": "Actualizar visualización de precios",
+        "description": "Incluir ATH real ($288.62) y rango completo de precios del año",
+        "estimated_effort": "30 minutos",
+        "artifacts_affected": ["visualization_price_volume"]
+      },
+      {
+        "priority": 5,
+        "action": "Obtener datos de volumen o documentar",
+        "description": "Consultar Yahoo Finance API para volumen diario o incluir nota explicativa de ausencia de datos",
+        "estimated_effort": "2-4 horas",
+        "artifacts_affected": ["dataset_json"]
+      },
+      {
+        "priority": 6,
+        "action": "Reformular recomendaciones con marco cuantitativo",
+        "description": "Agregar escenarios probabilísticos, precio objetivo o rango fair value, múltiplos comparables",
+        "estimated_effort": "3-4 horas",
+        "artifacts_affected": ["executive_report"]
+      },
+      {
+        "priority": 7,
+        "action": "Precisar valores macroeconómicos",
+        "description": "Reemplazar ~2.8%, ~27% con valores exactos y fechas de referencia de fuentes",
+        "estimated_effort": "1 hora",
+        "artifacts_affected": ["dataset_json"]
+      }
+    ],
+    "final_verdict": {
+      "status": "REQUIRES_CHANGES",
+      "overall_assessment": "El informe AAPL 2025 contiene errores CRÍTICOS de consistencia de datos que impiden su aprobación en el estado actual.",
+      "key_findings": [
+        "2 errores CRÍTICOS: precio de cierre inconsistente y retorno anual contradictorio",
+        "Métricas de riesgo clave (Sharpe, Drawdown) sin metodología verificable",
+        "Visualización de precios no representa ATH real del dataset",
+        "Estructura y contexto macro bien desarrollados"
+      ],
+      "approval_conditions": [
+        "Unificar precio de cierre a valor único verificable",
+        "Corregir cálculo de retorno anual con metodología documentada",
+        "Documentar fórmulas y fuentes para métricas de riesgo",
+        "Re-enviar para segunda revisión de QA"
+      ],
+      "estimated_time_to_resolve": "8-12 horas de trabajo"
+    },
+    "review_history": [
+      {
+        "review_number": 1,
+        "date": "2025-01-26",
+        "reviewer": "Reviewer (Quality Assurance)",
+        "verdict": "APROBADO CON OBSERVACIONES (B-, 7.0/10)",
+        "notes": "Revisión inicial encontró debilidades en métricas calculadas y recomendaciones"
+      },
+      {
+        "review_number": 2,
+        "date": "2025-01-26",
+        "reviewer": "Knowledge Lead",
+        "verdict": "REQUIRES_CHANGES",
+        "notes": "Revisión adicional identificó errores CRÍTICOS de consistencia de datos no detectados previamente"
+      }
+    ]
+  }
+}
